@@ -2,7 +2,7 @@
   "name": "skeleton",
   "version": "0.0.1",
   "description": "This skeleton project is to share how to build, test, and deploy a project within TMG SP S",
-  "homepage": "",
+  "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": "Jason S Morris <jason.morris@intel.com> (https://soco.intel.com/people/jmorris2)",
   "contributors": [],
   "main": "gulpfile.js",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.intel.com:ccsd/skeleton.git"
   },
   "license": "ISC",
   "jshintConfig": {
