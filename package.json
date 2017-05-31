@@ -1,0 +1,30 @@
+{
+  "name": "skeleton",
+  "version": "0.0.1",
+  "description": "This skeleton project is to share how to build, test, and deploy a project within TMG SP S",
+  "homepage": "",
+  "author": "Jason S Morris <jason.morris@intel.com> (https://soco.intel.com/people/jmorris2)",
+  "contributors": [],
+  "main": "gulpfile.js",
+  "scripts": {
+    "postinstall": "nuget restore"
+  },
+  "devDependencies": {
+    "glob": "^7.1.2",
+    "gulp": "^3.9.1",
+    "gulp-nunit-runner": "^1.2.1",
+    "gulp-util": "^3.0.8",
+    "minimist": "^1.2.0",
+    "moment": "^2.18.1",
+    "mssql": "^4.0.4",
+    "run-sequence": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "ISC",
+  "jshintConfig": {
+    "node": true
+  }
+}
