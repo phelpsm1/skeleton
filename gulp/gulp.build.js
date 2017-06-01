@@ -1,17 +1,43 @@
 'use strict';
 
+const glob = require('glob');
 const gulp = require('gulp');
-const path = require('path');
+const msbuild = require('gulp-msbuild');
 const nunit = require('gulp-nunit-runner');
+const path = require('path');
+const util = require('gulp-util');
 
-gulp.task('run-tests', ['publish'], function() {
-  let tests = path.join(process.cwd(), 'Tests', 'bin', 'Release', 'Intel.Trans.Tests.dll'); // TODO: needs to be generic
-  let nunitexe = path.join(process.cwd(), 'packages', 'NUnit.Console.3.0.1', 'tools', 'nunit3-console.exe'); // TODO: needs to be generic
+const toolsVersion = 15.0;
+const configuration = 'Release';
 
-  return gulp.src(tests, {read: false})
+gulp.task('clean', function() {
+  return gulp.src('./*.sln')
+    .pipe(msbuild({
+      targets: ['Clean'],
+      toolsVersion: toolsVersion,
+      configuration: configuration,
+      verbosity: 'detailed',
+      errorOnFail: true
+    }));
+});
+
+gulp.task('compile', ['clean'], function() {
+  return gulp.src('./*.sln')
+    .pipe(msbuild({
+      targets: ['Build'],
+      toolsVersion: toolsVersion,
+      configuration: configuration,
+      verbosity: 'detailed',
+      errorOnFail: true
+    }));
+});
+
+gulp.task('test', ['compile'], function() {
+  return gulp.src('./**/bin/**/Intel.*.Tests.dll', {read: false})
     .pipe(nunit({
-      executable: nunitexe,
-      cleanup:true,
+      executable: glob.sync('./packages/NUnit*/**/*-console.exe')[0],
+      cleanup: true,
+      noheader: true,
       nodots: false,
       nologo: true,
       noresult: false,
@@ -21,4 +47,6 @@ gulp.task('run-tests', ['publish'], function() {
     }));
 });
 
-gulp.task('build', ['run-tests']);
+gulp.task('build', ['test'], function() {
+  util.log(`Building...`);
+});

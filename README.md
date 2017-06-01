@@ -4,7 +4,7 @@ This skeleton project is to share how to build, test, and deploy a project withi
 
 ## Installation and Setup
 
-### Prerequists
+### prerequisites
 
 1) NodeJS
 
@@ -27,6 +27,8 @@ Install [NuGet executable](https://dist.nuget.org/index.html) and make sure the 
 ### Testing
 
 #### Unit Testing
+
+1) Include [NUnit Console Runner](https://www.nuget.org/packages/NUnit.ConsoleRunner) with your test library as the build with execute tests using this runner.
 
 #### Acceptance Testing
 
