@@ -6,6 +6,11 @@
       "logname": "Trans",
       "server": "localhost"
     },
+    "web": {
+      "apppool": "Trans",
+      "site": "Trans",
+      "servers": ["localhost"]
+    },
     "atomFeedUrl": "http://ems-int.intel.com",
     "compilationDebug": true,
     "deployPaths": [
@@ -24,6 +29,11 @@
       "name": "TransDev",
       "logname": "TransDev",
       "server": "CCE1PDB119I02"
+    },
+    "web": {
+      "apppool": "TransDev",
+      "site": "TransDev",
+      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"]
     },
     "atomFeedUrl": "http://ems-int.intel.com",
     "compilationDebug": true,
@@ -45,6 +55,11 @@
       "logname": "TransInt",
       "server": "CCE1PDB119I02"
     },
+    "web": {
+      "apppool": "TransInt",
+      "site": "TransInt",
+      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"]
+    },
     "atomFeedUrl": "http://ems-int.intel.com",
     "compilationDebug": true,
     "deployPaths": [
@@ -64,6 +79,11 @@
       "name": "Trans",
       "logname": "TransLog",
       "server": "CCE1PDB119I02"
+    },
+    "web": {
+      "apppool": "Trans",
+      "site": "Trans",
+      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"]
     },
     "atomFeedUrl": "http://ems.intel.com",
     "compilationDebug": false,

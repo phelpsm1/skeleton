@@ -35,6 +35,10 @@ function parse(args, config) {
   }
 }
 
+function getName() {
+  return process.env.targets.split(' ')[0];
+}
+
 function isEnvironmentDefined() {
   return process.env.targets.length !== 0;
 }
@@ -48,7 +52,8 @@ function isPasswordDefined() {
 }
 
 module.exports = {
-  parse: parse
+  getName: getName
+  , parse: parse
   , isEnvironmentDefined: isEnvironmentDefined
   , isProduction: isProduction
   , isPasswordDefined: isPasswordDefined
