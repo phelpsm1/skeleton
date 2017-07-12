@@ -26,7 +26,7 @@ gulp.task('app:up', function() {
     return;
   }
 
-  execute('Bring-Up');
+  return execute('Bring-Up');
 });
 
 gulp.task('app:offline', function () {
@@ -50,6 +50,29 @@ gulp.task('app:online', function () {
 
   return execute('Take-Online');
 });
+
+gulp.task('app:recycle', function () {
+  const help = `, e.g. gulp app:recycle -e dev`;
+
+  if (!env.isEnvironmentDefined()) {
+    util.log(util.colors.red(`Environment not specified`, help));
+    return;
+  }
+
+  return execute('Recycle');
+});
+
+gulp.task('app:status', function() {
+  const help = `, e.g. gulp app:status -e dev`;
+
+  if (!env.isEnvironmentDefined()) {
+    util.log(util.colors.red(`Environment not specified`, help));
+    return;
+  }
+
+  return execute('Get-Status');
+});
+
 
 function execute(command) {
   const web = config[env.getName()].web;
@@ -85,23 +108,3 @@ function execute(command) {
       ps.dispose();
     });
 }
-
-// recycle the app pool for the given environment
-// gulp.task('app:recycle', function () {
-//   var deferred = Q.defer();
-//
-//   shelljs.exec('jarvis.cmd recycle '+process.env.target);
-//   deferred.resolve();
-//
-//   return deferred.promise;
-// });
-
-// output the app pool status for the given environment
-// gulp.task('app:status', function() {
-//   var deferred = Q.defer();
-//
-//   shelljs.exec('jarvis.cmd get '+process.env.target+' status');
-//   deferred.resolve();
-//
-//   return deferred.promise;
-// });

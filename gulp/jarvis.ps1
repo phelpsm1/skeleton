@@ -20,8 +20,10 @@ param(
 )
 
 $app_offline_file = "app_offline.htm"
+$appcmd = "%systemroot%\system32\inetsrv\appcmd"
 
 function Take-Offline() {
+    Write-Output ""
     Write-Output "Taking $name offline in $env..."
 
     foreach ($server in $servers) {
@@ -34,6 +36,7 @@ function Take-Offline() {
 }
 
 function Take-Online() {
+    Write-Output ""
     Write-Output "Bringing $name online in $env..."
 
     foreach ($server in $servers) {
@@ -52,16 +55,13 @@ function Take-Online() {
 function Bring-Down() {
     $cred = Get-Mfg-Credentials
 
+    Write-Output ""
+
     foreach ($server in $servers) {
         $session = New-PSSession -ComputerName $server -Credential $cred
 
-        Write-Output ""
-        Write-Output "Stopping $name in $env on $server..."
-        Write-Output ""
-
-        Execute-Server-Command "Stopping application pool..." "%systemroot%\system32\inetsrv\appcmd stop apppool $apppool"
-
-        Execute-Server-Command "Stopping website..." "%systemroot%\system32\inetsrv\appcmd stop site $site"
+        Execute-Server-Command "Stopping $name application pool in $env on $server..." "$appcmd stop apppool $apppool"
+        Execute-Server-Command "Stopping $name website in $env on $server..."          "$appcmd stop site $site"
 
         Remove-PSSession $session
     }
@@ -70,60 +70,46 @@ function Bring-Down() {
 function Bring-Up() {
     $cred = Get-Mfg-Credentials
 
+    Write-Output ""
+
     foreach ($server in $servers) {
         $session = New-PSSession -ComputerName $server -Credential $cred
 
-        Write-Output ""
-        Write-Output "Starting $name in $env on $server..."
-        Write-Output ""
-
-        Execute-Server-Command "Starting application pool..." "%systemroot%\system32\inetsrv\appcmd start apppool $apppool"
-
-        Execute-Server-Command "Starting website..." "%systemroot%\system32\inetsrv\appcmd start site $site"
+        Execute-Server-Command "Starting $name application pool in $env on $server..." "$appcmd start apppool $apppool"
+        Execute-Server-Command "Starting $name website in $env on $server..."          "$appcmd start site $site"
 
         Remove-PSSession $session
     }
 }
 
-# function Get-Status() {
-#     # if($env -eq "local") {
-#     #     return
-#     # }
-#
-#     # $cred = Get-Mfg-Credentials
-#
-#     foreach ($server in $servers) {
-#         # $session = New-PSSession -ComputerName $server -Credential $cred
-#
-#         Write-Output ""
-#         Write-Output "Getting application pool status for $env on $server..."
-#         Write-Output ""
-#
-#         # Execute-Server-Command "Application pool status is..." "%systemroot%\system32\inetsrv\appcmd list apppool Trans$env"
-#
-#         # Remove-PSSession $session
-#     }
-# }
+function Recycle() {
+    $cred = Get-Mfg-Credentials
 
-# function Recycle() {
-#     if($env -eq "local") {
-#         return
-#     }
-#
-#     $cred = Get-Mfg-Credentials
-#
-#     foreach ($server in $servers) {
-#         $session = New-PSSession -ComputerName $server -Credential $cred
-#
-#         Write-Output ""
-#         Write-Output "Recycling Trans in $env on $server..."
-#         Write-Output ""
-#
-#         Execute-Server-Command "Recycling  application pool..." "%systemroot%\system32\inetsrv\appcmd recycle apppool Trans$env"
-#
-#         Remove-PSSession $session
-#     }
-# }
+    Write-Output ""
+
+    foreach ($server in $servers) {
+        $session = New-PSSession -ComputerName $server -Credential $cred
+
+        Execute-Server-Command "Recycling $name application pool in $env on $server..." "$appcmd recycle apppool $apppool"
+
+        Remove-PSSession $session
+    }
+}
+
+function Get-Status() {
+    $cred = Get-Mfg-Credentials
+
+    Write-Output ""
+
+    foreach ($server in $servers) {
+        $session = New-PSSession -ComputerName $server -Credential $cred
+
+        Execute-Server-Command "$name application pool status in $env on $server is..." "$appcmd list apppool $apppool"
+        Execute-Server-Command "$name website status in $env on $server is..."          "$appcmd list site $site"
+
+        Remove-PSSession $session
+    }
+}
 
 # function Set-Current() {
 #     if($rev -eq "") {
@@ -171,11 +157,11 @@ function Get-Mfg-Credentials() {
 #     Invoke-Command -ScriptBlock $sb
 # }
 
-# function Execute-Server-Command($message, $cmd) {
-#     Write-Output $message
-#     $sb = [scriptblock]::Create("CMD /C $cmd")
-#     Invoke-Command -Session $session -ScriptBlock $sb
-# }
+function Execute-Server-Command($message, $cmd) {
+    Write-Output $message
+    $sb = [scriptblock]::Create("CMD /C $cmd")
+    Invoke-Command -Session $session -ScriptBlock $sb
+}
 
 # function Get-Revision {
 #     $rev = (Invoke-Expression 'svn info')[6].Split(' ')[1]
