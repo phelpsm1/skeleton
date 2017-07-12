@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <!-- based on http://codepen.io/ryan_labar/details/HeEuG -->
+
+  <head>
+    <title>500</title>
+    <style>
+      html {
+      height: 100%;
+      }
+
+      body {
+      background: #232323;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      }
+
+      .wrapper {
+      position: relative;
+      background-image: -o-radial-gradient(#545454 0%, #232323 100%);
+      background-image: -moz-radial-gradient(#545454 0%, #232323 100%);
+      background-image: -webkit-radial-gradient( #545454 0%, #232323 100%);
+      background-image: -ms-radial-gradient(#545454 0%, #232323 100%);
+      background-image: radial-gradient(#545454 0%, #232323 100%);
+      width: 100%;
+      min-height: 100%;
+      padding: 30px 0 55px 0;
+      margin: 0;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      }
+
+      .label {
+      position: absolute;
+      height: 35px;
+      width: 168px;
+      top: 15px;
+      left: 15px;
+      border: 2px solid #aaa;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      }
+
+      .labelleft {
+      position: absolute;
+      background: #30667C;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      text-align: right;
+      color: #aaa;
+      font-size: 20px;
+      font-family: helvetica,sans-serif;
+      text-transform: uppercase;
+      font-weight: lighter;
+      padding: 6px 5px 0 0;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      }
+
+      .labelright {
+      position: absolute;
+      width: 50%;
+      min-height: 100%;
+      top: 0;
+      right: 0;
+      text-align: left;
+      color: #aaa;
+      font-size: 20px;
+      font-family: helvetica,sans-serif;
+      font-weight: lighter;
+      padding: 6px 0 0 0;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      }
+
+      .halborder {
+      position: relative;
+      height: 618px;
+      width: 208px;
+      margin: 0 auto 55px auto;
+      border-radius: 2px;
+      background-image: -o-linear-gradient(-90deg, #AEAEAE 0%, #787878 12%, #717171 100%);
+      background-image: -moz-linear-gradient(-90deg, #AEAEAE 0%, #787878 12%, #717171 100%);
+      background-image: -webkit-linear-gradient(-90deg, #AEAEAE 0%, #787878 12%, #717171 100%);
+      background-image: -ms-linear-gradient(-90deg, #AEAEAE 0%, #787878 12%, #717171 100%);
+      background-image: linear-gradient(-180deg, #AEAEAE 0%, #787878 12%, #717171 100%);
+      -moz-box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.81);
+      -webkit-box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.81);
+      box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.81);
+      }
+
+      .halbox {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      height: 610px;
+      width: 200px;
+      border-radius: 1px;
+      background: #1E1E1E;
+      -moz-box-shadow: inset 0 3px 5px 2px rgba(0, 0, 0, 0.69);
+      -webkit-box-shadow: inset 0 3px 5px 2px rgba(0, 0, 0, 0.69);
+      box-shadow: inset 0 3px 5px 2px rgba(0, 0, 0, 0.69);
+      }
+
+      .speakerlong {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-size: 6px 6px;
+      background-image: -o-linear-gradient(-90deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-image: -moz-linear-gradient(-90deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-image: -webkit-linear-gradient(-90deg, #444 0%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, #444 20%, rgba(0, 0, 0, 0.00) 29%);
+      background-image: -ms-linear-gradient(-90deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-image: linear-gradient(-180deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-repeat: repeat;
+      -moz-box-shadow: inset 0 2px 5px 2px rgba(0, 0, 0, 0.55);
+      -webkit-box-shadow: inset 0 2px 5px 2px rgba(0, 0, 0, 0.55);
+      box-shadow: inset 0 2px 5px 2px rgba(0, 0, 0, 0.55);
+      }
+
+      .speakerlat {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-size: 6px 6px;
+      /*designed by Ryan LaBar*/
+      background-image: -o-linear-gradient(0deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-image: -moz-linear-gradient(0deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-image: -webkit-linear-gradient(0deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-image: -ms-linear-gradient(0deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-image: linear-gradient(-90deg, #444 0%, #444 20%, rgba(0, 0, 0, 0.27) 20%, rgba(0, 0, 0, 0.27) 29%, rgba(0, 0, 0, 0.00) 29%);
+      background-repeat: repeat;
+      }
+
+      .speakerbg {
+      position: absolute;
+      height: 132px;
+      width: 100%;
+      top: 4px;
+      left: 0;
+      background-image: -o-linear-gradient(-90deg, #323232 0%, #1e1e1e 100%);
+      background-image: -moz-linear-gradient(-90deg, #323232 0%, #1e1e1e 100%);
+      background-image: -webkit-linear-gradient(-90deg, #323232 0%, #1e1e1e 100%);
+      background-image: -ms-linear-gradient(-90deg, #323232 0%, #1e1e1e 100%);
+      background-image: linear-gradient(-180deg, #323232 0%, #1e1e1e 100%);
+      }
+
+      .speakerbox {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 136px;
+      width: 200px;
+      background: #727272;
+      -moz-box-shadow: inset 0 1px 3px 0 rgba(255, 254, 255, 0.41);
+      -webkit-box-shadow: inset 0 1px 3px 0 rgba(255, 254, 255, 0.41);
+      box-shadow: inset 0 1px 3px 0 rgba(255, 254, 255, 0.41);
+      }
+
+      .outersocket {
+      position: absolute;
+      left: 12px;
+      top: 268px;
+      height: 176px;
+      width: 176px;
+      border-radius: 1000px;
+      background-image: -o-linear-gradient(-90deg, #C5ACAC 0%, #B1A8A8 34%, #564D4D 50%, #3F3535 100%);
+      background-image: -moz-linear-gradient(-90deg, #C5ACAC 0%, #B1A8A8 34%, #564D4D 50%, #3F3535 100%);
+      background-image: -webkit-linear-gradient(-90deg, #C5ACAC 0%, #B1A8A8 34%, #564D4D 50%, #3F3535 100%);
+      background-image: -ms-linear-gradient(-90deg, #C5ACAC 0%, #B1A8A8 34%, #564D4D 50%, #3F3535 100%);
+      background-image: linear-gradient(-180deg, #C5ACAC 0%, #B1A8A8 34%, #564D4D 50%, #3F3535 100%);
+      -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.81);
+      -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.81);
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.81);
+      }
+
+      .innersocket {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      height: 166px;
+      width: 166px;
+      border-radius: 1000px;
+      background-image: -o-linear-gradient(-90deg, #644A4A 0%, #6A5151 44%, #BCA9A9 53%, #CBBABA 100%);
+      background-image: -moz-linear-gradient(-90deg, #644A4A 0%, #6A5151 44%, #BCA9A9 53%, #CBBABA 100%);
+      background-image: -webkit-linear-gradient(-90deg, #644A4A 0%, #6A5151 44%, #BCA9A9 53%, #CBBABA 100%);
+      background-image: -ms-linear-gradient(-90deg, #644A4A 0%, #6A5151 44%, #BCA9A9 53%, #CBBABA 100%);
+      background-image: linear-gradient(-180deg, #644A4A 0%, #6A5151 44%, #BCA9A9 53%, #CBBABA 100%);
+      }
+
+      .eyeshinebig {
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      border-radius: 1000px;
+      background: rgba(255, 255, 255, 0.55);
+      top: 20%;
+      left: 25%;
+      }
+
+      .eyeshinesmall {
+      position: absolute;
+      height: 8px;
+      width: 8px;
+      border-radius: 1000px;
+      background: rgba(255, 255, 255, 0.55);
+      top: 15%;
+      left: 20%;
+      }
+
+      .eye {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      height: 150px;
+      width: 150px;
+      border-radius: 1000px;
+      background: -o-radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 22%, #290000 27%, #290707 37%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      background: -moz-radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 22%, #290000 27%, #290707 37%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      background: -webkit-radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 22%, #290000 27%, #290707 37%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      background: -ms-radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 22%, #290000 27%, #290707 37%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      background: radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 22%, #290000 27%, #290707 37%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      border: 1px solid #111;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      }
+
+      .eye:hover {
+      background: -o-radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 23%, #290000 28%, #290707 39%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      background: -moz-radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 23%, #290000 28%, #290707 39%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      background: -webkit-radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 23%, #290000 28%, #290707 39%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      background: -ms-radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 23%, #290000 28%, #290707 39%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      background: radial-gradient(#FFFeee 0%, #FFF000 5%, #FF0000 8%, #870000 23%, #290000 28%, #290707 39%, #3D0A0A 42%, #270C0C 47%, #1E0C0C 100%);
+      }
+
+      .halquote {
+      color: #30667C;
+      font-family: helvetica,sans-serif;
+      font-size: 37px;
+      text-align: center;
+      margin-bottom: 50px;
+      }
+
+      .halquote a {
+      text-decoration: none;
+      color: #347B98;
+      }
+
+      .halquote a:hover {
+      text-decoration: underline;
+      color: #347B98;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="halquote">TRANS is down for a quick update, it should be back online within the next 15 minutes.</div>
+      <br /><br />
+      <div class="halquote" style="font-size: 28px"><strong>"I'm sorry Dave, I'm afraid I can't do that."</strong></div>
+      <div class="halborder">
+        <div class="halbox">
+          <div class="label">
+            <div class="labelleft">Hal</div>
+            <div class="labelright">&nbsp;9000</div>
+          </div>
+          <div class="speakerbox">
+            <div class="speakerbg">
+              <div class="speakerlat"></div>
+              <div class="speakerlong"></div>
+            </div>
+          </div>
+          <div class="outersocket">
+            <div class="innersocket">
+              <div class="eye">
+                <div class="eyeshinebig">
+                  <div class="eyeshinesmall"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
