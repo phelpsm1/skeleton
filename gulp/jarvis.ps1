@@ -3,19 +3,19 @@ param(
     [String]$command,
     [Parameter(Mandatory = $false)]
     [String]$env,
-    [Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $false)]
 #     [String]$action,
 #     [Parameter (Mandatory = $false)]
 #     [String]$rev,
 #     [Parameter (Mandatory = $false)]
     [Array]$servers,
-    [Parameter (Mandatory = $true)]
+    [Parameter (Mandatory = $false)]
     [String]$name,
-    [Parameter (Mandatory = $true)]
+    [Parameter (Mandatory = $false)]
     [String]$apppool,
-    [Parameter (Mandatory = $true)]
+    [Parameter (Mandatory = $false)]
     [String]$site,
-    [Parameter (Mandatory = $true)]
+    [Parameter (Mandatory = $false)]
     [String]$app_offline_dest
 )
 
@@ -151,15 +151,15 @@ function Get-Mfg-Credentials() {
     return Get-Credential -UserName $user -Message 'Enter password'
 }
 
-# function Execute-Local-Command($message, $cmd) {
-#     Write-Output $message
-#     $sb = [scriptblock]::Create("CMD /C $cmd")
-#     Invoke-Command -ScriptBlock $sb
-# }
+function Execute-Local-Command($message, $cmd) {
+    Write-Output $message
+    $sb = [scriptblock]::Create("CMD /C $cmd")
+    Invoke-Command -ScriptBlock $sb
+}
 
 function Execute-Server-Command($message, $cmd) {
     Write-Output $message
-    $sb = [scriptblock]::Create("CMD /C $cmd")
+    $sb = [scriptblock]::Create("$cmd")
     Invoke-Command -Session $session -ScriptBlock $sb
 }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-let util = require('gulp-util');
+const util = require('gulp-util');
 
 function parse(args, config) {
   let key;

@@ -25,6 +25,7 @@ env.parse(argv, config);
 require('./gulp/gulp.db.js');
 require('./gulp/gulp.build.js');
 require('./gulp/gulp.app.js');
+require('./gulp/gulp.local.js');
 
 gulp.task('deploy', [], function() {
 // gulp.task('deploy', ['publish'], function() {

@@ -7,12 +7,17 @@
   "contributors": [],
   "main": "gulpfile.js",
   "scripts": {
-    "postinstall": "nuget restore"
+    "postinstall": "nuget restore",
+    "test": "gulp test",
+    "start": "gulp start",
+    "stop": "gulp stop",
+    "restart": "gulp restart"
   },
   "devDependencies": {
+    "find-process": "^1.1.0",
     "glob": "^7.1.2",
     "gulp": "^3.9.1",
-    "gulp-msbuild": "^0.4.7",
+    "gulp-msbuild": "^0.4.8",
     "gulp-nunit-runner": "^1.2.1",
     "gulp-util": "^3.0.8",
     "minimist": "^1.2.0",

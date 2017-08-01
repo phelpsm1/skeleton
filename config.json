@@ -7,9 +7,7 @@
       "server": "localhost"
     },
     "web": {
-      "apppool": "Trans",
-      "site": "Trans",
-      "servers": ["localhost"]
+      "project": "Intel.Skeleton.Web"
     },
     "atomFeedUrl": "http://ems-int.intel.com",
     "compilationDebug": true,
@@ -59,19 +57,7 @@
       "apppool": "TransInt",
       "site": "TransInt",
       "servers": ["CCE1PWB120N1", "CCE1PWB120N2"]
-    },
-    "atomFeedUrl": "http://ems-int.intel.com",
-    "compilationDebug": true,
-    "deployPaths": [
-      "//CCE1PWB120N1/capital$/Trans/int",
-      "//CCE1PWB120N2/capital$/Trans/int"
-    ],
-    "emailLogLevel": "OFF",
-    "fileShare": "//CCE1PDB119FS/Trans/Int",
-    "fileShareOverwrite": true,
-    "newRelicName": "TRANS (int)",
-    "title": "TRANS (int)",
-    "url": "http://trans-int.intel.com"
+    }
   },
   "prod": {
     "db": {
@@ -84,18 +70,6 @@
       "apppool": "Trans",
       "site": "Trans",
       "servers": ["CCE1PWB120N1", "CCE1PWB120N2"]
-    },
-    "atomFeedUrl": "http://ems.intel.com",
-    "compilationDebug": false,
-    "deployPaths": [
-      "//CCE1PWB120N1/capital$/Trans/prod",
-      "//CCE1PWB120N2/capital$/Trans/prod"
-    ],
-    "emailLogLevel": "ERROR",
-    "fileShare": "//CCE1PDB119FS/Trans/Prod",
-    "fileShareOverwrite": false,
-    "newRelicName": "TRANS",
-    "title": "TRANS",
-    "url": "http://trans.intel.com"
+    }
   }
 }

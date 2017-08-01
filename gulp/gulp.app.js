@@ -1,11 +1,11 @@
 'use strict';
 
 const gulp = require('gulp');
-const shell = require('node-powershell');
 const util = require('gulp-util');
 
 const config = require('../config.json');
 const env = require('./env.js');
+const ps = require('./ps.js');
 
 gulp.task('app:down', function() {
   const help = `, e.g. gulp app:down -e dev`;
@@ -73,7 +73,6 @@ gulp.task('app:status', function() {
   return execute('Get-Status');
 });
 
-
 function execute(command) {
   const web = config[env.getName()].web;
   const name = 'TRANS';
@@ -88,23 +87,5 @@ function execute(command) {
     {app_offline_dest: `capital$\\${name}\\${env.getName()}\\current\\Web`}
   ];
 
-  let ps = new shell({
-    debugMsg: false,
-    executionPolicy: 'Bypass',
-    noProfile: true
-  });
-
-  ps.addCommand(`./gulp/jarvis.ps1 ${command}`, pscmdconfig);
-
-  return ps
-    .invoke()
-    .then(output => {
-      util.log(`${output}`);
-      ps.dispose();
-    })
-    .catch(err => {
-      util.log(util.colors.red(`Unexpected exception occurred:`));
-      util.log(util.colors.red(err));
-      ps.dispose();
-    });
+  return ps.execute(command, pscmdconfig)
 }

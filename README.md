@@ -2,34 +2,50 @@
 
 This skeleton project is to share how to build, test, and deploy a project within TMG SP S
 
-## Installation and Setup
+## Prerequisites
 
-### prerequisites
-
-1) NodeJS
+### NodeJS
 
 Install [NodeJS LTS](https://nodejs.org/en)
 
-2) NuGet Cli
+### NuGet Cli
 
 Install [NuGet executable](https://dist.nuget.org/index.html) and make sure the location is on your system's path.  [More information](https://docs.microsoft.com/en-us/nuget/guides/install-nuget#nuget-cli)
 
-### Building
+## Building
 
 1) Change to the root directory of the project
+
 
     cd <root>
 
 2) Install dependencies (from command line while running as administrator)
 
+
     npm install
 
-### Testing
+3) Execute
 
-#### Unit Testing
+
+    gulp build
+
+## Testing
+
+### Unit Testing
 
 1) Include [NUnit Console Runner](https://www.nuget.org/packages/NUnit.ConsoleRunner) with your test library as the build with execute tests using this runner.
+2) Execute
 
-#### Acceptance Testing
+
+    npm test
+
+### Acceptance Testing
+
+## Usage
+
+To list all the gulp tasks that are available, execute
+
+
+    gulp -T
 
 ### Using In Your Project
