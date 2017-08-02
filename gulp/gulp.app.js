@@ -7,7 +7,7 @@ const config = require('../config.json');
 const env = require('./env.js');
 const ps = require('./ps.js');
 
-gulp.task('app:down', function() {
+gulp.task('app:down', () => {
   const help = `, e.g. gulp app:down -e dev`;
 
   if (!env.isEnvironmentDefined()) {
@@ -18,7 +18,7 @@ gulp.task('app:down', function() {
   return execute('Bring-Down');
 });
 
-gulp.task('app:up', function() {
+gulp.task('app:up', () => {
   const help = `, e.g. gulp app:up -e dev`;
 
   if (!env.isEnvironmentDefined()) {
@@ -29,7 +29,7 @@ gulp.task('app:up', function() {
   return execute('Bring-Up');
 });
 
-gulp.task('app:offline', function () {
+gulp.task('app:offline', () => {
   const help = `, e.g. gulp app:offline -e dev`;
 
   if (!env.isEnvironmentDefined()) {
@@ -40,7 +40,7 @@ gulp.task('app:offline', function () {
   return execute('Take-Offline');
 });
 
-gulp.task('app:online', function () {
+gulp.task('app:online', () => {
   const help = `, e.g. gulp app:online -e dev`;
 
   if (!env.isEnvironmentDefined()) {
@@ -51,7 +51,7 @@ gulp.task('app:online', function () {
   return execute('Take-Online');
 });
 
-gulp.task('app:recycle', function () {
+gulp.task('app:recycle', () => {
   const help = `, e.g. gulp app:recycle -e dev`;
 
   if (!env.isEnvironmentDefined()) {
@@ -62,7 +62,7 @@ gulp.task('app:recycle', function () {
   return execute('Recycle');
 });
 
-gulp.task('app:status', function() {
+gulp.task('app:status', () => {
   const help = `, e.g. gulp app:status -e dev`;
 
   if (!env.isEnvironmentDefined()) {

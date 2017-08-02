@@ -8,7 +8,7 @@ const util = require('gulp-util');
 const config = require('../config.json');
 const iisexpress = require('./iisexpress.js');
 
-gulp.task('start', function () {
+gulp.task('start', () => {
   const help = ', e.g. Intel.Skeleton.Web';
 
   if (!config || !config.local || !config.local.web || !config.local.web.project) {
@@ -19,10 +19,6 @@ gulp.task('start', function () {
   iisexpress().start(config.local.web.project);
 });
 
-gulp.task('stop', function() {
-  return iisexpress().stop();
-});
+gulp.task('stop', () => iisexpress().stop());
 
-gulp.task('restart', function() {
-  sequence('stop', 'start');
-});
+gulp.task('restart', () => sequence('stop', 'start'));

@@ -41,7 +41,7 @@ gulp.task('db:backup', () => {
     });
 });
 
-gulp.task('db:restore', function() {
+gulp.task('db:restore', () => {
   const help = ', e.g. gulp db:restore -e dev -p <password>';
 
   if (!env.isEnvironmentDefined()) {
@@ -80,7 +80,7 @@ gulp.task('db:restore', function() {
     });
 });
 
-gulp.task('db:migrate', function() {
+gulp.task('db:migrate', () => {
   const help = ', e.g. gulp db:migrate -e dev -p <password>';
 
   if (!env.isEnvironmentDefined()) {

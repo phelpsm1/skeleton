@@ -27,7 +27,7 @@ require('./gulp/gulp.build.js');
 require('./gulp/gulp.app.js');
 require('./gulp/gulp.local.js');
 
-gulp.task('deploy', [], function() {
+gulp.task('deploy', [], () => {
 // gulp.task('deploy', ['publish'], function() {
   if (!env.isEnvironmentDefined()) {
     util.log(util.colors.red('Environment not specified, e.g. gulp deploy -e dev'));
