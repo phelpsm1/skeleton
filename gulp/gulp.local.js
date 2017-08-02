@@ -1,24 +1,24 @@
-'use strict';
+'use strict'
 
-const child_process = require('child_process');
-const gulp = require('gulp');
-const sequence = require('run-sequence');
-const util = require('gulp-util');
+const gulp = require('gulp')
+const sequence = require('run-sequence')
+const util = require('gulp-util')
 
-const config = require('../config.json');
-const iisexpress = require('./iisexpress.js');
+const iisexpress = require('./iisexpress.js')
+
+const config = require('../config.json')
 
 gulp.task('start', () => {
-  const help = ', e.g. Intel.Skeleton.Web';
+  const help = ', e.g. Intel.Skeleton.Web'
 
   if (!config || !config.local || !config.local.web || !config.local.web.project) {
-    util.log(util.colors.red('Site not specified', help));
-    return;
+    util.log(util.colors.red('Site not specified', help))
+    return
   }
 
-  iisexpress().start(config.local.web.project);
-});
+  iisexpress().start(config.local.web.project)
+})
 
-gulp.task('stop', () => iisexpress().stop());
+gulp.task('stop', () => iisexpress().stop())
 
-gulp.task('restart', () => sequence('stop', 'start'));
+gulp.task('restart', () => sequence('stop', 'start'))

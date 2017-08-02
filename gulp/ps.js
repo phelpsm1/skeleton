@@ -1,30 +1,30 @@
-'use strict';
+'use strict'
 
-const shell = require('node-powershell');
-const util = require('gulp-util');
+const Shell = require('node-powershell')
+const util = require('gulp-util')
 
-function execute(command, config) {
-  let ps = new shell({
+function execute (command, config) {
+  let ps = new Shell({
     debugMsg: false,
     executionPolicy: 'Bypass',
     noProfile: true
-  });
+  })
 
-  ps.addCommand(`./gulp/jarvis.ps1 ${command}`, config);
+  ps.addCommand(`./gulp/jarvis.ps1 ${command}`, config)
 
   return ps
     .invoke()
     .then(output => {
-      util.log(`${output}`);
-      ps.dispose();
+      util.log(`${output}`)
+      ps.dispose()
     })
     .catch(err => {
-      util.log(util.colors.red(`Unexpected exception occurred:`));
-      util.log(util.colors.red(err));
-      ps.dispose();
-    });
+      util.log(util.colors.red(`Unexpected exception occurred:`))
+      util.log(util.colors.red(err))
+      ps.dispose()
+    })
 }
 
 module.exports = {
   execute: execute
-};
+}
