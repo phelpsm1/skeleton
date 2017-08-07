@@ -8,18 +8,7 @@
     },
     "web": {
       "project": "Intel.Skeleton.Web"
-    },
-    "atomFeedUrl": "http://ems-int.intel.com",
-    "compilationDebug": true,
-    "deployPaths": [
-      "C:/WorkTemp/transLocal"
-    ],
-    "emailLogLevel": "OFF",
-    "fileShare": "//localhost/c$/tmp/",
-    "fileShareOverwrite": true,
-    "newRelicName": "",
-    "title": "TRANS (local)",
-    "url": "http://localhost"
+    }
   },
   "dev": {
     "db": {
@@ -31,20 +20,28 @@
     "web": {
       "apppool": "TransDev",
       "site": "TransDev",
-      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"]
+      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"],
+      "path": "capital$/Trans/dev"
     },
-    "atomFeedUrl": "http://ems-int.intel.com",
-    "compilationDebug": true,
-    "deployPaths": [
-      "//CCE1PWB120N1/capital$/Trans/dev",
-      "//CCE1PWB120N2/capital$/Trans/dev"
-    ],
-    "emailLogLevel": "OFF",
-    "fileShare": "//CCE1PDB119FS/Trans/Dev",
-    "fileShareOverwrite": true,
-    "newRelicName": "TRANS (dev)",
-    "title": "TRANS (dev)",
-    "url": "http://trans-dev.intel.com"
+    "configuration": {
+      "appSettings": {
+        "ApplicationTitle": "TRANS (dev)",
+        "AtomFeedUrl": "http://ems-int.intel.com",
+        "FileShare": "//CCE1PDB119FS/Trans/Dev",
+        "FileShareOverwrite": true,
+        "Url": "http://trans-dev.intel.com"
+      },
+      "system.web": {
+        "compilation": {
+          "debug": false
+        }
+      },
+      "log4net": {
+        "Intel.Trans.Appender.Email": {
+          "subject":
+        }
+      }
+    }
   },
   "int": {
     "db": {
@@ -56,7 +53,8 @@
     "web": {
       "apppool": "TransInt",
       "site": "TransInt",
-      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"]
+      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"],
+      "path": "capital$/Trans/int"
     }
   },
   "prod": {
@@ -69,7 +67,8 @@
     "web": {
       "apppool": "Trans",
       "site": "Trans",
-      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"]
+      "servers": ["CCE1PWB120N1", "CCE1PWB120N2"],
+      "path": "capital$/Trans/prod"
     }
   }
 }
