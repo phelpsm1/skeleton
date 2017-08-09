@@ -2,8 +2,8 @@
 
 const util = require('gulp-util')
 
-const svn = require('./gulp.svn.js')
-const git = require('./gulp.git.js')
+const svn = require('./svn.js')
+const git = require('./git.js')
 
 function parse (args, config) {
   let key

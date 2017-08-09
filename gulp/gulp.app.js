@@ -7,6 +7,7 @@ const env = require('./env.js')
 const ps = require('./ps.js')
 
 const config = require('../config.json')
+const pkg = require('../package.json')
 
 gulp.task('app:down', () => {
   const help = `, e.g. gulp app:down -e dev`
@@ -63,6 +64,16 @@ gulp.task('app:recycle', () => {
   return execute('Recycle')
 })
 
+gulp.task('app:link', () => {
+  const help = `, e.g. gulp app:link -e dev`
+
+  if (!env.isEnvironmentDefined()) {
+    util.log(util.colors.red(`Environment not specified`, help))
+    return
+  }
+  return execute('Set-Current')
+})
+
 gulp.task('app:status', () => {
   const help = `, e.g. gulp app:status -e dev`
 
@@ -76,17 +87,18 @@ gulp.task('app:status', () => {
 
 function execute (command) {
   const web = config[env.getName()].web
-  const name = 'TRANS'
+  const name = pkg.name
+  const pillar = pkg.pillar
 
-  // todo: (jmorris2) need better way to config these values
-  const pscmdconfig = [
+  let params = [
     {name: name},
+    {pillar: pillar},
     {env: env.getName()},
     {servers: web.servers},
     {apppool: web.apppool},
     {site: web.site},
-    {app_offline_dest: `capital$\\${name}\\${env.getName()}\\current\\Web`}
+    {revision: process.env.revision}
   ]
 
-  return ps.execute(command, pscmdconfig)
+  ps.execute(command, params)
 }

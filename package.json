@@ -1,5 +1,6 @@
 {
   "name": "skeleton",
+  "pillar": "Capital",
   "version": "0.0.1",
   "description": "This skeleton project is to share how to build, test, and deploy a project within TMG SP S",
   "homepage": "https://github.intel.com/ccsd/skeleton",

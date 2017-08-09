@@ -3,7 +3,6 @@
     "db": {
       "backupPath": "C:/projects/backups",
       "name": "Trans",
-      "logname": "Trans",
       "server": "localhost"
     },
     "web": {
@@ -14,7 +13,6 @@
     "db": {
       "backupPath": "\\\\CCE1PDB119FS/Backups$/Trans",
       "name": "TransDev",
-      "logname": "TransDev",
       "server": "CCE1PDB119I02"
     },
     "web": {
@@ -23,7 +21,7 @@
       "servers": ["CCE1PWB120N1", "CCE1PWB120N2"],
       "path": "capital$/Trans/dev"
     },
-    "configuration": {
+    "web.config": {
       "appSettings": {
         "ApplicationTitle": "TRANS (dev)",
         "AtomFeedUrl": "http://ems-int.intel.com",
@@ -37,8 +35,14 @@
         }
       },
       "log4net": {
-        "Intel.Trans.Appender.Email": {
-          "subject":
+        "Intel.Skeleton.Email": {
+          "subject": "TRANS (dev): ERROR",
+          "threshold": "OFF"
+        },
+        "Intel.Skeleton.Database": {
+          "db": {
+            "name": "TransDev"
+          }
         }
       }
     }
@@ -47,7 +51,6 @@
     "db": {
       "backupPath": "\\\\CCE1PDB119FS/Backups$/Trans",
       "name": "TransInt",
-      "logname": "TransInt",
       "server": "CCE1PDB119I02"
     },
     "web": {
@@ -61,7 +64,6 @@
     "db": {
       "backupPath": "\\\\CCE1PDB119FS/Backups$/Trans",
       "name": "Trans",
-      "logname": "TransLog",
       "server": "CCE1PDB119I02"
     },
     "web": {
