@@ -5,7 +5,6 @@ const util = require('gulp-util')
 const svn = require('./svn.js')
 const git = require('./git.js')
 
-const cfg = require('../config.json')
 const pkg = require('../package.json')
 
 function parse (args, config) {
@@ -66,11 +65,11 @@ function getName () {
 }
 
 function getConfig () {
-  return cfg[getName()]
+  return pkg
 }
 
-function getPackageConfig () {
-  return pkg
+function getEnvironmentConfig () {
+  return pkg.appSettings[getName()]
 }
 
 function isEnvironmentDefined () {
@@ -88,7 +87,7 @@ function isPasswordDefined () {
 module.exports = {
   getName: getName,
   getConfig: getConfig,
-  getPackageConfig: getPackageConfig,
+  getEnvironmentConfig: getEnvironmentConfig,
   parse: parse,
   isEnvironmentDefined: isEnvironmentDefined,
   isProduction: isProduction,

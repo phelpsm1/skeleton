@@ -83,9 +83,9 @@ gulp.task('app:status', () => {
 })
 
 function execute (command) {
-  const web = env.getConfig().web
-  const name = env.getPackageConfig().name
-  const pillar = env.getPackageConfig().pillar
+  const name = env.getConfig().name
+  const pillar = env.getConfig().pillar
+  const web = env.getEnvironmentConfig().web
 
   let params = [
     {name: name},

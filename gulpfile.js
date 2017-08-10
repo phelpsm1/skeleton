@@ -12,11 +12,9 @@ const env = require('./gulp/env.js')
 const files = require('./gulp/files.js')
 const mssql = require('./gulp/mssql')
 
-// TODO: (jmorris2) Can I combine these two files into one, package.json?
-const config = require('./config.json')
 const pkg = require('./package.json')
 
-env.parse(argv, config)
+env.parse(argv, pkg.appSettings)
 
 // require all the javascript files in the gulp directory
 // wrench.readdirSyncRecursive('./scripts/gulp')
@@ -34,7 +32,7 @@ require('./gulp/gulp.local.js')
 gulp.task('copy', () => {
   let mergestream = MergeStream()
 
-  let configuration = config[process.env.targets.split(' ')[0]]
+  let configuration = env.getEnvironmentConfig()
   let web = configuration.web
   let revision = process.env.revision
 
@@ -58,7 +56,7 @@ function generateJobStatusQuery (status) {
 }
 
 gulp.task('jobs:start', () => {
-  let db = config[process.env.targets.split(' ')[0]].db
+  let db = env.getEnvironmentConfig().db
 
   let sql = generateJobStatusQuery('Idle')
 
@@ -70,7 +68,7 @@ gulp.task('jobs:start', () => {
 })
 
 gulp.task('jobs:stop', () => {
-  let db = config[process.env.targets.split(' ')[0]].db
+  let db = env.getEnvironmentConfig().db
 
   let sql = generateJobStatusQuery('Stopped')
 

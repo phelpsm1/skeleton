@@ -10,7 +10,7 @@ const iisexpress = require('./iisexpress.js')
 gulp.task('start', () => {
   const help = ', e.g. Intel.Skeleton.Web'
 
-  let config = env.getConfig()
+  let config = env.getEnvironmentConfig()
 
   if (!config.web || !config.web.project) {
     util.log(util.colors.red('Web project not specified', help))

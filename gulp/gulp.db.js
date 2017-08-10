@@ -22,7 +22,7 @@ gulp.task('db:backup', () => {
     return
   }
 
-  let db = env.getConfig().db
+  let db = env.getEnvironmentConfig().db
   let filename = path.join(db.backupPath, `${db.name}_backup_${moment().format('YYYY_MM_DD_HH_mm_ss')}.bak`)
 
   util.log(util.colors.green(`Backing up ${db.name} to ${filename} ...`))
@@ -58,7 +58,7 @@ gulp.task('db:restore', () => {
     return
   }
 
-  let db = env.getConfig().db
+  let db = env.getEnvironmentConfig().db
 
   let filename = path.join(db.backupPath, glob.sync('*.bak', {cwd: db.backupPath}).sort().reverse()[0])
 
@@ -92,7 +92,7 @@ gulp.task('db:migrate', () => {
     return
   }
 
-  let db = env.getConfig().db
+  let db = env.getEnvironmentConfig().db
 
   let sql = ''
 
