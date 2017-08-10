@@ -9,8 +9,6 @@ const util = require('gulp-util')
 const env = require('./env.js')
 const mssql = require('./mssql.js')
 
-const config = require('../config.json')
-
 gulp.task('db:backup', () => {
   const help = ', e.g. gulp db:backup -e dev -p <password>'
 
@@ -24,7 +22,7 @@ gulp.task('db:backup', () => {
     return
   }
 
-  let db = config[process.env.targets.split(' ')[0]].db
+  let db = env.getConfig().db
   let filename = path.join(db.backupPath, `${db.name}_backup_${moment().format('YYYY_MM_DD_HH_mm_ss')}.bak`)
 
   util.log(util.colors.green(`Backing up ${db.name} to ${filename} ...`))
@@ -60,7 +58,7 @@ gulp.task('db:restore', () => {
     return
   }
 
-  let db = config[process.env.targets.split(' ')[0]].db
+  let db = env.getConfig().db
 
   let filename = path.join(db.backupPath, glob.sync('*.bak', {cwd: db.backupPath}).sort().reverse()[0])
 
@@ -94,7 +92,7 @@ gulp.task('db:migrate', () => {
     return
   }
 
-  let db = config[process.env.targets.split(' ')[0]].db
+  let db = env.getConfig().db
 
   let sql = ''
 

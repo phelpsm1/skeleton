@@ -4,15 +4,16 @@ const gulp = require('gulp')
 const sequence = require('run-sequence')
 const util = require('gulp-util')
 
+const env = require('./env.js')
 const iisexpress = require('./iisexpress.js')
-
-const config = require('../config.json')
 
 gulp.task('start', () => {
   const help = ', e.g. Intel.Skeleton.Web'
 
-  if (!config || !config.local || !config.local.web || !config.local.web.project) {
-    util.log(util.colors.red('Site not specified', help))
+  let config = env.getConfig()
+
+  if (!config.web || !config.web.project) {
+    util.log(util.colors.red('Web project not specified', help))
     return
   }
 

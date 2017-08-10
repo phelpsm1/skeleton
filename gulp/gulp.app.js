@@ -6,9 +6,6 @@ const util = require('gulp-util')
 const env = require('./env.js')
 const ps = require('./ps.js')
 
-const config = require('../config.json')
-const pkg = require('../package.json')
-
 gulp.task('app:down', () => {
   const help = `, e.g. gulp app:down -e dev`
 
@@ -86,9 +83,9 @@ gulp.task('app:status', () => {
 })
 
 function execute (command) {
-  const web = config[env.getName()].web
-  const name = pkg.name
-  const pillar = pkg.pillar
+  const web = env.getConfig().web
+  const name = env.getPackageConfig().name
+  const pillar = env.getPackageConfig().pillar
 
   let params = [
     {name: name},
