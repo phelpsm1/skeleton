@@ -5,8 +5,6 @@ const util = require('gulp-util')
 const svn = require('./svn.js')
 const git = require('./git.js')
 
-const pkg = require('../package.json')
-
 function parse (args, config) {
   let key
 
@@ -14,12 +12,13 @@ function parse (args, config) {
     process.env.tasks = args._.join(' ')
   }
 
+  // get the targets, i.e. dev, int, prod as an array
   let targets = []
-
   let definedEnvs = []
+  let cfg = config.appSettings
 
-  for (key in config) {
-    if (config.hasOwnProperty(key)) {
+  for (key in cfg) {
+    if (cfg.hasOwnProperty(key)) {
       definedEnvs.push(key)
     }
   }
@@ -54,6 +53,9 @@ function parse (args, config) {
   }
 
   process.env.revision = revision
+
+  // find the correct app settings
+  process.env.config = JSON.stringify(config)
 }
 
 function getName () {
@@ -65,11 +67,11 @@ function getName () {
 }
 
 function getConfig () {
-  return pkg
+  return JSON.parse(process.env.config)
 }
 
 function getEnvironmentConfig () {
-  return pkg.appSettings[getName()]
+  return JSON.parse(process.env.config).appSettings[getName()]
 }
 
 function isEnvironmentDefined () {

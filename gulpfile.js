@@ -6,7 +6,6 @@ const MergeStream = require('merge-stream')
 const sequence = require('run-sequence')
 const util = require('gulp-util')
 const path = require('path')
-// const wrench = require('wrench')
 
 const env = require('./gulp/env.js')
 const files = require('./gulp/files.js')
@@ -14,16 +13,8 @@ const mssql = require('./gulp/mssql')
 
 const pkg = require('./package.json')
 
-env.parse(argv, pkg.appSettings)
+env.parse(argv, pkg)
 
-// require all the javascript files in the gulp directory
-// wrench.readdirSyncRecursive('./scripts/gulp')
-//   .filter(function(file) {
-//     return (/\.js$/i).test(file);
-//   })
-//   .map(function(file) {
-//     require('./scripts/gulp/'+file);
-//   });
 require('./gulp/gulp.db.js')
 require('./gulp/gulp.build.js')
 require('./gulp/gulp.app.js')
@@ -92,7 +83,7 @@ gulp.task('deploy', ['build'], () => {
 
   util.log(util.colors.green(`Deploying to ${process.env.targets}`))
 
-  sequence(
+  return sequence(
     'app:offline',
     'jobs:stop',
     // 'db:backup',
