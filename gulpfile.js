@@ -10,15 +10,13 @@ const path = require('path')
 
 const env = require('./gulp/env.js')
 const files = require('./gulp/files.js')
+const mssql = require('./gulp/mssql')
 
 // TODO: (jmorris2) Can I combine these two files into one, package.json?
 const config = require('./config.json')
 const pkg = require('./package.json')
 
 env.parse(argv, config)
-
-// process.env.force = argv.f ? true : false;
-// process.env.revision = common.getSvnRevision();
 
 // require all the javascript files in the gulp directory
 // wrench.readdirSyncRecursive('./scripts/gulp')
@@ -55,21 +53,54 @@ gulp.task('copy', () => {
   return mergestream
 })
 
-gulp.task('deploy', [], () => {
+function generateJobStatusQuery (status) {
+  return `UPDATE job SET Status = '${status}'`
+}
+
+gulp.task('jobs:start', () => {
+  let db = config[process.env.targets.split(' ')[0]].db
+
+  let sql = generateJobStatusQuery('Idle')
+
+  return mssql.run(sql, db)
+    .catch(err => {
+      util.log(util.colors.red(`Error starting jobs: ${sql}`))
+      util.log(err)
+    })
+})
+
+gulp.task('jobs:stop', () => {
+  let db = config[process.env.targets.split(' ')[0]].db
+
+  let sql = generateJobStatusQuery('Stopped')
+
+  return mssql.run(sql, db)
+    .catch(err => {
+      util.log(util.colors.red(`Error stopping jobs: ${sql}`))
+      util.log(err)
+    })
+})
+
+gulp.task('deploy', ['build'], () => {
   if (!env.isEnvironmentDefined()) {
-    util.log(util.colors.red('Environment not specified, e.g. gulp deploy -e dev'))
+    util.log(util.colors.red('Environment not specified, e.g. gulp deploy -e dev -p <password>'))
     return
   }
 
-  util.log(util.colors.green('Deploying to ' + process.env.targets))
+  if (!env.isPasswordDefined()) {
+    util.log(util.colors.red('Password not specified, e.g. gulp deploy -e dev -p <password>'))
+    return
+  }
+
+  util.log(util.colors.green(`Deploying to ${process.env.targets}`))
 
   sequence(
     'app:offline',
-    // 'jobs:stop',
+    'jobs:stop',
     // 'db:backup',
     'copy',
     'app:link',
-    'app:recycle'
-    // 'jobs:start'
+    'app:recycle',
+    'jobs:start'
   )
 })

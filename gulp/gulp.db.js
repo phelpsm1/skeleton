@@ -3,11 +3,11 @@
 const glob = require('glob')
 const gulp = require('gulp')
 const moment = require('moment')
-const mssql = require('mssql')
 const path = require('path')
 const util = require('gulp-util')
 
 const env = require('./env.js')
+const mssql = require('./mssql.js')
 
 const config = require('../config.json')
 
@@ -35,7 +35,7 @@ gulp.task('db:backup', () => {
   sql += `WITH NOFORMAT, NOINIT, NAME = N'Full Database Backup', `
   sql += `SKIP, NOREWIND, NOUNLOAD, COMPRESSION, STATS = 10`
 
-  return runQuery(sql, db)
+  return mssql.run(sql, db)
     .catch(err => {
       util.log(util.colors.red(`Error backing up the database: ${sql}`))
       util.log(err)
@@ -74,7 +74,7 @@ gulp.task('db:restore', () => {
   sql += `RESTORE DATABASE ${db.name} FROM DISK = '${filename}' WITH REPLACE;`
   sql += `ALTER DATABASE ${db.name} SET MULTI_USER;`
 
-  return runQuery(sql, db)
+  return mssql.run(sql, db)
     .catch(err => {
       util.log(util.colors.red(`Error restoring the database: ${sql}`))
       util.log(err)
@@ -98,33 +98,9 @@ gulp.task('db:migrate', () => {
 
   let sql = ''
 
-  return runQuery(sql, db)
+  return mssql.run(sql, db)
     .catch(err => {
       util.log(util.colors.red(`Error migrating the database: ${sql}`))
       util.log(err)
     })
 })
-
-function runQuery (sql, db) {
-  let connectionArgs = {
-    server: db.server,
-    driver: 'tedious',
-    user: 'ccsd',
-    password: process.env.password,
-    database: db.name,
-    requestTimeout: 25000
-  }
-
-  return mssql.connect(connectionArgs)
-    .then((pool) => {
-      return pool.request().query(sql)
-    })
-    .then(result => {
-      mssql.close()
-      util.log(util.colors.green(`rows affected: `), result.rowsAffected)
-    })
-    .catch(err => {
-      mssql.close()
-      throw err
-    })
-}

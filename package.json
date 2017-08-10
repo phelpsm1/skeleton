@@ -1,5 +1,5 @@
 {
-  "name": "skeleton",
+  "name": "TRANS",
   "pillar": "Capital",
   "version": "0.0.1",
   "description": "This skeleton project is to share how to build, test, and deploy a project within TMG SP S",
@@ -12,7 +12,8 @@
     "test": "gulp test",
     "start": "gulp start",
     "stop": "gulp stop",
-    "restart": "gulp restart"
+    "restart": "gulp restart",
+    "deploy": "gulp deploy"
   },
   "devDependencies": {
     "eslint": "^4.4.1",
