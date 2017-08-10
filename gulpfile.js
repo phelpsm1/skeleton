@@ -7,9 +7,9 @@ const sequence = require('run-sequence')
 const util = require('gulp-util')
 const path = require('path')
 
-const env = require('./gulp/env.js')
-const files = require('./gulp/files.js')
-const mssql = require('./gulp/mssql')
+const env = require('./index.js').Env
+const files = require('./index.js').Files
+const mssql = require('./index').Mssql
 
 const pkg = require('./package.json')
 

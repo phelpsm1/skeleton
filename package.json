@@ -4,9 +4,25 @@
   "version": "0.0.1",
   "description": "This skeleton project is to share how to build, test, and deploy a project within TMG SP S",
   "homepage": "https://github.intel.com/ccsd/skeleton",
-  "author": "Jason S Morris <jason.morris@intel.com> (https://soco.intel.com/people/jmorris2)",
-  "contributors": [],
-  "main": "gulpfile.js",
+  "author": "TMG SP Solutions",
+  "contributors": [
+    {
+      "name": "Jason S Morris",
+      "email": "jason.morris@intel.com",
+      "url": "https://soco.intel.com/people/jmorris2"
+    },
+    {
+      "name": "Andrew J Dickerson",
+      "email": "andrew.j.dickerson@intel.com",
+      "url": "https://soco.intel.com/people/ajdicker"
+    },
+    {
+      "name": "Adam M Ball",
+      "email": "adam.m.ball@intel.com",
+      "url": "https://soco.intel.com/people/amball"
+    }
+  ],
+  "main": "index.js",
   "scripts": {
     "postinstall": "nuget restore",
     "test": "gulp test",
@@ -15,6 +31,10 @@
     "restart": "gulp restart",
     "deploy": "gulp deploy"
   },
+  "files": [
+    "index.js",
+    "gulp"
+  ],
   "devDependencies": {
     "eslint": "^4.4.1",
     "eslint-config-standard": "^10.2.1",
@@ -37,6 +57,9 @@
     "shelljs": "^0.7.8",
     "through2": "^2.0.3",
     "xml2js": "^0.4.17"
+  },
+  "bugs": {
+    "url": "https://github.intel.com/ccsd/skeleton/issues"
   },
   "repository": {
     "type": "git",
