@@ -1,8 +1,7 @@
 {
-  "name": "TRANS",
-  "pillar": "Capital",
+  "name": "skeleton",
   "version": "0.0.1",
-  "description": "This skeleton project is to share how to build, test, and deploy a project within TMG SP S",
+  "description": "This is the skeleton to build, test, and deploy a project within TMG SP S",
   "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": "TMG SP Solutions",
   "contributors": [
@@ -23,14 +22,7 @@
     }
   ],
   "main": "index.js",
-  "scripts": {
-    "postinstall": "nuget restore",
-    "test": "gulp test",
-    "start": "gulp start",
-    "stop": "gulp stop",
-    "restart": "gulp restart",
-    "deploy": "gulp deploy"
-  },
+  "scripts": {},
   "files": [
     "index.js",
     "gulp"
@@ -68,81 +60,5 @@
   "license": "ISC",
   "jshintConfig": {
     "node": true
-  },
-  "appSettings" : {
-    "local": {
-      "db": {
-        "backupPath": "C:/projects/backups",
-        "name": "Trans",
-        "server": "localhost"
-      },
-      "web": {
-        "project": "Intel.Skeleton.Web"
-      }
-    },
-    "dev": {
-      "db": {
-        "backupPath": "\\\\CCE1PDB119FS/Backups$/Trans",
-        "name": "TransDev",
-        "server": "CCE1PDB119I02"
-      },
-      "web": {
-        "apppool": "TransDev",
-        "site": "TransDev",
-        "servers": ["CCE1PWB120N1", "CCE1PWB120N2"],
-        "path": "capital$/Trans/dev"
-      },
-      "web.config": {
-        "appSettings": {
-          "ApplicationTitle": "TRANS (dev)",
-          "AtomFeedUrl": "http://ems-int.intel.com",
-          "FileShare": "//CCE1PDB119FS/Trans/Dev",
-          "FileShareOverwrite": true,
-          "Url": "http://trans-dev.intel.com"
-        },
-        "system.web": {
-          "compilation": {
-            "debug": false
-          }
-        },
-        "log4net": {
-          "Intel.Skeleton.Email": {
-            "subject": "TRANS (dev): ERROR",
-            "threshold": "OFF"
-          },
-          "Intel.Skeleton.Database": {
-            "db": {
-              "name": "TransDev"
-            }
-          }
-        }
-      }
-    },
-    "int": {
-      "db": {
-        "backupPath": "\\\\CCE1PDB119FS/Backups$/Trans",
-        "name": "TransInt",
-        "server": "CCE1PDB119I02"
-      },
-      "web": {
-        "apppool": "TransInt",
-        "site": "TransInt",
-        "servers": ["CCE1PWB120N1", "CCE1PWB120N2"],
-        "path": "capital$/Trans/int"
-      }
-    },
-    "prod": {
-      "db": {
-        "backupPath": "\\\\CCE1PDB119FS/Backups$/Trans",
-        "name": "Trans",
-        "server": "CCE1PDB119I02"
-      },
-      "web": {
-        "apppool": "Trans",
-        "site": "Trans",
-        "servers": ["CCE1PWB120N1", "CCE1PWB120N2"],
-        "path": "capital$/Trans/prod"
-      }
-    }
   }
 }
