@@ -1,13 +1,13 @@
 'use strict'
 
-const env = require('./gulp/env.js')
-const files = require('./gulp/files.js')
-const mssql = require('./gulp/mssql')
+const env = require('./lib/env.js')
+const files = require('./lib/files.js')
+const mssql = require('./lib/mssql')
 
-require('./gulp/gulp.app.js')
-require('./gulp/gulp.build.js')
-require('./gulp/gulp.db.js')
-require('./gulp/gulp.local.js')
+require('./lib/gulp.app.js')
+require('./lib/gulp.build.js')
+require('./lib/gulp.db.js')
+require('./lib/gulp.local.js')
 
 module.exports = {
   Env: env,
