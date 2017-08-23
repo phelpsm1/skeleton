@@ -43,6 +43,7 @@
     "run-sequence": "^2.1.0",
     "shelljs": "^0.7.8",
     "through2": "^2.0.3",
+    "username": "^3.0.0",
     "xml2js": "^0.4.18"
   },
   "devDependencies": {
@@ -63,9 +64,5 @@
   "license": "ISC",
   "jshintConfig": {
     "node": true
-  },
-  "appSettings": {
-    "dev":{
-    }
   }
 }

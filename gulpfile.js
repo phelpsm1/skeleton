@@ -11,6 +11,6 @@ const pkg = require('./package.json')
 
 env.parse(process.argv, pkg)
 
-gulp.task('example', ['db:backup'], () => {
-  util.log(util.colors.green('Example gulp task complete'))
+gulp.task('example', ['config'], () => {
+  util.log(util.colors.green('Example gulp task'))
 })
