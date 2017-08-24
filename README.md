@@ -50,7 +50,7 @@ gulp.task('db:migrate', () => {
     return
   }
 
-  let db = env.getEnvironmentConfig().db
+  let db = env.getEnvironmentConfig().dbs.find((db) => { return db.name === 'data' })
 
   let sql = ''
 
