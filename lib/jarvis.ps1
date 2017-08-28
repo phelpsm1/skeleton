@@ -22,36 +22,6 @@ $app_offline_file = "app_offline.htm"
 # $appcmd = "%systemroot%\system32\inetsrv\appcmd"
 $appcmd = "C:\Windows\system32\inetsrv\appcmd"
 
-function Take-Offline() {
-    Write-Output ""
-    Write-Output "Taking $name offline in $env..."
-
-    foreach ($server in $servers) {
-        $dest = "\\$server\$pillar$\\$name\\$env\\current\\Web"
-
-        Copy-Item $app_offline_file -Destination $dest
-
-        Write-Output "...by copying $app_offline_file to $dest"
-    }
-}
-
-function Take-Online() {
-    Write-Output ""
-    Write-Output "Bringing $name online in $env..."
-
-    foreach ($server in $servers) {
-        $file = "\\$server\$pillar$\\$name\\$env\\current\\Web\\$app_offline_file"
-
-        if (Test-Path $file) {
-            Remove-Item -Path $file
-
-            Write-Output "...by deleting $file"
-        } else {
-            Write-Output "...$file not found"
-        }
-    }
-}
-
 function Bring-Down() {
     $cred = Get-Mfg-Credentials
 
