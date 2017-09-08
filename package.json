@@ -66,5 +66,45 @@
   "license": "ISC",
   "jshintConfig": {
     "node": true
+  },
+  "appSettings": {
+    "unit": {
+      "dbs": [
+        {
+          "name": "data",
+          "server": "CCEPWVSQL101",
+          "instance": "UNITTEST",
+          "port": 1433,
+          "database": "ExampleUnit"
+        }
+      ],
+      "config": {
+        "appSettings": {
+          "title": "Example",
+          "foo": "bar"
+        }
+      }
+    },
+    "local": {
+      "dbs": [
+        {
+          "name": "data",
+          "server": "localhost",
+          "database": "Example"
+        }
+      ],
+      "web": {
+        "project": "Intel.Example.Web"
+      },
+      "config": {
+        "log4net": {
+          "Intel.Example.Email": {
+            "subject": "Example (local): ERROR",
+            "threshold": "OFF",
+            "to": "{me}"
+          }
+        }
+      }
+    }
   }
 }
