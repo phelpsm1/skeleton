@@ -1,6 +1,6 @@
 {
   "name": "skeleton",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "This is the skeleton to build, test, and deploy a project within TMG SP S",
   "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": "TMG SP Solutions",
@@ -32,6 +32,7 @@
     "find-process": "^1.1.0",
     "glob": "^7.1.2",
     "gulp": "^3.9.1",
+    "gulp-dotnet-assembly-info": "^0.1.12",
     "gulp-msbuild": "^0.5.2",
     "gulp-nunit-runner": "^1.2.1",
     "gulp-util": "^3.0.8",
