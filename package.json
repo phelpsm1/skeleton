@@ -28,13 +28,13 @@
     "lib"
   ],
   "dependencies": {
-    "del": "^3.0.0",
     "find-process": "^1.1.0",
+    "fs-extra": "^4.0.1",
     "glob": "^7.1.2",
     "gulp": "^3.9.1",
     "gulp-dotnet-assembly-info": "^0.1.12",
     "gulp-msbuild": "^0.5.2",
-    "gulp-nunit-runner": "^1.2.1",
+    "gulp-nunit-runner": "^1.2.2",
     "gulp-util": "^3.0.8",
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
