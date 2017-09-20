@@ -3,17 +3,22 @@
   "version": "0.1.0",
   "description": "This is the skeleton to build, test, and deploy a project within TMG SP S",
   "homepage": "https://github.intel.com/ccsd/skeleton",
-  "author": "TMG SP Solutions",
+  "author": {
+    "name": "TMG SP Solutions",
+    "email": "tmgsp.solutions@intel.com"
+  },
   "contributors": [
     {
       "name": "Jason S Morris",
       "email": "jason.morris@intel.com",
-      "url": "https://soco.intel.com/people/jmorris2"
+      "url": "https://soco.intel.com/people/jmorris2",
+      "role": "Developer"
     },
     {
       "name": "Andrew J Dickerson",
       "email": "andrew.j.dickerson@intel.com",
-      "url": "https://soco.intel.com/people/ajdicker"
+      "url": "https://soco.intel.com/people/ajdicker",
+      "role": "Developer"
     },
     {
       "name": "Adam M Ball",
@@ -36,21 +41,23 @@
     "gulp-msbuild": "^0.5.2",
     "gulp-nunit-runner": "^1.2.2",
     "gulp-util": "^3.0.8",
+    "log4js": "^2.3.3",
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
     "moment": "^2.18.1",
     "mssql": "^4.0.4",
     "node-powershell": "^3.1.1",
-    "request": "^2.81.0",
+    "nodemailer": "^4.1.0",
+    "request": "^2.82.0",
     "request-promise": "^4.2.1",
-    "run-sequence": "^2.1.0",
+    "run-sequence": "^2.2.0",
     "shelljs": "^0.7.8",
     "through2": "^2.0.3",
     "username": "^3.0.0",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "eslint": "^4.7.0",
+    "eslint": "^4.7.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",

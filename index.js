@@ -10,7 +10,7 @@ require('./lib/gulp.clean.js')
 require('./lib/gulp.config.js')
 require('./lib/gulp.db.js')
 require('./lib/gulp.local.js')
-require('./lib/gulp.nr.js')
+require('./lib/gulp.notify.js')
 
 module.exports = {
   Env: env,
