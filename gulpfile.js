@@ -4,12 +4,11 @@
 
 const gulp = require('gulp')
 const util = require('gulp-util')
+const skeleton = require('./index.js')
 
-const env = require('./index.js').Env
-
-const pkg = require('./package.json')
-
-env.parse(process.argv, pkg)
+const env = skeleton.Env
+const files = skeleton.Files
+const mssql = skeleton.Mssql
 
 gulp.task('example', ['config'], () => {
   util.log(util.colors.green('Example gulp task'))
