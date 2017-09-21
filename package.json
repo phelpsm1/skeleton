@@ -32,6 +32,10 @@
     "index.js",
     "lib"
   ],
+  "engines": {
+    "node": "~8.5.0",
+    "npm": "~5.3.0"
+  },
   "dependencies": {
     "find-process": "^1.1.0",
     "fs-extra": "^4.0.2",
