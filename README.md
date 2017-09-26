@@ -8,10 +8,6 @@ This is the skeleton to build, test, and deploy a project within TMG SP S
 const env = require('skeleton').Env
 const files = require('skeleton').Files
 const mssql = require('skeleton').Mssql
-
-const pkg = require('./package.json')
-
-env.parse(argv, pkg)
 ```
 
 ## Documentation
@@ -37,7 +33,7 @@ env.parse(argv, pkg)
 Mssql exposes one method to execute sql statements, Mssql.run(). 
 
 ```javascript
-gulp.task('db:migrate', () => {
+gulp.task('sql:migrate', () => {
   const help = ', e.g. gulp db:migrate -e dev -p <password>'
 
   if (!env.isEnvironmentDefined()) {
