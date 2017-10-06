@@ -10,6 +10,6 @@ const env = skeleton.Env
 const files = skeleton.Files
 const mssql = skeleton.Mssql
 
-gulp.task('example', ['config'], () => {
+gulp.task('example', [], () => {
   util.log(util.colors.green('Example gulp task'))
 })

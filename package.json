@@ -1,6 +1,6 @@
 {
   "name": "skeleton",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "This is the skeleton to build, test, and deploy a project within TMG SP S",
   "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": {
@@ -12,7 +12,7 @@
       "name": "Jason S Morris",
       "email": "jason.morris@intel.com",
       "url": "https://soco.intel.com/people/jmorris2",
-      "role": "Developer"
+      "role": "Tech Lead"
     },
     {
       "name": "Andrew J Dickerson",
@@ -52,6 +52,7 @@
     "mssql": "^4.0.4",
     "node-powershell": "^3.1.1",
     "nodemailer": "^4.1.1",
+    "pluralize": "^7.0.0",
     "request": "^2.82.0",
     "request-promise": "^4.2.2",
     "run-sequence": "^2.2.0",
