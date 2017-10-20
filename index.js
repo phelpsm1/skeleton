@@ -2,7 +2,7 @@
 
 const env = require('./lib/env.js')
 const files = require('./lib/files.js')
-const mssql = require('./lib/mssql')
+const data = require('./lib/data')
 
 require('./lib/gulp.app.js')
 require('./lib/gulp.build.js')
@@ -15,5 +15,5 @@ require('./lib/gulp.notify.js')
 module.exports = {
   Env: env,
   Files: files,
-  Mssql: mssql
+  Data: data
 }
