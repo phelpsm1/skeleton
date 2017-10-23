@@ -51,7 +51,7 @@
     "moment": "^2.19.1",
     "mssql": "^4.1.0",
     "node-powershell": "^3.2.0",
-    "nodemailer": "^4.2.0",
+    "nodemailer": "^4.3.0",
     "pluralize": "^7.0.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
@@ -64,8 +64,8 @@
   "devDependencies": {
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1"
   },
