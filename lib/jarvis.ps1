@@ -82,9 +82,11 @@ function Get-Status() {
 }
 
 function Set-Current() {
-    $server_path_base = "D:\\WebSites\\$pillar\\$name\\$env"
-    $server_path_current = "$server_path_base\\current"
-    $server_path_release = "$server_path_base\\releases\$revision"
+    $server_path_base = "D:\WebSites\$pillar\$name\$env"
+    $server_path_current = "$server_path_base\current"
+    $server_path_current_log = "$server_path_current\log"
+    $server_path_release = "$server_path_base\releases\$revision"
+    $server_path_shared_log = "$server_path_base\shared\log"
 
     $cred = Get-Mfg-Credentials
 
@@ -100,6 +102,9 @@ function Set-Current() {
 
         Execute-Server-Command $session "Removing current link in $env on $server..."        "CMD /C RMDIR $server_path_current"
         Execute-Server-Command $session "Linking current to $revision in $env on $server..." "CMD /C MKLINK /J $server_path_current $server_path_release"
+
+        Execute-Server-Command $session "Removing log link in $env on $server..."            "CMD /C RMDIR $server_path_current_log"
+        Execute-Server-Command $session "Linking log to current in $env on $server..."       "CMD /C MKLINK /J $server_path_current_log $server_path_shared_log"
 
         Remove-PSSession $session
     }
