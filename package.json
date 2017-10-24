@@ -45,7 +45,7 @@
     "gulp-msbuild": "^0.5.4",
     "gulp-nunit-runner": "^1.2.2",
     "gulp-util": "^3.0.8",
-    "log4js": "^2.3.7",
+    "log4js": "^2.3.8",
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
     "moment": "^2.19.1",
