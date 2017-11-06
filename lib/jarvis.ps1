@@ -127,6 +127,11 @@ function Set-Current() {
 }
 
 function Get-Mfg-Credentials() {
+    $file = "credentials.xml"
+    if (Test-Path $file) {
+        return Import-Clixml $file
+    }
+
     $idsid = [Environment]::UserName
     $user = $idsid
 

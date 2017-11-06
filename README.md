@@ -59,3 +59,13 @@ gulp.task('sql:migrate', () => {
 ```
 
 #### Mssql.run
+
+## Application Tasks
+
+### Providing credentials
+
+Each command requiring credentials, will prompt for you mfg_idsid account.  However, you can bypass this by creating a credential.xml file in the root of your project directory.  Once created, all tasks requiring credentials will use the credentials supplied in the file.  To create your file, execute the following command
+
+    Get-Credential | Export-Clixml "credentials.xml"
+    
+at a PowerShell command prompt.
