@@ -182,7 +182,81 @@ Each command requiring credentials, will prompt for you mfg_idsid account.  Howe
     
 at a PowerShell command prompt.
 
+### Build Tasks
+
+#### build
+
+This task builds the Release configuration of the project.
+
+__Usage:__  gulp build
+
+__Notes:__
+
+See [Build Configuration](#getBuildConfig)
+
+##### build:compile
+
+This task is called by the [build](#build) task to perform a build.
+
+__Usage:__ gulp build:compile
+
+###### build:clean
+
+This task is called by the [build:compile](#build:compile) task to clean the project before building.  It calls the MSBuild clean target.
+
+__Usage:__ gulp build:clean
+
+###### build:assemblyinfo
+
+This task is called by the [build:compile](#build:compile) task to set various attributes of the AsseblyInfo.cs files in the project.  The attributes are:
+* AssemblyConfiguration
+* AssbemlyCompany
+* AssemblyProduct
+* AssemblyCopyright
+* AssemblyVersion
+* AssemblyFileVersion
+
+__Usage:__ gulp build:assemblyinfo
+
+__Notes:__
+
+This task is not meant to be run independently
+
+#### Test Tasks
+
+##### test
+
+This task orchestrates the configuration and execution the unit tests of the project.
+
+__Usage:__  gulp test
+
+##### test:config
+
+This task configures the app.config file for execution of the unit tests.
+
+__Usage:__  gulp test:config
+
+__Notes:__
+
+See [Test Configuration](#getTestConfig)
+
+This task is not meant to be run independently. See [test](#test) task
+
+##### test:unit
+
+This task executes the unit tests of the project using the [NUnit Console](https://github.com/nunit/docs/wiki/Console-Runner) found in the packages folder.  It looks for all DLLs with the name pattern of Intel.*.Tests.dll in the project.
+
+__Usage:__ gulp test:unit
+
+__Notes:__
+
+This task is not meant to be run independently
+
 ### Env
+
+#### getBuildConfig
+
+#### getTestConfig
 
 #### Env.parse
 
