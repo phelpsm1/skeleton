@@ -11,10 +11,11 @@ require('./lib/gulp.app.js')
 require('./lib/gulp.build.js')
 require('./lib/gulp.clean.js')
 require('./lib/gulp.config.js')
-require('./lib/gulp.sql.js')
-require('./lib/gulp.local.js')
 require('./lib/gulp.deploy.js')
+require('./lib/gulp.local.js')
 require('./lib/gulp.restore.js')
+require('./lib/gulp.sql.js')
+require('./lib/gulp.test.js')
 
 module.exports = {
   Env: env,
