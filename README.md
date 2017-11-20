@@ -12,6 +12,176 @@ const mssql = require('skeleton').Mssql
 
 ## Documentation
 
+### Configuration
+
+### Application Tasks
+
+#### app:offline
+
+This task copies the app_offline.htm (located in the root directory of the project) to each web server
+
+__Usage:__  gulp app:offline -e dev
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+</table>
+
+#### app:online
+
+This task deletes the app_offline.htm on each web server
+
+__Usage:__  gulp app:online -e dev
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+</table>
+
+#### app:down
+
+This task stops the application pool and website on each server
+
+__Usage:__  gulp app:down -e dev
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+</table>
+
+__Notes:__
+
+See [Providing credentials](#providing-credentials)
+
+#### app:up
+
+This task starts the application pool and website on each server
+
+__Usage:__  gulp app:up -e dev
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+</table>
+
+__Notes:__
+
+See [Providing credentials](#providing-credentials)
+
+#### app:recycle
+
+This task recycles the application pool on each server
+
+__Usage:__  gulp app:recycle -e dev
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+</table>
+
+__Notes:__
+
+See [Providing credentials](#providing-credentials)
+
+#### app:status
+
+This task gets the status of the application pool and website of each server 
+
+__Usage:__  gulp app:status -e dev
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+</table>
+
+__Notes:__
+
+See [Providing credentials](#providing-credentials)
+
+#### app:link
+
+This task links the current and log NTFS junctions to the appropriate directory in the file structure:
+
+    D:\WebSites 
+        \<pillar>
+            \<app>
+                \<env>
+                    \current <-- NTFS junction to releases\<latest>
+                    \releases
+                        \<svn revision | git short sha1 hash>
+                            \log <-- NTFS junction to shared\log
+                    \shared
+                        \log
+            
+
+__Usage:__  gulp app:recycle -e dev
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+</table>
+
+__Notes:__
+
+See [Providing credentials](#providing-credentials)
+
+#### app:rollback
+
+This task moves the current NTFS junction to the n-1 release.
+
+__This task is usually called from another gulp task and not by itself.__
+
+__Usage:__  gulp app:rollback
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+</table>
+
+__Notes:__
+
+See [Providing credentials](#providing-credentials)
+
+#### Providing credentials
+
+Each command requiring credentials, will prompt for you mfg_idsid account.  However, you can bypass this by creating a credential.xml file in the root of your project directory.  Once created, all tasks requiring credentials will use the credentials supplied in the file.  To create your file, execute the following command
+
+    Get-Credential | Export-Clixml "credentials.xml"
+    
+at a PowerShell command prompt.
+
 ### Env
 
 #### Env.parse
@@ -59,13 +229,3 @@ gulp.task('sql:migrate', () => {
 ```
 
 #### Mssql.run
-
-## Application Tasks
-
-### Providing credentials
-
-Each command requiring credentials, will prompt for you mfg_idsid account.  However, you can bypass this by creating a credential.xml file in the root of your project directory.  Once created, all tasks requiring credentials will use the credentials supplied in the file.  To create your file, execute the following command
-
-    Get-Credential | Export-Clixml "credentials.xml"
-    
-at a PowerShell command prompt.
