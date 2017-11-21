@@ -14,6 +14,135 @@ const mssql = require('skeleton').Mssql
 
 ### Configuration
 
+Configuration is stored in the [package.json](https://docs.npmjs.com/files/package.json) file that is in the root of the project.
+
+#### name
+
+The short name or initialism for the project.
+
+    "name": "EMS"
+
+For more information, see the [name section](https://docs.npmjs.com/files/package.json#name) in the package.json documentation
+
+#### version
+
+The version number of the release.  It should follow a [semver](https://semver.org) format.
+
+    "version": "6.2.1"
+
+For more information, see the [version section](https://docs.npmjs.com/files/package.json#version) in the package.json documentation
+
+#### author
+
+The author of the project.  It is recommended to use the department name and email address
+
+    "author": {
+      "name": "TMG SP Solutions",
+      "email": "tmgsp.solutions@intel.com"
+    } 
+
+For more information, see the [people fields section](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in the package.json documentation
+
+#### contributors
+
+An array of team members that include developers, systems analysts, and integrators.
+
+      "contributors": [
+        {
+          "name": "Jason S Morris",
+          "email": "jason.morris@intel.com",
+          "url": "https://soco.intel.com/people/jmorris2",
+          "role": "Developer"
+        },
+        {
+          "name": "Gary Reny",
+          "email": "gary.reny@intel.com",
+          "url": "https://soco.intel.com/people/greny",
+          "role": "Systems Analyst"
+        },
+        {
+          "name": "Brett Willis",
+          "email": "brett.willis@intel.com",
+          "url": "https://soco.intel.com/people/bwillis",
+          "role": "Integrator"
+        }
+      ]
+
+The url attribute is linked to the [Inside Blue](https://soco.intel.com) profile and the role attribute can be anything, e.g. Developer, Systems Analyst, Integrator, Tester, etc
+
+For more information, see the [people fields section](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in the package.json documentation
+
+#### pillar
+
+The name of the pillar within TMG SP S, e.g. capactiy, capital, cost
+
+    "pillar": "capital"
+
+This is a custom attribute added the the package.json file.
+
+#### appSettings
+
+Defines all the different environments that the application can be deployed to.  It specifies different sections based on the needs of the environment.  Here is an example of one envrionment defined
+
+    "appSettings": {
+      "dev": {
+        "dbs": [  
+          {
+            "name": "EmsConnectionString",
+            "server": "CCE1PDB120I02",
+            "instance": "SQL02",
+            "port": 1433,
+            "database": "EmsDev",
+            "backupShare": "//CCE1PDB120FS/backups$"
+          }
+        ],
+        "web": {
+          "apppool": "EmsDev",
+          "site": "EmsDev",
+          "servers": [
+            "CCE1PWB120N1",
+            "CCE1PWB120N2"
+          ]
+        },
+        "config": {
+          "appSettings": {
+            "ApplicationTitle": "EMS (dev)",
+            "EmsUrl": "http://ems-dev.intel.com",
+            "NewRelic.AppName": "EMS (dev)",
+            "SendEmails": false
+          },
+          "log4net": {
+            "appenders": [
+              {
+                "name": "DatabaseLogAppender",
+                "connectionstring": "EmsConnectionString"
+              },
+              {
+                "name": "NHibernateAppender",
+                "file": "..\\log\\NHibernate.log"
+              }
+            ],
+            "root": {
+              "level": "ALL"
+            }
+          },
+          "system.web": {
+            "compilation": {
+              "debug": false
+            }
+          }
+        },
+        "newrelic": {
+          "id": 9999999
+        },
+        "notify": [
+          "Developer"
+        ]
+      }
+    }
+
+This is a custom attribute added the the package.json file.
+
 ### Application Tasks
 
 #### app:offline
@@ -28,6 +157,7 @@ __Options:__
   <tr>
     <td>-e name</td>
     <td>set the environment to use</td>
+    <td>REQUIRED</td>
   </tr>
 </table>
 
@@ -43,6 +173,7 @@ __Options:__
   <tr>
     <td>-e name</td>
     <td>set the environment to use</td>
+    <td>REQUIRED</td>
   </tr>
 </table>
 
@@ -58,6 +189,7 @@ __Options:__
   <tr>
     <td>-e name</td>
     <td>set the environment to use</td>
+    <td>REQUIRED</td>
   </tr>
 </table>
 
@@ -77,6 +209,7 @@ __Options:__
   <tr>
     <td>-e name</td>
     <td>set the environment to use</td>
+    <td>REQUIRED</td>
   </tr>
 </table>
 
@@ -96,6 +229,7 @@ __Options:__
   <tr>
     <td>-e name</td>
     <td>set the environment to use</td>
+    <td>REQUIRED</td>
   </tr>
 </table>
 
@@ -115,6 +249,7 @@ __Options:__
   <tr>
     <td>-e name</td>
     <td>set the environment to use</td>
+    <td>REQUIRED</td>
   </tr>
 </table>
 
@@ -146,6 +281,7 @@ __Options:__
   <tr>
     <td>-e name</td>
     <td>set the environment to use</td>
+    <td>REQUIRED</td>
   </tr>
 </table>
 
@@ -167,6 +303,7 @@ __Options:__
   <tr>
     <td>-e name</td>
     <td>set the environment to use</td>
+    <td>REQUIRED</td>
   </tr>
 </table>
 
@@ -222,15 +359,15 @@ __Notes:__
 
 This task is not meant to be run independently
 
-#### Test Tasks
+### Test Tasks
 
-##### test
+#### test
 
 This task orchestrates the configuration and execution the unit tests of the project.
 
 __Usage:__  gulp test
 
-##### test:config
+#### test:config
 
 This task configures the app.config file for execution of the unit tests.
 
@@ -251,6 +388,66 @@ __Usage:__ gulp test:unit
 __Notes:__
 
 This task is not meant to be run independently
+
+### SQL Tasks
+
+#### sql:backup
+
+This task backups up the database(s) in the specified environment
+
+__Usage:__  gulp sql:backup -e <env> -p <password> \[-db \<name\>\]
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+    <td>REQUIRED</td>
+  </tr>
+  <tr>
+    <td>-p password</td>
+    <td>set the password to use with the ccsd SQL account</td>
+    <td>REQUIRED</td>
+  </tr>
+  <tr>
+    <td>-db name</td>
+    <td>set the name of the database to backup</td>
+    <td>OPTIONAL</td>
+    <td>If not specified, all databases will be restored
+  </tr>
+</table>
+
+__Notes:__
+
+See [Configuration](#Configuration)
+
+#### sql:restore
+
+This task restores the database(s) in the specified environment
+
+__Usage:__  gulp sql:restore -e <env> -p <password> \[-db \<name\>\]
+
+__Options:__
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+    <td>REQUIRED</td>
+  </tr>
+  <tr>
+    <td>-p password</td>
+    <td>set the password to use with the ccsd SQL account</td>
+    <td>REQUIRED</td>
+  </tr>
+  <tr>
+    <td>-db name</td>
+    <td>set the name of the database to backup</td>
+    <td>OPTIONAL</td>
+    <td>If not specified, all databases will be restored
+  </tr>
+</table>
 
 ### Env
 
