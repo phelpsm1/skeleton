@@ -4,6 +4,39 @@ This is the skeleton to build, test, and deploy a project within TMG SP S
 
 ## Usage
 
+    gulp <task> [options]
+
+### Options
+
+<table>
+  <tr>
+    <td>-e name</td>
+    <td>set the environment to use</td>
+  </tr>
+  <tr>
+    <td>-p password</td>
+    <td>password for the SQL Server account ccsd</td>
+  </tr>
+  <tr>
+    <td>-d name</td>
+    <td>name of the database to work with</td>
+  </tr>
+  <tr>
+    <td>-r revision</td>
+    <td>source revision of the build, e.g. svn revision, git commit short sha, etc</td>
+  </tr>
+  <tr>
+    <td>-l label</td>
+    <td>label that is used in the Continuious Integration environment</td>
+  </tr>
+  <tr>
+    <td>--force</td>
+    <td>allows you to restore database in production</td>
+  </tr>
+</table>
+
+
+
 ```javascript
 const env = require('skeleton').Env
 const files = require('skeleton').Files
@@ -11,6 +44,48 @@ const mssql = require('skeleton').Mssql
 ```
 
 ## Documentation
+
+### Environment Variables
+
+Several environment variables are set and available for use
+
+<table>
+  <tr>
+    <td>process.env.target</td>
+    <td>the environment to use</td>
+    <td>dev|int|prod|...</td>
+  </tr>
+  <tr>
+    <td>process.env.password</td>
+    <td>the password for the SQL Server account ccsd</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>process.env.database</td>
+    <td>the name of the database to work with</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>process.env.revision</td>
+    <td>the source revision of the build</td>
+    <td>31254|ce518b3</td>
+  </tr>
+  <tr>
+    <td>process.env.source</td>
+    <td>the source of the build</td>
+    <td>ci|local</td>
+  </tr>
+  <tr>
+    <td>process.env.label</td>
+    <td>the Continuous Integration label of the build</td>
+    <td>31254|32564.2</td>
+  </tr>
+  <tr>
+    <td>process.env.force</td>
+    <td>allows you to restore database in production</td>
+    <td>true|false</td>
+  </tr>
+</table>
 
 ### Configuration
 
