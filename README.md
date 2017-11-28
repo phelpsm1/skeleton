@@ -290,17 +290,16 @@ See [Providing credentials](#providing-credentials)
 
 #### app:rollback
 
-This task moves the current NTFS junction to the n-1 release.
-
-__This task is usually called from another gulp task and not by itself.__
+This task moves the current NTFS junction to the n-1 release or revision specified.
 
 __Usage:__  gulp app:rollback
 
 __Options:__
 
-argument | description                | required
----------|----------------------------|----------------
--e name  | set the environment to use | YES
+argument    | description                | required
+------------|----------------------------|----------------
+-e name     | set the environment to use | YES
+-r revision | revision to rollback to    | NO
 
 __Notes:__
 
