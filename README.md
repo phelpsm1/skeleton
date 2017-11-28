@@ -8,34 +8,14 @@ This is the skeleton to build, test, and deploy a project within TMG SP S
 
 ### Options
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-  </tr>
-  <tr>
-    <td>-p password</td>
-    <td>password for the SQL Server account ccsd</td>
-  </tr>
-  <tr>
-    <td>-d name</td>
-    <td>name of the database to work with</td>
-  </tr>
-  <tr>
-    <td>-r revision</td>
-    <td>source revision of the build, e.g. svn revision, git commit short sha, etc</td>
-  </tr>
-  <tr>
-    <td>-l label</td>
-    <td>label that is used in the Continuious Integration environment</td>
-  </tr>
-  <tr>
-    <td>--force</td>
-    <td>allows you to restore database in production</td>
-  </tr>
-</table>
-
-
+argument    | description
+------------|---------------------------------------------------------------------------
+-e name     | set the environment to use
+-p password | password for the SQL Server account ccsd
+-d name     | name of the database to work with
+-r revision | source revision of the build, e.g. svn revision, git commit short sha, etc
+-l label    | label that is used in the Continuious Integration environment
+--force     | allows you to restore database in production
 
 ```javascript
 const env = require('skeleton').Env
@@ -47,45 +27,17 @@ const mssql = require('skeleton').Mssql
 
 ### Environment Variables
 
-Several environment variables are set and available for use
+Several environment variables, access through the process.env object, are set and available for use
 
-<table>
-  <tr>
-    <td>process.env.target</td>
-    <td>the environment to use</td>
-    <td>dev|int|prod|...</td>
-  </tr>
-  <tr>
-    <td>process.env.password</td>
-    <td>the password for the SQL Server account ccsd</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>process.env.database</td>
-    <td>the name of the database to work with</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>process.env.revision</td>
-    <td>the source revision of the build</td>
-    <td>31254|ce518b3</td>
-  </tr>
-  <tr>
-    <td>process.env.source</td>
-    <td>the source of the build</td>
-    <td>ci|local</td>
-  </tr>
-  <tr>
-    <td>process.env.label</td>
-    <td>the Continuous Integration label of the build</td>
-    <td>31254|32564.2</td>
-  </tr>
-  <tr>
-    <td>process.env.force</td>
-    <td>allows you to restore database in production</td>
-    <td>true|false</td>
-  </tr>
-</table>
+variable             | description                                   | values
+---------------------|-----------------------------------------------|----------------
+process.env.target   | the environment to use                        | dev, int, prod
+process.env.password | the password for the SQL Server account ccsd  | 
+process.env.database | the name of the database to work with         |
+process.env.revision | the source revision of the build              | 31254, ce518b3
+process.env.source   | the source of the build                       | ci, local
+process.env.label    | the Continuous Integration label of the build | 31254, 32564.2
+process.env.force    | allows you to restore database in production  | true, false
 
 ### Configuration
 
@@ -228,13 +180,9 @@ __Usage:__  gulp app:offline -e dev
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-</table>
+argument | description                | required
+---------|----------------------------|----------------
+-e name  | set the environment to use | YES
 
 #### app:online
 
@@ -244,13 +192,9 @@ __Usage:__  gulp app:online -e dev
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-</table>
+argument | description                | required
+---------|----------------------------|----------------
+-e name  | set the environment to use | YES
 
 #### app:down
 
@@ -260,13 +204,9 @@ __Usage:__  gulp app:down -e dev
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-</table>
+argument | description                | required
+---------|----------------------------|----------------
+-e name  | set the environment to use | YES
 
 __Notes:__
 
@@ -280,13 +220,9 @@ __Usage:__  gulp app:up -e dev
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-</table>
+argument | description                | required
+---------|----------------------------|----------------
+-e name  | set the environment to use | YES
 
 __Notes:__
 
@@ -300,13 +236,9 @@ __Usage:__  gulp app:recycle -e dev
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-</table>
+argument | description                | required
+---------|----------------------------|----------------
+-e name  | set the environment to use | YES
 
 __Notes:__
 
@@ -320,13 +252,9 @@ __Usage:__  gulp app:status -e dev
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-</table>
+argument | description                | required
+---------|----------------------------|----------------
+-e name  | set the environment to use | YES
 
 __Notes:__
 
@@ -352,13 +280,9 @@ __Usage:__  gulp app:recycle -e dev
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-</table>
+argument | description                | required
+---------|----------------------------|----------------
+-e name  | set the environment to use | YES
 
 __Notes:__
 
@@ -374,13 +298,9 @@ __Usage:__  gulp app:rollback
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-</table>
+argument | description                | required
+---------|----------------------------|----------------
+-e name  | set the environment to use | YES
 
 __Notes:__
 
@@ -474,24 +394,11 @@ __Usage:__  gulp sql:backup -e <env> -p <password> \[-db \<name\>\]
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-  <tr>
-    <td>-p password</td>
-    <td>set the password to use with the ccsd SQL account</td>
-    <td>REQUIRED</td>
-  </tr>
-  <tr>
-    <td>-db name</td>
-    <td>set the name of the database to backup</td>
-    <td>OPTIONAL</td>
-    <td>If not specified, all databases will be restored
-  </tr>
-</table>
+argument    | description                                       | required | notes
+------------|---------------------------------------------------|----------|--------------------------------------------------
+-e name     | set the environment to use                        | YES      |
+-p password | set the password to use with the ccsd SQL account | YES      |
+-db name    | set the name of the database to backup            | NO       | If not specified, all databases will be restored
 
 __Notes:__
 
@@ -505,24 +412,11 @@ __Usage:__  gulp sql:restore -e <env> -p <password> \[-db \<name\>\]
 
 __Options:__
 
-<table>
-  <tr>
-    <td>-e name</td>
-    <td>set the environment to use</td>
-    <td>REQUIRED</td>
-  </tr>
-  <tr>
-    <td>-p password</td>
-    <td>set the password to use with the ccsd SQL account</td>
-    <td>REQUIRED</td>
-  </tr>
-  <tr>
-    <td>-db name</td>
-    <td>set the name of the database to backup</td>
-    <td>OPTIONAL</td>
-    <td>If not specified, all databases will be restored
-  </tr>
-</table>
+argument    | description                                       | required | notes
+------------|---------------------------------------------------|----------|--------------------------------------------------
+-e name     | set the environment to use                        | YES      |
+-p password | set the password to use with the ccsd SQL account | YES      |
+-db name    | set the name of the database to backup            | NO       | If not specified, all databases will be restored
 
 ### Env
 
