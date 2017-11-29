@@ -177,6 +177,7 @@ This is a custom attribute added the the package.json file.
     D:\WebSites 
         \<pillar>
             \<app>
+                \deploy.log
                 \<env>
                     \current <-- NTFS junction to releases\<latest>
                     \releases
@@ -474,6 +475,35 @@ See [Web Server File Structure](#web-server)
 
 ### Deploy Tasks
 
+#### deploy:notify
+
+This task orchestrates the various channels of notification when deploying.
+
+__Usage:__  gulp deploy:notify
+
+#### deploy:notify:log
+
+This task adds an entry into the deploy.log file on each server that app is deployed to
+
+__Usage:__  gulp deploy:notify:log
+
+__Notes:__
+
+See [Web Server File Structure](#web-server) for location of the deploy.log file
+See [Deploy Log Format](#deploy-log-format) for deploy.log file format
+
+#### deploy:notify:email
+
+This task sends an email to all [contributors](#contributors) in the role(s) defined in the environment's [appSetting](#appsettings) value appSettings.\<env\>.notify
+
+__Usage:__  gulp deploy:notify:email
+
+#### deploy:notify:nr
+
+This tasks does an HTTP POST to the New Relic endpoint that records deployments if New Relic is defined in the environment's [appSetting](#appsettings) value appSettings.\<env\>.newrelic
+
+__Usage:__  gulp deploy:notify:nr
+
 #### deploy:status
 
 This tasks lists the latest deployed version of the application
@@ -488,9 +518,22 @@ argument    | description                          | required | notes
 
 __Notes:__
 
-The output is as follows:
+See [Deploy Log Format](#deploy-log-format) for output format
+
+#### Deploy Log Format
+
+Each entry into the deploy.log is in the following format:
 
 \[timestamp\] \[environment\] version (revision) deployed_from deployed_by
+
+argument      | description                              | example value
+--------------|------------------------------------------|-----------------------------
+timestamp     | the date and time the app was deployed   | 2017-11-27T16:57:23.797
+environment   | the environment name                     | DEV
+version       | the version defined in package.json      | v0.2.0
+revision      | the svn revision or git short sha-a hash | 31175, a78e345
+deployed_from | the server the app was deployed from     | JMORRIS2-MOBL
+deployed_by   | the IDSID of who deployed the app        | sys_ccsd
 
 ### Env
 
