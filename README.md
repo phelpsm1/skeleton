@@ -74,26 +74,26 @@ For more information, see the [people fields section](https://docs.npmjs.com/fil
 
 An array of team members that include developers, systems analysts, and integrators.
 
-      "contributors": [
-        {
-          "name": "Jason S Morris",
-          "email": "jason.morris@intel.com",
-          "url": "https://soco.intel.com/people/jmorris2",
-          "role": "Developer"
-        },
-        {
-          "name": "Gary Reny",
-          "email": "gary.reny@intel.com",
-          "url": "https://soco.intel.com/people/greny",
-          "role": "Systems Analyst"
-        },
-        {
-          "name": "Brett Willis",
-          "email": "brett.willis@intel.com",
-          "url": "https://soco.intel.com/people/bwillis",
-          "role": "Integrator"
-        }
-      ]
+    "contributors": [
+      {
+        "name": "Jason S Morris",
+        "email": "jason.morris@intel.com",
+        "url": "https://soco.intel.com/people/jmorris2",
+        "role": "Developer"
+      },
+      {
+        "name": "Gary Reny",
+        "email": "gary.reny@intel.com",
+        "url": "https://soco.intel.com/people/greny",
+        "role": "Systems Analyst"
+      },
+      {
+        "name": "Brett Willis",
+        "email": "brett.willis@intel.com",
+        "url": "https://soco.intel.com/people/bwillis",
+        "role": "Integrator"
+      }
+    ]
 
 The url attribute is linked to the [Inside Blue](https://soco.intel.com) profile and the role attribute can be anything, e.g. Developer, Systems Analyst, Integrator, Tester, etc
 
@@ -111,62 +111,66 @@ This is a custom attribute added the the package.json file.
 
 Defines all the different environments that the application can be deployed to.  It specifies different sections based on the needs of the environment.  Here is an example of one envrionment defined
 
-    "appSettings": {
-      "dev": {
-        "dbs": [  
-          {
-            "name": "EmsConnectionString",
-            "server": "CCE1PDB120I02",
-            "instance": "SQL02",
-            "port": 1433,
-            "database": "EmsDev",
-            "backupShare": "//CCE1PDB120FS/backups$"
-          }
-        ],
-        "web": {
-          "apppool": "EmsDev",
-          "site": "EmsDev",
-          "servers": [
-            "CCE1PWB120N1",
-            "CCE1PWB120N2"
-          ]
-        },
-        "config": {
-          "appSettings": {
-            "ApplicationTitle": "EMS (dev)",
-            "EmsUrl": "http://ems-dev.intel.com",
-            "NewRelic.AppName": "EMS (dev)",
-            "SendEmails": false
-          },
-          "log4net": {
-            "appenders": [
-              {
-                "name": "DatabaseLogAppender",
-                "connectionstring": "EmsConnectionString"
-              },
-              {
-                "name": "NHibernateAppender",
-                "file": "..\\log\\NHibernate.log"
-              }
-            ],
-            "root": {
-              "level": "ALL"
-            }
-          },
-          "system.web": {
-            "compilation": {
-              "debug": false
-            }
-          }
-        },
-        "newrelic": {
-          "id": 9999999
-        },
-        "notify": [
-          "Developer"
+```json
+{
+  "appSettings": {
+    "dev": {
+      "dbs": [  
+        {
+          "name": "EmsConnectionString",
+          "server": "CCE1PDB120I02",
+          "instance": "SQL02",
+          "port": 1433,
+          "database": "EmsDev",
+          "backupShare": "//CCE1PDB120FS/backups$"
+        }
+      ],
+      "web": {
+        "apppool": "EmsDev",
+        "site": "EmsDev",
+        "servers": [
+          "CCE1PWB120N1",
+          "CCE1PWB120N2"
         ]
-      }
+      },
+      "config": {
+        "appSettings": {
+          "ApplicationTitle": "EMS (dev)",
+          "EmsUrl": "http://ems-dev.intel.com",
+          "NewRelic.AppName": "EMS (dev)",
+          "SendEmails": false
+        },
+        "log4net": {
+          "appenders": [
+            {
+              "name": "DatabaseLogAppender",
+              "connectionstring": "EmsConnectionString"
+            },
+            {
+              "name": "NHibernateAppender",
+              "file": "..\\log\\NHibernate.log"
+            }
+          ],
+          "root": {
+            "level": "ALL"
+          }
+        },
+        "system.web": {
+          "compilation": {
+            "debug": false
+          }
+        }
+      },
+      "newrelic": {
+        "id": 9999999
+      },
+      "notify": [
+        "Developer"
+      ]
     }
+  }
+}
+```
 
 This is a custom attribute added the the package.json file.
 
@@ -534,6 +538,111 @@ version       | the version defined in package.json      | v0.2.0
 revision      | the svn revision or git short sha-a hash | 31175, a78e345
 deployed_from | the server the app was deployed from     | JMORRIS2-MOBL
 deployed_by   | the IDSID of who deployed the app        | sys_ccsd
+
+### Local Tasks
+
+#### start
+
+This task starts IIS Express locally with the web project.
+
+__Usage:__  gulp start
+
+__Configuration:__
+
+Uses the following settings with the poackage.json file:
+
+```json
+{
+  "appSettings": {
+    "local": {
+      "web": {
+        "project": "<name>"  
+      }
+    }
+  }
+}
+```
+
+#### stop
+
+This task stops IIS Express locally.
+
+__Usage:__  gulp stop
+
+__Configuration:__
+
+Uses the following settings with the poackage.json file:
+
+```json
+{
+  "appSettings": {
+    "local": {
+      "web": {
+        "project": "<name>"  
+      }
+    }
+  }
+}
+```
+
+#### restart
+
+This task stops and start IIS Express locally with the web project.
+
+__Usage:__  gulp restart
+
+### Config Tasks
+
+#### config:web
+
+This tasks configures the local copy of Web.config for the specified environment.
+
+__Usage:__  gulp config:web \[-e env\]
+                            
+__Options:__
+
+argument    | description                         | required | notes
+------------|-------------------------------------|----------|---------------------------------------------------------
+-e name     | set the environment to use          | NO       | if not specified, will configure for local environment
+
+__Configuration:__
+
+Uses the following settings with the poackage.json file:
+
+```json
+{
+  "appSettings": {
+    "<env>": {
+      "config": {
+        ...
+      }
+    }
+  }
+}
+```
+
+### Restore Tasks
+
+#### restore:notify:email
+
+This task sends an email to all [contributors](#contributors) in the role(s) defined in notify.
+
+__Usage:__  gulp restore:notify:email
+
+__Configuration:__
+
+Uses the following settings with the poackage.json file:
+
+```json
+{
+  "appSettings": {
+    "<env>": {
+      "dbs": [...],
+      "notify": [...]
+    }
+  }
+}
+```
 
 ### Env
 
