@@ -170,6 +170,22 @@ Defines all the different environments that the application can be deployed to. 
 
 This is a custom attribute added the the package.json file.
 
+### File Structure
+
+#### Web Server
+
+    D:\WebSites 
+        \<pillar>
+            \<app>
+                \<env>
+                    \current <-- NTFS junction to releases\<latest>
+                    \releases
+                        \<svn revision | git short sha1 hash>
+                            \log <-- NTFS junction to shared\log
+                    \shared
+                        \log
+
+
 ### Application Tasks
 
 #### app:offline
@@ -389,7 +405,7 @@ This task is not meant to be run independently
 
 This task backups up the database(s) in the specified environment
 
-__Usage:__  gulp sql:backup -e <env> -p <password> \[-db \<name\>\]
+__Usage:__  gulp sql:backup -e env -p password \[-db name\]
 
 __Options:__
 
@@ -401,13 +417,13 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Configuration](#Configuration)
+See [Configuration](#configuration)
 
 #### sql:restore
 
 This task restores the database(s) in the specified environment
 
-__Usage:__  gulp sql:restore -e <env> -p <password> \[-db \<name\>\]
+__Usage:__  gulp sql:restore -e env -p password \[-db name --force\]
 
 __Options:__
 
@@ -416,6 +432,65 @@ argument    | description                                       | required | not
 -e name     | set the environment to use                        | YES      |
 -p password | set the password to use with the ccsd SQL account | YES      |
 -db name    | set the name of the database to backup            | NO       | If not specified, all databases will be restored
+--force     | allows you to restore database in production      | YES      | required if restoring production
+
+__Notes:__
+
+See [Configuration](#configuration)
+
+### Clean Tasks
+
+#### clean:releases
+
+This task cleans up the previous releases by keeping that last five only in the releases directory.
+
+__Usage:__  gulp clean:releases -e env
+
+__Options:__
+
+argument    | description                                       | required | notes
+------------|---------------------------------------------------|----------|--------------------------------------------------
+-e name     | set the environment to use                        | YES      |
+
+__Notes:__
+
+See [Web Server File Structure](#web-server)
+
+#### clean:logs
+
+This task cleans up the logs by removing any logs that are older than 30 days in the shared/log directory.
+
+__Usage:__  gulp clean:logs -e env
+
+__Options:__
+
+argument    | description                                       | required | notes
+------------|---------------------------------------------------|----------|--------------------------------------------------
+-e name     | set the environment to use                        | YES      |
+
+__Notes:__
+
+See [Web Server File Structure](#web-server)
+
+### Deploy Tasks
+
+#### deploy:status
+
+This tasks lists the latest deployed version of the application
+
+__Usage:__  gulp deploy:status \[-e env\]
+
+__Options:__
+
+argument    | description                          | required | notes
+------------|--------------------------------------|----------|-------------------------------------------------------------
+-e name     | set the environment to get status of | NO       | If not specified, all defined environments will be displayed
+
+__Notes:__
+
+The output is as follows:
+
+\[timestamp\] \[environment\] version (revision) deployed_from deployed_by
 
 ### Env
 
