@@ -14,7 +14,7 @@ argument    | description
 -p password | password for the SQL Server account ccsd
 -d name     | name of the database to work with
 -r revision | source revision of the build, e.g. svn revision, git commit short sha, etc
--l label    | label that is used in the Continuious Integration environment
+-l label    | label that can be used to identify the build, e.g. CI artifact label
 --force     | allows you to restore database in production
 
 ```javascript
@@ -36,7 +36,7 @@ process.env.password | the password for the SQL Server account ccsd  |
 process.env.database | the name of the database to work with         |
 process.env.revision | the source revision of the build              | 31254, ce518b3
 process.env.source   | the source of the build                       | ci, local
-process.env.label    | the Continuous Integration label of the build | 31254, 32564.2
+process.env.label    | the label of the build                        | 31254, 32564.2
 process.env.force    | allows you to restore database in production  | true, false
 
 ### Configuration
