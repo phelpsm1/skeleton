@@ -189,11 +189,12 @@ This is a custom attribute added the the package.json file.
                             \log <-- NTFS junction to shared\log
                     \shared
                         \log
+                        
+### Tasks                        
 
+#### Application Tasks
 
-### Application Tasks
-
-#### app:offline
+##### app:offline
 
 This task copies the app_offline.htm (located in the root directory of the project) to each web server
 
@@ -205,7 +206,7 @@ argument | description                | required
 ---------|----------------------------|----------------
 -e name  | set the environment to use | YES
 
-#### app:online
+##### app:online
 
 This task deletes the app_offline.htm on each web server
 
@@ -217,7 +218,7 @@ argument | description                | required
 ---------|----------------------------|----------------
 -e name  | set the environment to use | YES
 
-#### app:down
+##### app:down
 
 This task stops the application pool and website on each server
 
@@ -233,7 +234,7 @@ __Notes:__
 
 See [Providing credentials](#providing-credentials)
 
-#### app:up
+##### app:up
 
 This task starts the application pool and website on each server
 
@@ -249,7 +250,7 @@ __Notes:__
 
 See [Providing credentials](#providing-credentials)
 
-#### app:recycle
+##### app:recycle
 
 This task recycles the application pool on each server
 
@@ -265,7 +266,7 @@ __Notes:__
 
 See [Providing credentials](#providing-credentials)
 
-#### app:status
+##### app:status
 
 This task gets the status of the application pool and website of each server 
 
@@ -281,7 +282,7 @@ __Notes:__
 
 See [Providing credentials](#providing-credentials)
 
-#### app:link
+##### app:link
 
 This task links the current and log NTFS junctions to the appropriate directory in the file structure:
 
@@ -309,7 +310,7 @@ __Notes:__
 
 See [Providing credentials](#providing-credentials)
 
-#### app:rollback
+##### app:rollback
 
 This task moves the current NTFS junction to the n-1 release or revision specified.
 
@@ -334,9 +335,9 @@ Each command requiring credentials, will prompt for you mfg_idsid account.  Howe
     
 at a PowerShell command prompt.
 
-### Build Tasks
+#### Build Tasks
 
-#### build
+##### build
 
 This task builds the Release configuration of the project.
 
@@ -352,13 +353,13 @@ This task is called by the [build](#build) task to perform a build.
 
 __Usage:__ gulp build:compile
 
-###### build:clean
+##### build:clean
 
 This task is called by the [build:compile](#build:compile) task to clean the project before building.  It calls the MSBuild clean target.
 
 __Usage:__ gulp build:clean
 
-###### build:assemblyinfo
+##### build:assemblyinfo
 
 This task is called by the [build:compile](#build:compile) task to set various attributes of the AsseblyInfo.cs files in the project.  The attributes are:
 * AssemblyConfiguration
@@ -374,15 +375,15 @@ __Notes:__
 
 This task is not meant to be run independently
 
-### Test Tasks
+#### Test Tasks
 
-#### test
+##### test
 
 This task orchestrates the configuration and execution the unit tests of the project.
 
 __Usage:__  gulp test
 
-#### test:config
+##### test:config
 
 This task configures the app.config file for execution of the unit tests.
 
@@ -404,9 +405,9 @@ __Notes:__
 
 This task is not meant to be run independently
 
-### SQL Tasks
+#### SQL Tasks
 
-#### sql:backup
+##### sql:backup
 
 This task backups up the database(s) in the specified environment
 
@@ -424,7 +425,7 @@ __Notes:__
 
 See [Configuration](#configuration)
 
-#### sql:restore
+##### sql:restore
 
 This task restores the database(s) in the specified environment
 
@@ -443,9 +444,9 @@ __Notes:__
 
 See [Configuration](#configuration)
 
-### Clean Tasks
+#### Clean Tasks
 
-#### clean:releases
+##### clean:releases
 
 This task cleans up the previous releases by keeping that last five only in the releases directory.
 
@@ -461,7 +462,7 @@ __Notes:__
 
 See [Web Server File Structure](#web-server)
 
-#### clean:logs
+##### clean:logs
 
 This task cleans up the logs by removing any logs that are older than 30 days in the shared/log directory.
 
@@ -477,15 +478,15 @@ __Notes:__
 
 See [Web Server File Structure](#web-server)
 
-### Deploy Tasks
+#### Deploy Tasks
 
-#### deploy:notify
+##### deploy:notify
 
 This task orchestrates the various channels of notification when deploying.
 
 __Usage:__  gulp deploy:notify
 
-#### deploy:notify:log
+##### deploy:notify:log
 
 This task adds an entry into the deploy.log file on each server that app is deployed to
 
@@ -496,19 +497,19 @@ __Notes:__
 See [Web Server File Structure](#web-server) for location of the deploy.log file
 See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 
-#### deploy:notify:email
+##### deploy:notify:email
 
 This task sends an email to all [contributors](#contributors) in the role(s) defined in the environment's [appSetting](#appsettings) value appSettings.\<env\>.notify
 
 __Usage:__  gulp deploy:notify:email
 
-#### deploy:notify:nr
+##### deploy:notify:nr
 
 This tasks does an HTTP POST to the New Relic endpoint that records deployments if New Relic is defined in the environment's [appSetting](#appsettings) value appSettings.\<env\>.newrelic
 
 __Usage:__  gulp deploy:notify:nr
 
-#### deploy:status
+##### deploy:status
 
 This tasks lists the latest deployed version of the application
 
@@ -524,7 +525,7 @@ __Notes:__
 
 See [Deploy Log Format](#deploy-log-format) for output format
 
-#### Deploy Log Format
+##### Deploy Log Format
 
 Each entry into the deploy.log is in the following format:
 
@@ -539,9 +540,9 @@ revision      | the svn revision or git short sha-a hash | 31175, a78e345
 deployed_from | the server the app was deployed from     | JMORRIS2-MOBL
 deployed_by   | the IDSID of who deployed the app        | sys_ccsd
 
-### Local Tasks
+#### Local Tasks
 
-#### start
+##### start
 
 This task starts IIS Express locally with the web project.
 
@@ -563,7 +564,7 @@ Uses the following settings with the poackage.json file:
 }
 ```
 
-#### stop
+##### stop
 
 This task stops IIS Express locally.
 
@@ -585,15 +586,15 @@ Uses the following settings with the poackage.json file:
 }
 ```
 
-#### restart
+##### restart
 
 This task stops and start IIS Express locally with the web project.
 
 __Usage:__  gulp restart
 
-### Config Tasks
+#### Config Tasks
 
-#### config:web
+##### config:web
 
 This tasks configures the local copy of Web.config for the specified environment.
 
@@ -607,7 +608,7 @@ argument    | description                         | required | notes
 
 __Configuration:__
 
-Uses the following settings with the poackage.json file:
+Uses the following settings with the package.json file:
 
 ```json
 {
@@ -621,9 +622,9 @@ Uses the following settings with the poackage.json file:
 }
 ```
 
-### Restore Tasks
+#### Restore Tasks
 
-#### restore:notify:email
+##### restore:notify:email
 
 This task sends an email to all [contributors](#contributors) in the role(s) defined in notify.
 
@@ -644,27 +645,41 @@ Uses the following settings with the poackage.json file:
 }
 ```
 
-### Env
+#### Environment Tasks
 
-#### getBuildConfig
+##### env:<name>
 
-#### getTestConfig
+This task sets the process.env.target environment variable to <name>.
 
-#### Env.parse
+__Usage:__ gulp env:<name>
 
-#### Env.getEnvironmentConfig
+__Note:__
 
-### Files
+The exact name of the task is determined by the name of each environment listed in the [Configuration](#configuration)
 
-#### Files.transform
+### API
 
-#### Files.updateWebConfig
+#### Env
 
-#### Files.log
+##### getBuildConfig
 
-### Mssql
+##### getTestConfig
 
-#### Mssql.run
+##### Env.parse
+
+##### Env.getEnvironmentConfig
+
+#### Files
+
+##### Files.transform
+
+##### Files.updateWebConfig
+
+##### Files.log
+
+#### Mssql
+
+##### Mssql.run
 
 Mssql exposes one method to execute sql statements, Mssql.run(). 
 
@@ -694,4 +709,4 @@ gulp.task('sql:migrate', () => {
 })
 ```
 
-#### Mssql.run
+##### Mssql.run
