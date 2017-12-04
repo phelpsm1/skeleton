@@ -204,7 +204,7 @@ __Options:__
 
 argument | description                | required
 ---------|----------------------------|----------------
--e name  | set the environment to use | YES
+-e name  | set the environment to use | YES, but not local
 
 ##### app:online
 
@@ -216,7 +216,7 @@ __Options:__
 
 argument | description                | required
 ---------|----------------------------|----------------
--e name  | set the environment to use | YES
+-e name  | set the environment to use | YES, but not local
 
 ##### app:down
 
@@ -227,8 +227,8 @@ __Usage:__  gulp app:down -e dev
 __Options:__
 
 argument | description                | required
----------|----------------------------|----------------
--e name  | set the environment to use | YES
+---------|----------------------------|--------------------
+-e name  | set the environment to use | YES, but not local
 
 __Notes:__
 
@@ -243,8 +243,8 @@ __Usage:__  gulp app:up -e dev
 __Options:__
 
 argument | description                | required
----------|----------------------------|----------------
--e name  | set the environment to use | YES
+---------|----------------------------|--------------------
+-e name  | set the environment to use | YES, but not local
 
 __Notes:__
 
@@ -259,8 +259,8 @@ __Usage:__  gulp app:recycle -e dev
 __Options:__
 
 argument | description                | required
----------|----------------------------|----------------
--e name  | set the environment to use | YES
+---------|----------------------------|--------------------
+-e name  | set the environment to use | YES, but not local
 
 __Notes:__
 
@@ -275,8 +275,8 @@ __Usage:__  gulp app:status -e dev
 __Options:__
 
 argument | description                | required
----------|----------------------------|----------------
--e name  | set the environment to use | YES
+---------|----------------------------|--------------------
+-e name  | set the environment to use | YES, but not local
 
 __Notes:__
 
