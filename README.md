@@ -417,7 +417,7 @@ __Options:__
 
 argument    | description                                       | required | notes
 ------------|---------------------------------------------------|----------|--------------------------------------------------
--e name     | set the environment to use                        | YES      |
+-e name     | set the environment to use                        | NO       | If not specified, local is used
 -p password | set the password to use with the ccsd SQL account | YES      |
 -db name    | set the name of the database to backup            | NO       | If not specified, all databases will be restored
 
@@ -435,7 +435,7 @@ __Options:__
 
 argument    | description                                       | required | notes
 ------------|---------------------------------------------------|----------|--------------------------------------------------
--e name     | set the environment to use                        | YES      |
+-e name     | set the environment to use                        | NO       | If not specified, local is used
 -p password | set the password to use with the ccsd SQL account | YES      |
 -db name    | set the name of the database to backup            | NO       | If not specified, all databases will be restored
 --force     | allows you to restore database in production      | YES      | required if restoring production
