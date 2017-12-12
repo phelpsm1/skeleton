@@ -17,12 +17,6 @@ argument    | description
 -l label    | label that can be used to identify the build, e.g. CI artifact label
 --force     | allows you to restore database in production
 
-```javascript
-const env = require('skeleton').Env
-const files = require('skeleton').Files
-const mssql = require('skeleton').Mssql
-```
-
 ## Documentation
 
 ### Environment Variables
@@ -173,6 +167,208 @@ Defines all the different environments that the application can be deployed to. 
 ```
 
 This is a custom attribute added the the package.json file.
+
+##### appSettings.environment
+
+An environment can be be a number of things.  For example, local is for the local environment, unit for running unit tests, or the typical dev, int, and prod.
+
+Each environment has a standard set of settings or it can have its own unique settings.
+
+###### appSettings.envrionment.src
+
+The path from the root of the project to the test project where the App.config file is located.
+
+```json
+"src": "Tests/Intel.Example.Tests"
+```
+
+###### appSettings.envrionment.dbs
+
+dbs is an array of database settings.
+
+```json
+"dbs": [
+  {
+    "name": "Data",
+    "server": "server",
+    "instance": "instance",
+    "port": 1433,
+    "database": "ExampleDev",
+    "backup": true,
+    "restore": true
+  },
+  {
+    "name": "Edw",
+    "type": "teradata",
+    "server": "server",
+    "database": "database",
+    "user": "user",
+    "password": "*********",
+    "backup": false,
+    "restore": false
+  },
+]
+```
+
+setting   | description                 | value         | required | note
+----------|-----------------------------|---------------|----------|----------------------------------------------------
+name      | name of the data connection | text          |   YES    | this is the same name in the web.config connectionStrings section  
+type      | type of database            | sql, teradata |   NO     | sql is default
+server    | database server name        | text          |   YES    |
+instance  | database instance           | text          |   NO     |
+port      | database port               | int           |   NO     |
+database  | name of the database        | text          |   YES    |
+user      | database user               | text          |   NO     | default is SSPI connection
+password  | database user password      | text          |   NO     |
+backup    | backup flag                 | true, false   |   NO     | default is true
+restore   | restore flag                | true, false   |   NO     | default is true
+
+###### appSettings.envrionment.web
+
+web is an object of settings concerning the web server
+
+```json
+"web": {
+  "project": "Intel.Example.Web",
+  "apppool": "ExampleDev",
+  "site": "ExampleDev",        
+  "servers": [
+    "localhost"
+  ]
+}
+```
+
+setting   | description                 | value         | required | note
+----------|-----------------------------|---------------|----------|----------------------------------------------------
+project   | name of web project         | text          |   NO     |
+apppool   | name of IIS app pool        | text          |   NO     |
+site      | name of IIS site            | text          |   NO     |
+servers   | array of server names       | array of text |   YES    | list each node of web farm
+
+###### appSettings.envrionment.config
+
+This sets all the settings in the Web.config file of a web project.  There are three section (appSettings, log4net, system.web) that settings can be configured for and correspond to those sections in the Web.config
+
+```json
+"config": {
+  "appSettings": {
+    "ApplicationTitle": "Example (dev)",
+    "Url": "http://example-dev.intel.com",
+    "NewRelic.AppName": "Example (dev)"
+  },
+  "log4net": {
+    "appenders": [
+      {
+        "name": "DatabaseLogAppender",
+        "connectionstring": "Data"
+      },
+      {
+        "name": "NHibernateAppender",
+        "file": "..\\log\\NHibernate.log"
+      }
+    ],
+    "root": {
+      "level": "ALL"
+    }
+  },
+  "system.web": {
+    "compilation": {
+      "debug": false
+    }
+  }
+}
+```
+
+These settings would be turned into a web.config file as such
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <appSettings>
+    <add key="ApplicationTitle" value="Example (dev)" />
+    <add key="Url" value="http://example-dev.intel.com" />
+    <add key="NewRelic.AppName" value="Example (dev)" />
+  </appSettings>
+  <log4net>
+    <appender name="DatabaseLogAppender" type="Intel.Vfems.Support.Logging.DatabaseAppender">
+      <param name="ConnectionString" value="Server=localhost;Database=EmsLocal;Integrated Security=SSPI" />
+    </appender>
+    <appender name="NHibernateAppender" type="log4net.Appender.RollingFileAppender,log4net">
+      <param name="File" value="..\Log\NHibernate.log" />
+    </appender>
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="DatabaseLogAppender" />
+    </root>
+  </log4net>
+  <system.web>
+    <compilation debug="true" targetFramework="4.6" />
+  </system.web>
+</configuration>
+```
+
+__appSettings__
+
+These are the key, value pairs that will be added or updated in the web.config.
+
+__log4net__
+
+For each appender object will look for the corresponding appender using the name attribute.  If setting a connectionstring, the connection string will be set from the array of dbs based on name attribute. 
+
+__system.web__
+
+These settings will match the xml elements and attributes and edit accordingly.
+
+###### appSettings.envrionment.fitnesse
+
+```json
+"fitnesse": {
+  "host": "ccsdbuilds.intel.com",
+  "port": 8281,
+  "path": {
+    "drive": "C",
+    "base": "FitNesseExample"
+  },
+  "wiki": "FitNesseRoot",
+  "subwiki": "CurrentTests",
+  "config": {
+    "appSettings": {
+      "Url": "http://example-dev.intel.com"
+    }
+  }
+}
+```
+
+setting    | description                 | value         | required | note
+-----------|-----------------------------|---------------|----------|----------------------------------------------------
+host       | url of fitnesse             | text          |   YES    |
+port       | port fitnesse is running on | int           |   NO     |
+path.drive | drive of fitnesse directory | text          |   NO     |
+path.base  | root directory of fitnesse  | text          |   NO     |
+wiki       | array of server names       | array of text |   YES    | list each node of web farm
+subwiki    | array of server names       | array of text |   YES    | list each node of web farm
+config     | see [appSettings.environment.config](#appsettings.environment.config)       | array of text |   YES    | list each node of web farm
+
+###### appSettings.environment.notify
+
+An array of role names to notify for this environment.  See [contributors configuration](#contributors) on how to set a role for each contributor.
+
+```json
+"notify": [
+  "Developer",
+  "System Analyst"
+]
+```
+
+###### appSettings.environment.newrelic
+
+The New Relic application id.
+
+```json
+"newrelic": {
+  "id": 9898989898
+}
+```
 
 ### File Structure
 
@@ -658,6 +854,12 @@ __Note:__
 The exact name of the task is determined by the name of each environment listed in the [Configuration](#configuration)
 
 ### API
+
+```javascript
+const env = require('skeleton').Env
+const files = require('skeleton').Files
+const mssql = require('skeleton').Mssql
+```
 
 #### Env
 
