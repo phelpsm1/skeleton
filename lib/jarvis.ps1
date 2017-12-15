@@ -5,16 +5,18 @@ param(
     [String] $env,
     [Parameter(Mandatory = $false)]
     [Array] $servers,
-    [Parameter (Mandatory = $false)]
+    [Parameter(Mandatory = $false)]
     [String] $name,
-    [Parameter (Mandatory = $false)]
+    [Parameter(Mandatory = $false)]
     [String] $pillar,
-    [Parameter (Mandatory = $false)]
+    [Parameter(Mandatory = $false)]
     [String] $apppool,
-    [Parameter (Mandatory = $false)]
+    [Parameter(Mandatory = $false)]
     [String] $site,
-    [Parameter (Mandatory = $false)]
-    [String] $revision
+    [Parameter(Mandatory = $false)]
+    [String] $revision,
+    [Parameter(Mandatory = $false)]
+    [String] $drive
 )
 
 $app_offline_file = "app_offline.htm"
@@ -82,14 +84,18 @@ function Get-Status() {
 }
 
 function Set-Current() {
-    $server_path_base = "D:\\WebSites\\$pillar\\$name\\$env"
-    $server_path_current = "$server_path_base\\current"
-    $server_path_release = "$server_path_base\\releases\$revision"
+    $local_path_base = "${drive}:\WebSites\$pillar\$name\$env"
+
+    $path_current = "current"
+    $path_current_log = "$path_current\log"
+
+    $path_release = "releases\$revision"
+    $path_shared_log = "shared\log"
 
     $cred = Get-Mfg-Credentials
 
     Write-Output ""
-    Write-Output "Updating $name current link in $env..."
+    Write-Output "Updating $name symlinks in $env..."
 
     foreach ($server in $servers) {
         $session = New-PSSession -ComputerName $server -Credential $cred
@@ -98,14 +104,34 @@ function Set-Current() {
         # Example: New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir
         # Find a solution here: https://stackoverflow.com/a/44060418/881
 
-        Execute-Server-Command $session "Removing current link in $env on $server..."        "CMD /C RMDIR $server_path_current"
-        Execute-Server-Command $session "Linking current to $revision in $env on $server..." "CMD /C MKLINK /J $server_path_current $server_path_release"
+        $remote_path_base = "\\$server\$pillar$\$name\$env"
+
+        # current symlink
+        If (Test-Path "$remote_path_base\$path_current") {
+            Execute-Server-Command $session "Removing current link in $env on $server..." "CMD /C RMDIR $local_path_base\$path_current"
+        }
+
+        Execute-Server-Command $session "Linking current to $revision in $env on $server..." "CMD /C MKLINK /J $local_path_base\$path_current $local_path_base\$path_release"
+
+        # log symlink (if present)
+        If (Test-Path "$remote_path_base\$path_shared_log") {
+            If (Test-Path "$remote_path_base\$path_current_log") {
+                Execute-Server-Command $session "Removing log link in $env on $server..." "CMD /C RMDIR $local_path_base\$path_current_log"
+            }
+
+            Execute-Server-Command $session "Linking log to current in $env on $server..." "CMD /C MKLINK /J $local_path_base\$path_current_log $local_path_base\$path_shared_log"
+        }
 
         Remove-PSSession $session
     }
 }
 
 function Get-Mfg-Credentials() {
+    $file = "credentials.xml"
+    if (Test-Path $file) {
+        return Import-Clixml $file
+    }
+
     $idsid = [Environment]::UserName
     $user = $idsid
 
