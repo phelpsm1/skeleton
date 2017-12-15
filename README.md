@@ -1,6 +1,6 @@
 # Welcome to the Skeleton
 
-This is the skeleton to build, test, and deploy a project within TMG SP S
+This is the skeleton to build, test, and deploy a project within CCSD.  It is build on top of [Node.js](https://nodejs.org) and [gulp](https://gulpjs.com).
 
 ## Usage
 
@@ -21,7 +21,7 @@ argument    | description
 
 ### Environment Variables
 
-Several environment variables, access through the process.env object, are set and available for use
+Several environment variables, accessed through the process.env object, are set and available for use.
 
 variable             | description                                   | values
 ---------------------|-----------------------------------------------|----------------
@@ -43,7 +43,7 @@ The short name or initialism for the project.
 
     "name": "EMS"
 
-For more information, see the [name section](https://docs.npmjs.com/files/package.json#name) in the package.json documentation
+For more information, see the [name section](https://docs.npmjs.com/files/package.json#name) in the package.json documentation.
 
 #### version
 
@@ -51,22 +51,22 @@ The version number of the release.  It should follow a [semver](https://semver.o
 
     "version": "6.2.1"
 
-For more information, see the [version section](https://docs.npmjs.com/files/package.json#version) in the package.json documentation
+For more information, see the [version section](https://docs.npmjs.com/files/package.json#version) in the package.json documentation.
 
 #### author
 
-The author of the project.  It is recommended to use the department name and email address
+The author of the project.  It is recommended to use the department name and email address.
 
     "author": {
-      "name": "TMG SP Solutions",
-      "email": "tmgsp.solutions@intel.com"
+      "name": "CCSD",
+      "email": "ccsd@intel.com"
     } 
 
 For more information, see the [people fields section](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in the package.json documentation
 
 #### contributors
 
-An array of team members that include developers, systems analysts, and integrators.
+An array of team members that can include developers, systems analysts, and integrators.
 
     "contributors": [
       {
@@ -89,13 +89,13 @@ An array of team members that include developers, systems analysts, and integrat
       }
     ]
 
-The url attribute is linked to the [Inside Blue](https://soco.intel.com) profile and the role attribute can be anything, e.g. Developer, Systems Analyst, Integrator, Tester, etc
+The url attribute is linked to the [Inside Blue](https://soco.intel.com) profile and the role attribute can be anything, e.g. Developer, Systems Analyst, Integrator, Tester, etc.
 
-For more information, see the [people fields section](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in the package.json documentation
+For more information, see the [people fields section](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in the package.json documentation.
 
 #### pillar
 
-The name of the pillar within TMG SP S, e.g. capactiy, capital, cost
+The name of the pillar within CCSD, e.g. capacity, capital, cost.
 
     "pillar": "capital"
 
@@ -103,7 +103,7 @@ This is a custom attribute added the the package.json file.
 
 #### appSettings
 
-Defines all the different environments that the application can be deployed to.  It specifies different sections based on the needs of the environment.  Here is an example of one envrionment defined
+Defines all the different environments of the application.  Here is an example of one environment defined:
 
 ```json
 {
@@ -111,17 +111,17 @@ Defines all the different environments that the application can be deployed to. 
     "dev": {
       "dbs": [  
         {
-          "name": "EmsConnectionString",
+          "name": "data",
           "server": "CCE1PDB120I02",
           "instance": "SQL02",
           "port": 1433,
-          "database": "EmsDev",
+          "database": "ExampleDev",
           "backupShare": "//CCE1PDB120FS/backups$"
         }
       ],
       "web": {
-        "apppool": "EmsDev",
-        "site": "EmsDev",
+        "apppool": "ExampleDev",
+        "site": "ExampleDev",
         "servers": [
           "CCE1PWB120N1",
           "CCE1PWB120N2"
@@ -129,16 +129,14 @@ Defines all the different environments that the application can be deployed to. 
       },
       "config": {
         "appSettings": {
-          "ApplicationTitle": "EMS (dev)",
-          "EmsUrl": "http://ems-dev.intel.com",
-          "NewRelic.AppName": "EMS (dev)",
-          "SendEmails": false
+          "Title": "Example (dev)",
+          "Url": "http://example-dev.intel.com"
         },
         "log4net": {
           "appenders": [
             {
               "name": "DatabaseLogAppender",
-              "connectionstring": "EmsConnectionString"
+              "connectionstring": "data"
             },
             {
               "name": "NHibernateAppender",
@@ -166,53 +164,63 @@ Defines all the different environments that the application can be deployed to. 
 }
 ```
 
-This is a custom attribute added the the package.json file.
+This is a custom attribute added to the package.json file.
 
 ##### appSettings.environment
 
-An environment can be be a number of things.  For example, local is for the local environment, unit for running unit tests, or the typical dev, int, and prod.
+Each environment has a standard set of settings and it can have its own unique settings.  For example, local is for the local environment, unit for running unit tests, or the typical dev, int, and prod.
 
-Each environment has a standard set of settings or it can have its own unique settings.
-
-###### appSettings.envrionment.src
+###### appSettings.environment.src
 
 The path from the root of the project to the test project where the App.config file is located.
 
 ```json
-"src": "Tests/Intel.Example.Tests"
+{
+  "appSettings": {
+    "environment": {
+      "src": "Tests/Intel.Example.Tests"
+      }
+  }
+}
 ```
 
-###### appSettings.envrionment.dbs
+###### appSettings.environment.dbs
 
-dbs is an array of database settings.
+An array of database settings that the application uses.  One object for each database defined in the web.config connection string section.
 
 ```json
-"dbs": [
-  {
-    "name": "Data",
-    "server": "server",
-    "instance": "instance",
-    "port": 1433,
-    "database": "ExampleDev",
-    "backup": true,
-    "restore": true
-  },
-  {
-    "name": "Edw",
-    "type": "teradata",
-    "server": "server",
-    "database": "database",
-    "user": "user",
-    "password": "*********",
-    "backup": false,
-    "restore": false
-  },
-]
+{
+  "appSettings": {
+    "environment": {
+      "dbs": [
+        {
+          "name": "Data",
+          "server": "server",
+          "instance": "instance",
+          "port": 1433,
+          "database": "ExampleDev",
+          "backup": true,
+          "restore": true
+        },
+        {
+          "name": "Edw",
+          "type": "teradata",
+          "server": "server",
+          "database": "database",
+          "user": "user",
+          "password": "*********",
+          "backup": false,
+          "restore": false
+        }
+      ]
+    }
+  }
+}
 ```
 
 setting   | description                 | value         | required | note
 ----------|-----------------------------|---------------|----------|----------------------------------------------------
-name      | name of the data connection | text          |   YES    | this is the same name in the web.config connectionStrings section  
+name      | name of the data connection | text          |   YES    | this is the name in the web.config connectionStrings section  
 type      | type of database            | sql, teradata |   NO     | sql is default
 server    | database server name        | text          |   YES    |
 instance  | database instance           | text          |   NO     |
@@ -223,18 +231,24 @@ password  | database user password      | text          |   NO     |
 backup    | backup flag                 | true, false   |   NO     | default is true
 restore   | restore flag                | true, false   |   NO     | default is true
 
-###### appSettings.envrionment.web
+###### appSettings.environment.web
 
-web is an object of settings concerning the web server
+web is an object of settings for the web server
 
 ```json
-"web": {
-  "project": "Intel.Example.Web",
-  "apppool": "ExampleDev",
-  "site": "ExampleDev",        
-  "servers": [
-    "localhost"
-  ]
+{
+  "appSettings": {
+    "environment": {
+      "web": {
+        "project": "Intel.Example.Web",
+        "apppool": "ExampleDev",
+        "site": "ExampleDev",        
+        "servers": [
+          "localhost"
+        ]
+      }
+    }
+  }
 }
 ```
 
@@ -245,35 +259,41 @@ apppool   | name of IIS app pool        | text          |   NO     |
 site      | name of IIS site            | text          |   NO     |
 servers   | array of server names       | array of text |   YES    | list each node of web farm
 
-###### appSettings.envrionment.config
+###### appSettings.environment.config
 
-This sets all the settings in the Web.config file of a web project.  There are three section (appSettings, log4net, system.web) that settings can be configured for and correspond to those sections in the Web.config
+A set of all the settings to update in the web.config file of a web project.  There are three section (appSettings, log4net, system.web) that settings can be configured for and correspond to the sections in the web.config
 
 ```json
-"config": {
+{
   "appSettings": {
-    "ApplicationTitle": "Example (dev)",
-    "Url": "http://example-dev.intel.com",
-    "NewRelic.AppName": "Example (dev)"
-  },
-  "log4net": {
-    "appenders": [
-      {
-        "name": "DatabaseLogAppender",
-        "connectionstring": "Data"
-      },
-      {
-        "name": "NHibernateAppender",
-        "file": "..\\log\\NHibernate.log"
+    "environment": {
+      "config": {
+        "appSettings": {
+          "ApplicationTitle": "Example (dev)",
+          "Url": "http://example-dev.intel.com",
+          "NewRelic.AppName": "Example (dev)"
+        },
+        "log4net": {
+          "appenders": [
+            {
+              "name": "DatabaseLogAppender",
+              "connectionstring": "Data"
+            },
+            {
+              "name": "NHibernateAppender",
+              "file": "..\\log\\NHibernate.log"
+            }
+          ],
+          "root": {
+            "level": "ALL"
+          }
+        },
+        "system.web": {
+          "compilation": {
+            "debug": false
+          }
+        }
       }
-    ],
-    "root": {
-      "level": "ALL"
-    }
-  },
-  "system.web": {
-    "compilation": {
-      "debug": false
     }
   }
 }
@@ -309,82 +329,60 @@ These settings would be turned into a web.config file as such
 
 __appSettings__
 
-These are the key, value pairs that will be added or updated in the web.config.
+These are the key, value pairs that will be added or updated in the web.config appSettings section.
 
 __log4net__
 
-For each appender object will look for the corresponding appender using the name attribute.  If setting a connectionstring, the connection string will be set from the array of dbs based on name attribute. 
+For each appender object, the name value is used to look up the corresponding appender in web.config.  If setting a connection string, the connection string will be set from the array of dbs based on the name attribute. 
 
 __system.web__
 
-These settings will match the xml elements and attributes and edit accordingly.
-
-###### appSettings.envrionment.fitnesse
-
-```json
-"fitnesse": {
-  "host": "ccsdbuilds.intel.com",
-  "port": 8281,
-  "path": {
-    "drive": "C",
-    "base": "FitNesseExample"
-  },
-  "wiki": "FitNesseRoot",
-  "subwiki": "CurrentTests",
-  "config": {
-    "appSettings": {
-      "Url": "http://example-dev.intel.com"
-    }
-  }
-}
-```
-
-setting    | description                 | value         | required | note
------------|-----------------------------|---------------|----------|----------------------------------------------------
-host       | url of fitnesse             | text          |   YES    |
-port       | port fitnesse is running on | int           |   NO     |
-path.drive | drive of fitnesse directory | text          |   NO     |
-path.base  | root directory of fitnesse  | text          |   NO     |
-wiki       | array of server names       | array of text |   YES    | list each node of web farm
-subwiki    | array of server names       | array of text |   YES    | list each node of web farm
-config     | see [appSettings.environment.config](#appsettings.environment.config)       | array of text |   YES    | list each node of web farm
+These settings will match the xml elements and attributes and updated accordingly.
 
 ###### appSettings.environment.notify
 
 An array of role names to notify for this environment.  See [contributors configuration](#contributors) on how to set a role for each contributor.
 
 ```json
-"notify": [
-  "Developer",
-  "System Analyst"
-]
+{
+  "notify": [
+    "Developer",
+    "System Analyst"
+  ]
+}
 ```
 
 ###### appSettings.environment.newrelic
 
-The New Relic application id.
+An object of New Relic settings.
 
 ```json
-"newrelic": {
-  "id": 9898989898
+{
+  "newrelic": {
+    "id": 9898989898
+  }
 }
 ```
+
+setting   | description      | value | required | note
+----------|------------------|-------|----------|----------------------------------------------------
+id        | application id   | int   |   YES    |
 
 ### File Structure
 
 #### Web Server
 
-    D:\WebSites 
-        \<pillar>
-            \<app>
-                \deploy.log
-                \<env>
+    <drive>:\WebSites 
+              \<pillar>
+                \<app>
+                  \deploy.log
+                  \<env>
                     \current <-- NTFS junction to releases\<latest>
                     \releases
-                        \<svn revision | git short sha1 hash>
-                            \log <-- NTFS junction to shared\log
+                      \<svn revision | git short sha1 hash>
+                        \log <-- NTFS junction to shared\log
                     \shared
-                        \log
+                      \log
                         
 ### Tasks                        
 
@@ -428,7 +426,7 @@ argument | description                | required
 
 __Notes:__
 
-See [Providing credentials](#providing-credentials)
+See [providing credentials](#providing-credentials)
 
 ##### app:up
 
@@ -444,7 +442,7 @@ argument | description                | required
 
 __Notes:__
 
-See [Providing credentials](#providing-credentials)
+See [providing credentials](#providing-credentials)
 
 ##### app:recycle
 
@@ -460,7 +458,7 @@ argument | description                | required
 
 __Notes:__
 
-See [Providing credentials](#providing-credentials)
+See [providing credentials](#providing-credentials)
 
 ##### app:status
 
@@ -476,25 +474,13 @@ argument | description                | required
 
 __Notes:__
 
-See [Providing credentials](#providing-credentials)
+See [providing credentials](#providing-credentials)
 
 ##### app:link
 
-This task links the current and log NTFS junctions to the appropriate directory in the file structure:
+This task links the current and log NTFS junctions to the appropriate directory in the [File Structure](#file-structure).
 
-    D:\WebSites 
-        \<pillar>
-            \<app>
-                \<env>
-                    \current <-- NTFS junction to releases\<latest>
-                    \releases
-                        \<svn revision | git short sha1 hash>
-                            \log <-- NTFS junction to shared\log
-                    \shared
-                        \log
-            
-
-__Usage:__  gulp app:recycle -e dev
+__Usage:__  gulp app:link -e dev
 
 __Options:__
 
@@ -504,7 +490,9 @@ argument | description                | required
 
 __Notes:__
 
-See [Providing credentials](#providing-credentials)
+See [providing credentials](#providing-credentials).
+
+This task is not meant to be run independently.  It can be used in a sequence of tasks in a deploy to a web server.
 
 ##### app:rollback
 
@@ -521,43 +509,43 @@ argument    | description                | required
 
 __Notes:__
 
-See [Providing credentials](#providing-credentials)
-
-#### Providing credentials
-
-Each command requiring credentials, will prompt for you mfg_idsid account.  However, you can bypass this by creating a credential.xml file in the root of your project directory.  Once created, all tasks requiring credentials will use the credentials supplied in the file.  To create your file, execute the following command
-
-    Get-Credential | Export-Clixml "credentials.xml"
-    
-at a PowerShell command prompt.
+See [providing credentials](#providing-credentials)
 
 #### Build Tasks
 
 ##### build
 
-This task builds the Release configuration of the project.
+This task orchestrates the building of the Release configuration of the project.
 
 __Usage:__  gulp build
 
 __Notes:__
 
-See [Build Configuration](#getBuildConfig)
+See [Build Configuration](#getbuildconfig)
 
 ##### build:compile
 
-This task is called by the [build](#build) task to perform a build.
+This task compiles the Release configuration of the project.
 
 __Usage:__ gulp build:compile
 
+__Notes:__
+
+This task is not meant to be run independently. See the [build](#build) task.
+
 ##### build:clean
 
-This task is called by the [build:compile](#build:compile) task to clean the project before building.  It calls the MSBuild clean target.
+This task cleans the project before building.
 
 __Usage:__ gulp build:clean
 
+__Notes:__
+
+This task is not meant to be run independently. See the [build](#build) task.
+
 ##### build:assemblyinfo
 
-This task is called by the [build:compile](#build:compile) task to set various attributes of the AsseblyInfo.cs files in the project.  The attributes are:
+This task sets various attributes in all AsseblyInfo.cs files in the project.  The attributes are:
 * AssemblyConfiguration
 * AssbemlyCompany
 * AssemblyProduct
@@ -569,7 +557,7 @@ __Usage:__ gulp build:assemblyinfo
 
 __Notes:__
 
-This task is not meant to be run independently
+This task is not meant to be run independently. See the [build](#build) task.
 
 #### Test Tasks
 
@@ -587,9 +575,9 @@ __Usage:__  gulp test:config
 
 __Notes:__
 
-See [Test Configuration](#getTestConfig)
+See [Test Configuration](#gettestconfig)
 
-This task is not meant to be run independently. See [test](#test) task
+This task is not meant to be run independently. See [test](#test) task.
 
 ##### test:unit
 
@@ -599,15 +587,15 @@ __Usage:__ gulp test:unit
 
 __Notes:__
 
-This task is not meant to be run independently
+This task is not meant to be run independently. See [test](#test) task.
 
 #### SQL Tasks
 
 ##### sql:backup
 
-This task backups up the database(s) in the specified environment
+This task backups up all database(s) in the specified environment except those marked with backup false. 
 
-__Usage:__  gulp sql:backup -e env -p password \[-db name\]
+__Usage:__  gulp sql:backup -e env -p password \[-d name\]
 
 __Options:__
 
@@ -615,17 +603,17 @@ argument    | description                                       | required | not
 ------------|---------------------------------------------------|----------|--------------------------------------------------
 -e name     | set the environment to use                        | NO       | If not specified, local is used
 -p password | set the password to use with the ccsd SQL account | YES      |
--db name    | set the name of the database to backup            | NO       | If not specified, all databases will be restored
+-d name     | set the name of the database to backup            | NO       | If not specified, all databases will be restored
 
 __Notes:__
 
-See [Configuration](#configuration)
+See [appSettings.environment.dbs](#appsettings.environment.dbs)
 
 ##### sql:restore
 
-This task restores the database(s) in the specified environment
+This task restores all database(s) in the specified environment except those marekd with restore false.
 
-__Usage:__  gulp sql:restore -e env -p password \[-db name --force\]
+__Usage:__  gulp sql:restore -e env -p password \[-d name --force\]
 
 __Options:__
 
@@ -633,18 +621,18 @@ argument    | description                                       | required | not
 ------------|---------------------------------------------------|----------|--------------------------------------------------
 -e name     | set the environment to use                        | NO       | If not specified, local is used
 -p password | set the password to use with the ccsd SQL account | YES      |
--db name    | set the name of the database to backup            | NO       | If not specified, all databases will be restored
+-d name     | set the name of the database to restore           | NO       | If not specified, all databases will be restored
 --force     | allows you to restore database in production      | YES      | required if restoring production
 
 __Notes:__
 
-See [Configuration](#configuration)
+See [appSettings.environment.dbs](#appsettings.environment.dbs)
 
 #### Clean Tasks
 
 ##### clean:releases
 
-This task cleans up the previous releases by keeping that last five only in the releases directory.
+This task cleans up the previous releases by keeping only the last five.
 
 __Usage:__  gulp clean:releases -e env
 
@@ -656,7 +644,7 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Web Server File Structure](#web-server)
+See [Web Server File Structure](#file-structure)
 
 ##### clean:logs
 
@@ -672,7 +660,7 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Web Server File Structure](#web-server)
+See [Web Server File Structure](#file-structure)
 
 #### Deploy Tasks
 
@@ -684,30 +672,30 @@ __Usage:__  gulp deploy:notify
 
 ##### deploy:notify:log
 
-This task adds an entry into the deploy.log file on each server that app is deployed to
+This task adds an entry into the deploy.log file on each server the app is deployed to.
 
 __Usage:__  gulp deploy:notify:log
 
 __Notes:__
 
-See [Web Server File Structure](#web-server) for location of the deploy.log file
+See [Web Server File Structure](#file-structure) for location of the deploy.log file
 See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 
 ##### deploy:notify:email
 
-This task sends an email to all [contributors](#contributors) in the role(s) defined in the environment's [appSetting](#appsettings) value appSettings.\<env\>.notify
+This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettings.environment.notify).
 
 __Usage:__  gulp deploy:notify:email
 
 ##### deploy:notify:nr
 
-This tasks does an HTTP POST to the New Relic endpoint that records deployments if New Relic is defined in the environment's [appSetting](#appsettings) value appSettings.\<env\>.newrelic
+This tasks does an HTTP POST to the New Relic endpoint that records deployments, if settings are defined in [appSetting.environment.newrelic](#appsettings.environment.newrelic).
 
 __Usage:__  gulp deploy:notify:nr
 
 ##### deploy:status
 
-This tasks lists the latest deployed version of the application
+This tasks lists the latest deployed version of the application.
 
 __Usage:__  gulp deploy:status \[-e env\]
 
@@ -727,8 +715,8 @@ Each entry into the deploy.log is in the following format:
 
 \[timestamp\] \[environment\] version (revision) deployed_from deployed_by
 
-argument      | description                              | example value
---------------|------------------------------------------|-----------------------------
+argument      | description                              | example
+--------------|------------------------------------------|--------------------------
 timestamp     | the date and time the app was deployed   | 2017-11-27T16:57:23.797
 environment   | the environment name                     | DEV
 version       | the version defined in package.json      | v0.2.0
@@ -744,21 +732,9 @@ This task starts IIS Express locally with the web project.
 
 __Usage:__  gulp start
 
-__Configuration:__
+__Notes:__
 
-Uses the following settings with the poackage.json file:
-
-```json
-{
-  "appSettings": {
-    "local": {
-      "web": {
-        "project": "<name>"  
-      }
-    }
-  }
-}
-```
+Uses [appSettings.environment.web](#appsettings.environment.web).project setting.
 
 ##### stop
 
@@ -766,21 +742,9 @@ This task stops IIS Express locally.
 
 __Usage:__  gulp stop
 
-__Configuration:__
+__Notes:__
 
-Uses the following settings with the poackage.json file:
-
-```json
-{
-  "appSettings": {
-    "local": {
-      "web": {
-        "project": "<name>"  
-      }
-    }
-  }
-}
-```
+Uses [appSettings.environment.web](#appsettings.environment.web).project setting.
 
 ##### restart
 
@@ -788,11 +752,15 @@ This task stops and start IIS Express locally with the web project.
 
 __Usage:__  gulp restart
 
+__Notes:__
+
+See [stop](#stop) and [start](#start).
+
 #### Config Tasks
 
 ##### config:web
 
-This tasks configures the local copy of Web.config for the specified environment.
+This tasks configures the local copy of web.config for the specified environment.
 
 __Usage:__  gulp config:web \[-e env\]
                             
@@ -802,44 +770,13 @@ argument    | description                         | required | notes
 ------------|-------------------------------------|----------|---------------------------------------------------------
 -e name     | set the environment to use          | NO       | if not specified, will configure for local environment
 
-__Configuration:__
-
-Uses the following settings with the package.json file:
-
-```json
-{
-  "appSettings": {
-    "<env>": {
-      "config": {
-        ...
-      }
-    }
-  }
-}
-```
-
 #### Restore Tasks
 
 ##### restore:notify:email
 
-This task sends an email to all [contributors](#contributors) in the role(s) defined in notify.
+This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettings.environment.notify) setting.
 
 __Usage:__  gulp restore:notify:email
-
-__Configuration:__
-
-Uses the following settings with the poackage.json file:
-
-```json
-{
-  "appSettings": {
-    "<env>": {
-      "dbs": [...],
-      "notify": [...]
-    }
-  }
-}
-```
 
 #### Environment Tasks
 
@@ -853,7 +790,17 @@ __Note:__
 
 The exact name of the task is determined by the name of each environment listed in the [Configuration](#configuration)
 
+### Providing credentials
+
+Each task requiring credentials, will prompt for you mfg_idsid account.  However, you can bypass this by creating a credentials.xml file in the root of your project directory.  Once created, all tasks requiring credentials will use the credentials supplied in the file.
+
+To create your file, execute the following command at a PowerShell command prompt.
+
+    Get-Credential | Export-Clixml "credentials.xml"
+
 ### API
+
+__TODO: Need more documentation here!__
 
 ```javascript
 const env = require('skeleton').Env
