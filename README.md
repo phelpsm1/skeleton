@@ -607,7 +607,7 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [appSettings.environment.dbs](#appsettings.environment.dbs)
+See [appSettings.environment.dbs](#appsettingsenvironmentdbs)
 
 ##### sql:restore
 
@@ -626,7 +626,7 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [appSettings.environment.dbs](#appsettings.environment.dbs)
+See [appSettings.environment.dbs](#appsettingsenvironmentdbs)
 
 #### Clean Tasks
 
@@ -683,13 +683,13 @@ See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 
 ##### deploy:notify:email
 
-This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettings.environment.notify).
+This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettingsenvironmentnotify).
 
 __Usage:__  gulp deploy:notify:email
 
 ##### deploy:notify:nr
 
-This tasks does an HTTP POST to the New Relic endpoint that records deployments, if settings are defined in [appSetting.environment.newrelic](#appsettings.environment.newrelic).
+This tasks does an HTTP POST to the New Relic endpoint that records deployments, if settings are defined in [appSetting.environment.newrelic](#appsettingsenvironmentnewrelic).
 
 __Usage:__  gulp deploy:notify:nr
 
@@ -734,7 +734,7 @@ __Usage:__  gulp start
 
 __Notes:__
 
-Uses [appSettings.environment.web](#appsettings.environment.web).project setting.
+Uses [appSettings.environment.web](#appsettingsenvironmentweb).project setting.
 
 ##### stop
 
@@ -744,7 +744,7 @@ __Usage:__  gulp stop
 
 __Notes:__
 
-Uses [appSettings.environment.web](#appsettings.environment.web).project setting.
+Uses [appSettings.environment.web](#appsettingsenvironmentweb).project setting.
 
 ##### restart
 
@@ -774,7 +774,7 @@ argument    | description                         | required | notes
 
 ##### restore:notify:email
 
-This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettings.environment.notify) setting.
+This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettingsenvironmentnotify) setting.
 
 __Usage:__  gulp restore:notify:email
 
