@@ -867,10 +867,10 @@ gulp.task('sql:migrate', () => {
 3. generate changelog [conventionalChangelog](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)
 4. commit package.json and CHANGELOG.md files ``git commit -a -m 'bumped version number and added changelog''``
 5. finish the release branch
-  1. ``git checkout master``
-  2. ``git merge --no-ff release-v0.2.0``
-  3. ``git tag -a v0.2.0 -m 'release v0.2.0'``
-  4. ``git checkout develop``
-  5. ``get merge --no-ff release-v0.2.0``
-  6. ``git branch -d release-v0.2.0``
+    1. ``git checkout master``
+    2. ``git merge --no-ff release-v0.2.0``
+    3. ``git tag -a v0.2.0 -m 'release v0.2.0'``
+    4. ``git checkout develop``
+    5. ``get merge --no-ff release-v0.2.0``
+    6. ``git branch -d release-v0.2.0``
 6. push ``git push --all --tags``
