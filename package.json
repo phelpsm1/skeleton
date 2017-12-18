@@ -1,11 +1,11 @@
 {
   "name": "skeleton",
-  "version": "0.2.0",
-  "description": "This is the skeleton to build, test, and deploy a project within TMG SP S",
+  "version": "0.2.1",
+  "description": "This is the skeleton to build, test, and deploy a project within CCSD",
   "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": {
-    "name": "TMG SP Solutions",
-    "email": "tmgsp.solutions@intel.com"
+    "name": "CCSD",
+    "email": "ccsd@intel.com"
   },
   "contributors": [
     {
