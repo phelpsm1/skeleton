@@ -8,6 +8,7 @@
   * notify:deploy:log to deploy:notify:log
   * notify:deploy:email to deploy:notify:email
   * notify:deploy:nr to deploy:notify:nr
+* Restructured log4net settings in package.json
 
 ## app
 
