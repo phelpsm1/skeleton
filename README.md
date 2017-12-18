@@ -368,6 +368,36 @@ setting   | description      | value | required | note
 ----------|------------------|-------|----------|----------------------------------------------------
 id        | application id   | int   |   YES    |
 
+### Log4Net Configuration
+
+When configuring the Log4Net appenders, you must use the following format to set a parameter.
+
+    <param name="key" value="value" />
+
+If not in this format, the script will error out.
+
+See [Log4Net Configuration](https://logging.apache.org/log4net/release/manual/configuration.html) for more information.
+
+So, if the project's appender configuration looks like this inside your web or app config:
+
+```xml
+<appender name="DatabaseLogAppender" type="Intel.Vfems.Support.Logging.DatabaseAppender">
+  <threshold value="ALL" />
+  <bufferSize value="0" />
+  <connectionString value="Server=localhost;Database=Local;Integrated Security=SSPI" />
+</appender>
+```
+
+Change it to:
+
+```xml
+<appender name="DatabaseLogAppender" type="Intel.Vfems.Support.Logging.DatabaseAppender">
+  <param name="Threshold" value="ALL" />
+  <param name="BufferSize" value="0" />
+  <param name="ConnectionString" value="Server=localhost;Database=Local;Integrated Security=SSPI" />
+</appender>
+```
+
 ### File Structure
 
 #### Web Server
@@ -383,7 +413,7 @@ id        | application id   | int   |   YES    |
                         \log <-- NTFS junction to shared\log
                     \shared
                       \log
-                        
+
 ### Tasks                        
 
 #### Application Tasks
