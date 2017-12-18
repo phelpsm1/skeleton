@@ -378,7 +378,7 @@ If not in this format, the script will error out.
 
 See [Log4Net Configuration](https://logging.apache.org/log4net/release/manual/configuration.html) for more information.
 
-So, if the project's appender configuration looks like this inside your web or app config:
+So, if the project's appender configuration looks like this inside your web or app configuration files:
 
 ```xml
 <appender name="DatabaseLogAppender" type="Intel.Vfems.Support.Logging.DatabaseAppender">
@@ -397,6 +397,17 @@ Change it to:
   <param name="ConnectionString" value="Server=localhost;Database=Local;Integrated Security=SSPI" />
 </appender>
 ```
+
+### Email Token Replacement
+
+The following tokens can be used as placeholders for email addresses in configuration setting values in the package.json file.
+
+token    | description
+---------|---------------------------------------------------------------------------------------------------------------
+ ${me}   | is replace with the current user's username (which can be used in lieu of an email address)
+ ${role} | is replace with a semicolon delimited list of email addresses derived from the contributors base on role name
+
+This is helpful when an app of web configuration files need a list of email addresses in a setting, e.g. in an log4net email appender.
 
 ### File Structure
 
