@@ -1,3 +1,7 @@
+## 0.2.1 (2017-12-19)
+
+* fix(test): fixes #10 update test config before build during test ([3f25ba5](https://github.intel.com/ccsd/skeleton/commit/3f25ba5)), closes [#10](https://github.intel.com/ccsd/skeleton/issues/10)
+
 # v0.2.0 (2017-12-15)
 
 ### BREAKING CHANGE
