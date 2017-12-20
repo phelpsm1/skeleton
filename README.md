@@ -199,6 +199,7 @@ An array of database settings that the application uses.  One object for each da
           "instance": "instance",
           "port": 1433,
           "database": "ExampleDev",
+          "backupShare": "//server/backups",
           "backup": true,
           "restore": true
         },
@@ -218,18 +219,19 @@ An array of database settings that the application uses.  One object for each da
 }
 ```
 
-setting   | description                 | value         | required | note
-----------|-----------------------------|---------------|----------|----------------------------------------------------
-name      | name of the data connection | text          |   YES    | this is the name in the web.config connectionStrings section  
-type      | type of database            | sql, teradata |   NO     | sql is default
-server    | database server name        | text          |   YES    |
-instance  | database instance           | text          |   NO     |
-port      | database port               | int           |   NO     |
-database  | name of the database        | text          |   YES    |
-user      | database user               | text          |   NO     | default is SSPI connection
-password  | database user password      | text          |   NO     |
-backup    | backup flag                 | true, false   |   NO     | default is true
-restore   | restore flag                | true, false   |   NO     | default is true
+setting     | description                     | value         | required | note
+------------|---------------------------------|---------------|----------|--------------------------------------------------------------
+name        | name of the data connection     | text          |   YES    | this is the name in the web.config connectionStrings section  
+type        | type of database                | sql, teradata |   NO     | sql is default
+server      | database server name            | text          |   YES    |
+instance    | database instance               | text          |   NO     |
+port        | database port                   | int           |   NO     |
+database    | name of the database            | text          |   YES    |
+user        | database user                   | text          |   NO     | default is SSPI connection
+password    | database user password          | text          |   NO     |
+backupShare | file share location for backups | text          |   NO     | if database is to be backed up, this is required
+backup      | backup flag                     | true, false   |   NO     | default is true
+restore     | restore flag                    | true, false   |   NO     | default is true
 
 ###### appSettings.environment.web
 
@@ -424,6 +426,14 @@ This is helpful when an app of web configuration files need a list of email addr
                         \log <-- NTFS junction to shared\log
                     \shared
                       \log
+                      
+#### Backup Server
+
+    \\CCE1PDB120FS\backup$
+        \<database>
+            \*.bak
+        \FitNesse
+            \<app>
 
 ### Tasks                        
 
@@ -519,7 +529,7 @@ See [providing credentials](#providing-credentials)
 
 ##### app:link
 
-This task links the current and log NTFS junctions to the appropriate directory in the [File Structure](#file-structure).
+This task links the current and log NTFS junctions to the appropriate directory in the [Web Server File Structure](#web-server).
 
 __Usage:__  gulp app:link -e dev
 
@@ -669,6 +679,8 @@ __Notes:__
 
 See [appSettings.environment.dbs](#appsettingsenvironmentdbs)
 
+By default, this task uses the backup location of the production database as the source to find the most recent *.bak file.  See [File Structure Backup Server](#backup-server).  If you would like to use a different location, just change the backupShare value on the production database in the [appSettings.environment.dbs](#appsettingsenvironmentdbs) configuration object. 
+
 #### Clean Tasks
 
 ##### clean:releases
@@ -685,7 +697,7 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Web Server File Structure](#file-structure)
+See [Web Server File Structure](#web-server)
 
 ##### clean:logs
 
@@ -701,7 +713,7 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Web Server File Structure](#file-structure)
+See [Web Server File Structure](#web-server)
 
 #### Deploy Tasks
 
@@ -719,7 +731,7 @@ __Usage:__  gulp deploy:notify:log
 
 __Notes:__
 
-See [Web Server File Structure](#file-structure) for location of the deploy.log file
+See [Web Server File Structure](#web-server) for location of the deploy.log file
 See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 
 ##### deploy:notify:email
