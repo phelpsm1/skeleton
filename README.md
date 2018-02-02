@@ -890,12 +890,12 @@ gulp.task('sql:migrate', () => {
   const help = ', e.g. gulp db:migrate -e dev -p <password>'
 
   if (!env.isEnvironmentDefined()) {
-    util.log(util.colors.red('Environment not specified', help))
+    log.error(colors.red('Environment not specified ${help}'))
     return
   }
 
   if (!env.isPasswordDefined()) {
-    util.log(util.colors.red('Password not specified', help))
+    log.info(colors.red('Password not specified ${help}'))
     return
   }
 
@@ -905,8 +905,8 @@ gulp.task('sql:migrate', () => {
 
   return mssql.run(sql, db)
     .catch(err => {
-      util.log(util.colors.red(`Error migrating the database: ${sql}`))
-      util.log(err)
+      log.error(colors.red(`Error migrating the database: ${sql}`))
+      log.error(err)
     })
 })
 ```
