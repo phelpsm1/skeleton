@@ -6,7 +6,9 @@ param(
   [Parameter(Mandatory = $true)]
   [String] $iispath,
   [Parameter(Mandatory = $true)]
-  [String] $iisconfig
+  [String] $iisconfig,
+  [Parameter(Mandatory = $true)]
+  [String] $file
 )
 
 function Start-IisExpress() {
@@ -14,17 +16,12 @@ function Start-IisExpress() {
   $iisexpress = $iispath + "\iisexpress.exe"
   $args = "/config:$iisconfig /site:$site"
 
-  Write-Output ""
-  Write-Output "iisexpress: $iisexpress"
-  Write-Output ""
-  Write-Output "args: $args"
+  Write-Output "$iisexpress $args"
 
   Start-Process powershell -Credential $cred -ArgumentList "-noprofile -command &{Start-Process -FilePath '$iisexpress' -ArgumentList '$args'}"
 }
 
 function Get-Sys-Credentials() {
-  $file = "system.xml"
-
   if (Test-Path $file) {
     return Import-Clixml $file
   }

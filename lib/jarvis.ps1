@@ -14,7 +14,9 @@ param(
     [Parameter(Mandatory = $false)]
     [String] $revision,
     [Parameter(Mandatory = $false)]
-    [String] $drive
+    [String] $drive,
+    [Parameter(Mandatory = $true)]
+    [String] $file
 )
 
 $app_offline_file = "app_offline.htm"
@@ -125,8 +127,6 @@ function Set-Current() {
 }
 
 function Get-Mfg-Credentials() {
-    $file = "credentials.xml"
-
     if (Test-Path $file) {
         return Import-Clixml $file
     }
