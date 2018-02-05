@@ -12,6 +12,8 @@ param(
     [Parameter(Mandatory = $false)]
     [String] $apppool,
     [Parameter(Mandatory = $false)]
+    [String] $site,
+    [Parameter(Mandatory = $false)]
     [String] $revision,
     [Parameter(Mandatory = $false)]
     [String] $drive,
