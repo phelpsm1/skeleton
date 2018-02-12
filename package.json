@@ -47,7 +47,7 @@
     "gulp-msbuild": "^0.5.4",
     "gulp-nunit-runner": "^1.2.2",
     "juice": "^4.2.2",
-    "log4js": "^2.5.2",
+    "log4js": "^2.5.3",
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
     "moment": "^2.20.1",
@@ -66,10 +66,10 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "eslint": "^4.16.0",
+    "eslint": "^4.17.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1"
   },
