@@ -703,7 +703,7 @@ __Notes:__
 
 See [Web Server File Structure](#web-server)
 
-See [appSettings.environment.web](#appSettingsenvironmentweb) for overriding the default.
+See [appSettings.environment.web](#appsettingsenvironmentweb) for overriding the default.
 
 ##### clean:logs
 
