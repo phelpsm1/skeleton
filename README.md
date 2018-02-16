@@ -702,7 +702,8 @@ argument    | description                                       | required | not
 __Notes:__
 
 See [Web Server File Structure](#web-server)
-See [appSettings.environment.web](#appSettings-environment-web) for overriding the default.
+
+See [appSettings.environment.web](#appSettingsenvironmentweb) for overriding the default.
 
 ##### clean:logs
 
