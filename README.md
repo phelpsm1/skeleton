@@ -249,7 +249,10 @@ web is an object of settings for the web server
           "localhost"
         ],
         "clean": {
-          "releases": 5
+          "releases": 5,
+          "logs": {
+            "days": 30
+          }
         }
       }
     }
@@ -257,13 +260,15 @@ web is an object of settings for the web server
 }
 ```
 
-setting   | description                 | value         | required | note
-----------|-----------------------------|---------------|----------|----------------------------------------------------
-project   | name of web project         | text          |   NO     |
-apppool   | name of IIS app pool        | text          |   NO     |
-site      | name of IIS site            | text          |   NO     |
-servers   | array of server names       | array of text |   YES    | list each node of web farm
-clean     | object of cleaning settings | object        |   NO     |
+setting        | description                        | value         | required | note
+---------------|------------------------------------|---------------|----------|----------------------------------------------------
+project        | name of web project                | text          |   NO     |
+apppool        | name of IIS app pool               | text          |   NO     |
+site           | name of IIS site                   | text          |   NO     |
+servers        | array of server names              | array of text |   YES    | list each node of web farm
+clean          | object of cleaning settings        | object        |   NO     |
+clean.releases | number of releases to keep         | int           |   NO     |
+clean.logs     | amount of time to keep log files   | object        |   NO     | See [Moment.js Documentation](https://momentjs.com/docs/#/manipulating/add/) for syntax
 
 ###### appSettings.environment.config
 
@@ -701,13 +706,13 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Web Server File Structure](#web-server)
+See [Web Server File Structure](#web-server).
 
 See [appSettings.environment.web](#appsettingsenvironmentweb) for overriding the default.
 
 ##### clean:logs
 
-This task cleans up the logs by removing any logs that are older than 30 days in the shared/log directory.
+This task cleans up the logs by removing any logs that are older than 30 days (or configured value) in the shared/log directory.
 
 __Usage:__  gulp clean:logs -e env
 
@@ -719,7 +724,9 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Web Server File Structure](#web-server)
+See [Web Server File Structure](#web-server).
+
+See [appSettings.environment.web](#appsettingsenvironmentweb) for overriding the default.
 
 #### Deploy Tasks
 
