@@ -26,7 +26,7 @@ Several environment variables, accessed through the process.env object, are set 
 variable             | description                                   | values
 ---------------------|-----------------------------------------------|----------------
 process.env.target   | the environment to use                        | dev, int, prod
-process.env.password | the password for the SQL Server account ccsd  | 
+process.env.password | the password for the SQL Server account ccsd  |
 process.env.database | the name of the database to work with         |
 process.env.revision | the source revision of the build              | 31254, ce518b3
 process.env.source   | the source of the build                       | ci, local
@@ -60,7 +60,7 @@ The author of the project.  It is recommended to use the department name and ema
     "author": {
       "name": "CCSD",
       "email": "ccsd@intel.com"
-    } 
+    }
 
 For more information, see the [people fields section](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in the package.json documentation
 
@@ -247,7 +247,10 @@ web is an object of settings for the web server
         "site": "ExampleDev",        
         "servers": [
           "localhost"
-        ]
+        ],
+        "clean": {
+          "releases": 5
+        }
       }
     }
   }
@@ -260,6 +263,7 @@ project   | name of web project         | text          |   NO     |
 apppool   | name of IIS app pool        | text          |   NO     |
 site      | name of IIS site            | text          |   NO     |
 servers   | array of server names       | array of text |   YES    | list each node of web farm
+clean     | object of cleaning settings | object        |   NO     |
 
 ###### appSettings.environment.config
 
@@ -335,7 +339,7 @@ These are the key, value pairs that will be added or updated in the web.config a
 
 __log4net__
 
-For each appender object, the name value is used to look up the corresponding appender in web.config.  If setting a connection string, the connection string will be set from the array of dbs based on the name attribute. 
+For each appender object, the name value is used to look up the corresponding appender in web.config.  If setting a connection string, the connection string will be set from the array of dbs based on the name attribute.
 
 __system.web__
 
@@ -415,7 +419,7 @@ This is helpful when an app of web configuration files need a list of email addr
 
 #### Web Server
 
-    <drive>:\WebSites 
+    <drive>:\WebSites
               \<pillar>
                 \<app>
                   \deploy.log
@@ -426,7 +430,7 @@ This is helpful when an app of web configuration files need a list of email addr
                         \log <-- NTFS junction to shared\log
                     \shared
                       \log
-                      
+
 #### Backup Server
 
     \\CCE1PDB120FS\backup$
@@ -513,7 +517,7 @@ See [providing credentials](#providing-credentials)
 
 ##### app:status
 
-This task gets the status of the application pool and website of each server 
+This task gets the status of the application pool and website of each server
 
 __Usage:__  gulp app:status -e dev
 
@@ -632,7 +636,7 @@ This task is not meant to be run independently. See [test](#test) task.
 
 ##### test:unit
 
-This task executes the unit tests of the project using the [NUnit Console](https://github.com/nunit/docs/wiki/Console-Runner) found in the packages folder.  It looks for all DLLs with the name pattern of Intel.*.Tests.dll in the project.
+This task executes the unit tests of the project using the [NUnit Console](https://github.com/nunit/docs/wiki/Console-Runner) found in the packages folder.  It looks for all DLLs with the name pattern of Intel.\*.Tests.dll in the project.
 
 __Usage:__ gulp test:unit
 
@@ -644,7 +648,7 @@ This task is not meant to be run independently. See [test](#test) task.
 
 ##### sql:backup
 
-This task backups up all database(s) in the specified environment except those marked with backup false. 
+This task backups up all database(s) in the specified environment except those marked with backup false.
 
 __Usage:__  gulp sql:backup -e env -p password \[-d name\]
 
@@ -679,13 +683,13 @@ __Notes:__
 
 See [appSettings.environment.dbs](#appsettingsenvironmentdbs)
 
-By default, this task uses the backup location of the production database as the source to find the most recent *.bak file.  See [File Structure Backup Server](#backup-server).  If you would like to use a different location, just change the backupShare value on the production database in the [appSettings.environment.dbs](#appsettingsenvironmentdbs) configuration object. 
+By default, this task uses the backup location of the production database as the source to find the most recent \*.bak file.  See [File Structure Backup Server](#backup-server).  If you would like to use a different location, just change the backupShare value on the production database in the [appSettings.environment.dbs](#appsettingsenvironmentdbs) configuration object.
 
 #### Clean Tasks
 
 ##### clean:releases
 
-This task cleans up the previous releases by keeping only the last five.
+This task cleans up the previous releases by keeping only the last five (or configured value).
 
 __Usage:__  gulp clean:releases -e env
 
@@ -698,6 +702,7 @@ argument    | description                                       | required | not
 __Notes:__
 
 See [Web Server File Structure](#web-server)
+See [appSettings.environment.web](#appSettings-environment-web) for overriding the default.
 
 ##### clean:logs
 
@@ -816,7 +821,7 @@ See [stop](#stop) and [start](#start).
 This tasks configures the local copy of web.config for the specified environment.
 
 __Usage:__  gulp config:web \[-e env\]
-                            
+
 __Options:__
 
 argument    | description                         | required | notes
@@ -883,7 +888,7 @@ const mssql = require('skeleton').Mssql
 
 ##### Mssql.run
 
-Mssql exposes one method to execute sql statements, Mssql.run(). 
+Mssql exposes one method to execute sql statements, Mssql.run().
 
 ```javascript
 gulp.task('sql:migrate', () => {
