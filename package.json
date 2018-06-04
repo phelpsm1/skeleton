@@ -1,11 +1,11 @@
 {
   "name": "skeleton",
   "version": "0.2.1",
-  "description": "This is the skeleton to build, test, and deploy a project within CCSD",
+  "description": "This is the skeleton to build, test, and deploy a project within FCSC",
   "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": {
-    "name": "CCSD",
-    "email": "ccsd@intel.com"
+    "name": "FCSC",
+    "email": "fcsc@intel.com"
   },
   "contributors": [
     {
@@ -28,10 +28,7 @@
   ],
   "main": "index.js",
   "scripts": {},
-  "files": [
-    "index.js",
-    "lib"
-  ],
+  "files": ["index.js", "lib"],
   "engines": {
     "node": "~8.8.0",
     "npm": "~5.5.1"

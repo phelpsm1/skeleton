@@ -199,6 +199,7 @@ An array of database settings that the application uses.  One object for each da
           "instance": "instance",
           "port": 1433,
           "database": "ExampleDev",
+          "secure": true,
           "backupShare": "//server/backups",
           "backup": true,
           "restore": true
@@ -227,6 +228,7 @@ server      | database server name            | text          |   YES    |
 instance    | database instance               | text          |   NO     |
 port        | database port                   | int           |   NO     |
 database    | name of the database            | text          |   YES    |
+secure      | secure flag                     | true,false    |   NO     | default is false
 user        | database user                   | text          |   NO     | default is SSPI connection
 password    | database user password          | text          |   NO     |
 backupShare | file share location for backups | text          |   NO     | if database is to be backed up, this is required
