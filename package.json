@@ -4,8 +4,8 @@
   "description": "This is the skeleton to build, test, and deploy a project within FCSC",
   "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": {
-    "name": "FCSC",
-    "email": "fcsc@intel.com"
+    "name": "FCSC Development",
+    "email": "fcsc.development@intel.com"
   },
   "contributors": [
     {
