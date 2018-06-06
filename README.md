@@ -26,7 +26,7 @@ Several environment variables, accessed through the process.env object, are set 
 variable             | description                                   | values
 ---------------------|-----------------------------------------------|----------------
 process.env.target   | the environment to use                        | dev, int, prod
-process.env.password | the password for the SQL Server account ccsd  | 
+process.env.password | the password for the SQL Server account ccsd  |
 process.env.database | the name of the database to work with         |
 process.env.revision | the source revision of the build              | 31254, ce518b3
 process.env.source   | the source of the build                       | ci, local
@@ -60,7 +60,7 @@ The author of the project.  It is recommended to use the department name and ema
     "author": {
       "name": "CCSD",
       "email": "ccsd@intel.com"
-    } 
+    }
 
 For more information, see the [people fields section](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in the package.json documentation
 
@@ -153,9 +153,6 @@ Defines all the different environments of the application.  Here is an example o
           }
         }
       },
-      "newrelic": {
-        "id": 9999999
-      },
       "notify": [
         "Developer"
       ]
@@ -199,6 +196,8 @@ An array of database settings that the application uses.  One object for each da
           "instance": "instance",
           "port": 1433,
           "database": "ExampleDev",
+          "secure": true,
+          "backupShare": "//server/backups",
           "backup": true,
           "restore": true
         },
@@ -218,18 +217,20 @@ An array of database settings that the application uses.  One object for each da
 }
 ```
 
-setting   | description                 | value         | required | note
-----------|-----------------------------|---------------|----------|----------------------------------------------------
-name      | name of the data connection | text          |   YES    | this is the name in the web.config connectionStrings section  
-type      | type of database            | sql, teradata |   NO     | sql is default
-server    | database server name        | text          |   YES    |
-instance  | database instance           | text          |   NO     |
-port      | database port               | int           |   NO     |
-database  | name of the database        | text          |   YES    |
-user      | database user               | text          |   NO     | default is SSPI connection
-password  | database user password      | text          |   NO     |
-backup    | backup flag                 | true, false   |   NO     | default is true
-restore   | restore flag                | true, false   |   NO     | default is true
+setting     | description                     | value         | required | note
+------------|---------------------------------|---------------|----------|--------------------------------------------------------------
+name        | name of the data connection     | text          |   YES    | this is the name in the web.config connectionStrings section  
+type        | type of database                | sql, teradata |   NO     | sql is default
+server      | database server name            | text          |   YES    |
+instance    | database instance               | text          |   NO     |
+port        | database port                   | int           |   NO     |
+database    | name of the database            | text          |   YES    |
+secure      | secure flag                     | true,false    |   NO     | default is false
+user        | database user                   | text          |   NO     | default is SSPI connection
+password    | database user password          | text          |   NO     |
+backupShare | file share location for backups | text          |   NO     | if database is to be backed up, this is required
+backup      | backup flag                     | true, false   |   NO     | default is true
+restore     | restore flag                    | true, false   |   NO     | default is true
 
 ###### appSettings.environment.web
 
@@ -245,19 +246,28 @@ web is an object of settings for the web server
         "site": "ExampleDev",        
         "servers": [
           "localhost"
-        ]
+        ],
+        "clean": {
+          "releases": 5,
+          "logs": {
+            "days": 30
+          }
+        }
       }
     }
   }
 }
 ```
 
-setting   | description                 | value         | required | note
-----------|-----------------------------|---------------|----------|----------------------------------------------------
-project   | name of web project         | text          |   NO     |
-apppool   | name of IIS app pool        | text          |   NO     |
-site      | name of IIS site            | text          |   NO     |
-servers   | array of server names       | array of text |   YES    | list each node of web farm
+setting        | description                        | value         | required | note
+---------------|------------------------------------|---------------|----------|----------------------------------------------------
+project        | name of web project                | text          |   NO     |
+apppool        | name of IIS app pool               | text          |   NO     |
+site           | name of IIS site                   | text          |   NO     |
+servers        | array of server names              | array of text |   YES    | list each node of web farm
+clean          | object of cleaning settings        | object        |   NO     |
+clean.releases | number of releases to keep         | int           |   NO     |
+clean.logs     | amount of time to keep log files   | object        |   NO     | See [Moment.js Documentation](https://momentjs.com/docs/#/manipulating/add/) for syntax
 
 ###### appSettings.environment.config
 
@@ -270,8 +280,7 @@ A set of all the settings to update in the web.config file of a web project.  Th
       "config": {
         "appSettings": {
           "ApplicationTitle": "Example (dev)",
-          "Url": "http://example-dev.intel.com",
-          "NewRelic.AppName": "Example (dev)"
+          "Url": "http://example-dev.intel.com"
         },
         "log4net": {
           "appenders": [
@@ -307,7 +316,6 @@ These settings would be turned into a web.config file as such
   <appSettings>
     <add key="ApplicationTitle" value="Example (dev)" />
     <add key="Url" value="http://example-dev.intel.com" />
-    <add key="NewRelic.AppName" value="Example (dev)" />
   </appSettings>
   <log4net>
     <appender name="DatabaseLogAppender" type="Intel.Vfems.Support.Logging.DatabaseAppender">
@@ -333,7 +341,7 @@ These are the key, value pairs that will be added or updated in the web.config a
 
 __log4net__
 
-For each appender object, the name value is used to look up the corresponding appender in web.config.  If setting a connection string, the connection string will be set from the array of dbs based on the name attribute. 
+For each appender object, the name value is used to look up the corresponding appender in web.config.  If setting a connection string, the connection string will be set from the array of dbs based on the name attribute.
 
 __system.web__
 
@@ -352,27 +360,52 @@ An array of role names to notify for this environment.  See [contributors config
 }
 ```
 
-###### appSettings.environment.newrelic
+### Log4Net Configuration
 
-An object of New Relic settings.
+When configuring the Log4Net appenders, you must use the following format to set a parameter.
 
-```json
-{
-  "newrelic": {
-    "id": 9898989898
-  }
-}
+    <param name="key" value="value" />
+
+If not in this format, the script will error out.
+
+See [Log4Net Configuration](https://logging.apache.org/log4net/release/manual/configuration.html) for more information.
+
+So, if the project's appender configuration looks like this inside your web or app configuration files:
+
+```xml
+<appender name="DatabaseLogAppender" type="Intel.Vfems.Support.Logging.DatabaseAppender">
+  <threshold value="ALL" />
+  <bufferSize value="0" />
+  <connectionString value="Server=localhost;Database=Local;Integrated Security=SSPI" />
+</appender>
 ```
 
-setting   | description      | value | required | note
-----------|------------------|-------|----------|----------------------------------------------------
-id        | application id   | int   |   YES    |
+Change it to:
+
+```xml
+<appender name="DatabaseLogAppender" type="Intel.Vfems.Support.Logging.DatabaseAppender">
+  <param name="Threshold" value="ALL" />
+  <param name="BufferSize" value="0" />
+  <param name="ConnectionString" value="Server=localhost;Database=Local;Integrated Security=SSPI" />
+</appender>
+```
+
+### Email Token Replacement
+
+The following tokens can be used as placeholders for email addresses in configuration setting values in the package.json file.
+
+token    | description
+---------|---------------------------------------------------------------------------------------------------------------
+ ${me}   | is replace with the current user's username (which can be used in lieu of an email address)
+ ${role} | is replace with a semicolon delimited list of email addresses derived from the contributors base on role name
+
+This is helpful when an app of web configuration files need a list of email addresses in a setting, e.g. in an log4net email appender.
 
 ### File Structure
 
 #### Web Server
 
-    <drive>:\WebSites 
+    <drive>:\WebSites
               \<pillar>
                 \<app>
                   \deploy.log
@@ -383,7 +416,15 @@ id        | application id   | int   |   YES    |
                         \log <-- NTFS junction to shared\log
                     \shared
                       \log
-                        
+
+#### Backup Server
+
+    \\CCE1PDB120FS\backup$
+        \<database>
+            \*.bak
+        \FitNesse
+            \<app>
+
 ### Tasks                        
 
 #### Application Tasks
@@ -462,7 +503,7 @@ See [providing credentials](#providing-credentials)
 
 ##### app:status
 
-This task gets the status of the application pool and website of each server 
+This task gets the status of the application pool and website of each server
 
 __Usage:__  gulp app:status -e dev
 
@@ -478,7 +519,7 @@ See [providing credentials](#providing-credentials)
 
 ##### app:link
 
-This task links the current and log NTFS junctions to the appropriate directory in the [File Structure](#file-structure).
+This task links the current and log NTFS junctions to the appropriate directory in the [Web Server File Structure](#web-server).
 
 __Usage:__  gulp app:link -e dev
 
@@ -581,7 +622,7 @@ This task is not meant to be run independently. See [test](#test) task.
 
 ##### test:unit
 
-This task executes the unit tests of the project using the [NUnit Console](https://github.com/nunit/docs/wiki/Console-Runner) found in the packages folder.  It looks for all DLLs with the name pattern of Intel.*.Tests.dll in the project.
+This task executes the unit tests of the project using the [NUnit Console](https://github.com/nunit/docs/wiki/Console-Runner) found in the packages folder.  It looks for all DLLs with the name pattern of Intel.\*.Tests.dll in the project.
 
 __Usage:__ gulp test:unit
 
@@ -593,7 +634,7 @@ This task is not meant to be run independently. See [test](#test) task.
 
 ##### sql:backup
 
-This task backups up all database(s) in the specified environment except those marked with backup false. 
+This task backups up all database(s) in the specified environment except those marked with backup false.
 
 __Usage:__  gulp sql:backup -e env -p password \[-d name\]
 
@@ -628,11 +669,13 @@ __Notes:__
 
 See [appSettings.environment.dbs](#appsettingsenvironmentdbs)
 
+By default, this task uses the backup location of the production database as the source to find the most recent \*.bak file.  See [File Structure Backup Server](#backup-server).  If you would like to use a different location, just change the backupShare value on the production database in the [appSettings.environment.dbs](#appsettingsenvironmentdbs) configuration object.
+
 #### Clean Tasks
 
 ##### clean:releases
 
-This task cleans up the previous releases by keeping only the last five.
+This task cleans up the previous releases by keeping only the last five (or configured value).
 
 __Usage:__  gulp clean:releases -e env
 
@@ -644,11 +687,13 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Web Server File Structure](#file-structure)
+See [Web Server File Structure](#web-server).
+
+See [appSettings.environment.web](#appsettingsenvironmentweb) for overriding the default.
 
 ##### clean:logs
 
-This task cleans up the logs by removing any logs that are older than 30 days in the shared/log directory.
+This task cleans up the logs by removing any logs that are older than 30 days (or configured value) in the shared/log directory.
 
 __Usage:__  gulp clean:logs -e env
 
@@ -660,7 +705,9 @@ argument    | description                                       | required | not
 
 __Notes:__
 
-See [Web Server File Structure](#file-structure)
+See [Web Server File Structure](#web-server).
+
+See [appSettings.environment.web](#appsettingsenvironmentweb) for overriding the default.
 
 #### Deploy Tasks
 
@@ -678,7 +725,7 @@ __Usage:__  gulp deploy:notify:log
 
 __Notes:__
 
-See [Web Server File Structure](#file-structure) for location of the deploy.log file
+See [Web Server File Structure](#web-server) for location of the deploy.log file
 See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 
 ##### deploy:notify:email
@@ -686,12 +733,6 @@ See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettingsenvironmentnotify).
 
 __Usage:__  gulp deploy:notify:email
-
-##### deploy:notify:nr
-
-This tasks does an HTTP POST to the New Relic endpoint that records deployments, if settings are defined in [appSetting.environment.newrelic](#appsettingsenvironmentnewrelic).
-
-__Usage:__  gulp deploy:notify:nr
 
 ##### deploy:status
 
@@ -763,7 +804,7 @@ See [stop](#stop) and [start](#start).
 This tasks configures the local copy of web.config for the specified environment.
 
 __Usage:__  gulp config:web \[-e env\]
-                            
+
 __Options:__
 
 argument    | description                         | required | notes
@@ -830,19 +871,19 @@ const mssql = require('skeleton').Mssql
 
 ##### Mssql.run
 
-Mssql exposes one method to execute sql statements, Mssql.run(). 
+Mssql exposes one method to execute sql statements, Mssql.run().
 
 ```javascript
 gulp.task('sql:migrate', () => {
   const help = ', e.g. gulp db:migrate -e dev -p <password>'
 
   if (!env.isEnvironmentDefined()) {
-    util.log(util.colors.red('Environment not specified', help))
+    log.error(colors.red('Environment not specified ${help}'))
     return
   }
 
   if (!env.isPasswordDefined()) {
-    util.log(util.colors.red('Password not specified', help))
+    log.info(colors.red('Password not specified ${help}'))
     return
   }
 
@@ -852,8 +893,8 @@ gulp.task('sql:migrate', () => {
 
   return mssql.run(sql, db)
     .catch(err => {
-      util.log(util.colors.red(`Error migrating the database: ${sql}`))
-      util.log(err)
+      log.error(colors.red(`Error migrating the database: ${sql}`))
+      log.error(err)
     })
 })
 ```
@@ -864,13 +905,22 @@ gulp.task('sql:migrate', () => {
 
 1. make a release branch ``git checkout -b release-v0.2.0 develop``
 2. bump version in package.json
-3. generate changelog [conventionalChangelog](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)
-4. commit package.json and CHANGELOG.md files ``git commit -a -m 'bumped version number and added changelog''``
+3. generate changelog with [conventionalChangelog](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)
+    
+    ``npm run changelog``
+    
+4. commit package.json and CHANGELOG.md files
+
+    ``git commit -a -m 'bumped version number and added changelog''``
+
 5. finish the release branch
-  1. ``git checkout master``
-  2. ``git merge --no-ff release-v0.2.0``
-  3. ``git tag -a v0.2.0``
-  4. ``git checkout develop``
-  5. ``get merge --no-ff release-v0.2.0``
-  6. ``git branch -d release-v0.2.0``
-6. push ``git push``
+    1. ``git checkout master``
+    2. ``git merge --no-ff release-v0.2.0``
+    3. ``git tag -a v0.2.0 -m 'release v0.2.0'``
+    4. ``git checkout develop``
+    5. ``get merge --no-ff release-v0.2.0``
+    6. ``git branch -d release-v0.2.0``
+
+6. push
+
+    ``git push --all --tags``
