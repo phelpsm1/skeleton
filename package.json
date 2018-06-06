@@ -1,6 +1,6 @@
 {
   "name": "skeleton",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "This is the skeleton to build, test, and deploy a project within FCSC Development",
   "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": {
@@ -33,7 +33,9 @@
     }
   ],
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "changelog": "conventional-changelog -i CHANGELOG.md -s"
+  },
   "files": [
     "index.js",
     "lib"
