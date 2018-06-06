@@ -918,9 +918,10 @@ gulp.task('sql:migrate', () => {
     2. ``git merge --no-ff release-v0.2.0``
     3. ``git tag -a v0.2.0 -m 'release v0.2.0'``
     4. ``git checkout develop``
-    5. ``get merge --no-ff release-v0.2.0``
+    5. ``git merge --no-ff release-v0.2.0``
     6. ``git branch -d release-v0.2.0``
 
 6. push
 
-    ``git push --all --tags``
+    1. ``git push --all``
+    2. ``git push --tags``
