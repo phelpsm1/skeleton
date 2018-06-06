@@ -1,8 +1,66 @@
-## 0.2.1 (2017-12-19)
+# 0.3.0 (2018-06-06)
+
+## clean
+
+* feat(clean): clean:logs make age of logs to keep configurable per environment (default: 30 days) res ([e234d8c](https://github.intel.com/ccsd/skeleton/commit/e234d8c)), closes [#7](https://github.intel.com/ccsd/skeleton/issues/7)
+* feat(clean): clean:releases make number of releases to keep configurable per environment (default: 5 ([1d9ff39](https://github.intel.com/ccsd/skeleton/commit/1d9ff39)), closes [#6](https://github.intel.com/ccsd/skeleton/issues/6)
+
+## ps
+
+* feat(ps): added help message for adding credentials ([d2d47ac](https://github.intel.com/ccsd/skeleton/commit/d2d47ac))
+* fix(ps): restored missing required parameter ([60c2990](https://github.intel.com/ccsd/skeleton/commit/60c2990))
+* Exposed the ps module. (#17) ([cc33892](https://github.intel.com/ccsd/skeleton/commit/cc33892)), closes [#17](https://github.intel.com/ccsd/skeleton/issues/17)
+
+## sql
+
+* feat(sql): Add ability to secure SQL Server connections implements #18 ([f27802e](https://github.intel.com/ccsd/skeleton/commit/f27802e)), closes [#18](https://github.intel.com/ccsd/skeleton/issues/18)
+* fix(sql): add NO_WAIT to option to SET RECOVERY SIMPLE resolves #16 ([26cdbd7](https://github.intel.com/ccsd/skeleton/commit/26cdbd7)), closes [#16](https://github.intel.com/ccsd/skeleton/issues/16)
+* fix(sql): use same directory structure as backup location when saving sql backup file to local temp  ([4fe1520](https://github.intel.com/ccsd/skeleton/commit/4fe1520)), closes [#12](https://github.intel.com/ccsd/skeleton/issues/12)
+
+## deploy
+
+* fix(deploy): deploy:status now handles if deploy.log file is not present for environment. Fixes #5 ([25845a7](https://github.intel.com/ccsd/skeleton/commit/25845a7)), closes [#5](https://github.intel.com/ccsd/skeleton/issues/5)
+
+## iisexpress
+
+* fix(iisexpress): added missing required parameter ([57495cf](https://github.intel.com/ccsd/skeleton/commit/57495cf))
+
+## test
+
+* fix(test): ./Tests default unit test project location. Fixes #9 ([e8cd566](https://github.intel.com/ccsd/skeleton/commit/e8cd566)), closes [#9](https://github.intel.com/ccsd/skeleton/issues/9)
+* fix(test): fixes #10 update test config before build during test ([3f25ba5](https://github.intel.com/ccsd/skeleton/commit/3f25ba5)), closes [#10](https://github.intel.com/ccsd/skeleton/issues/10)
+
+## gulp.local
+
+* feature(gulp.local): implements #15 run IIS Express under a system account ([28f65d6](https://github.intel.com/ccsd/skeleton/commit/28f65d6)), closes [#15](https://github.intel.com/ccsd/skeleton/issues/15)
+
+## miscellaneous
+
+* docs: added section to explain email replacement tokens in configuration setting values ([3588e26](https://github.intel.com/ccsd/skeleton/commit/3588e26))
+* docs: added section to explain log4net appender parameter format ([6ea7703](https://github.intel.com/ccsd/skeleton/commit/6ea7703))
+* docs: backupShare setting and using a different production backupShare for local files ([75d61b8](https://github.intel.com/ccsd/skeleton/commit/75d61b8))
+* docs: fixed link issue ([c86f667](https://github.intel.com/ccsd/skeleton/commit/c86f667))
+* docs: fixed nested numbered lists in release workflow ([c26d2ac](https://github.intel.com/ccsd/skeleton/commit/c26d2ac))
+* docs: fixed typo ([52a0315](https://github.intel.com/ccsd/skeleton/commit/52a0315))
+* docs: highlighting another breaking change in v0.2.0 ([2d2af44](https://github.intel.com/ccsd/skeleton/commit/2d2af44))
+* docs: improvements to release workflow steps ([0da0dd8](https://github.intel.com/ccsd/skeleton/commit/0da0dd8))
+* docs: updated CHANGELOG ([7c29fb4](https://github.intel.com/ccsd/skeleton/commit/7c29fb4))
+* chore: bumped version ([623f7b2](https://github.intel.com/ccsd/skeleton/commit/623f7b2))
+* chore: Remove deploy:notify:nr closes #19 ([4fda15d](https://github.intel.com/ccsd/skeleton/commit/4fda15d)), closes [#19](https://github.intel.com/ccsd/skeleton/issues/19)
+* chore: removed deprecated dependency gulp-util and replaced with other dependencies ([6e643ad](https://github.intel.com/ccsd/skeleton/commit/6e643ad))
+* chore: updated author ([2e16088](https://github.intel.com/ccsd/skeleton/commit/2e16088))
+* chore: updated dependencies ([34339a6](https://github.intel.com/ccsd/skeleton/commit/34339a6))
+* chore: updated dependencies ([9d13059](https://github.intel.com/ccsd/skeleton/commit/9d13059))
+* chore: updated dependencies ([6d6b88d](https://github.intel.com/ccsd/skeleton/commit/6d6b88d))
+* chore: updated dependencies ([d476145](https://github.intel.com/ccsd/skeleton/commit/d476145))
+* chore: updated dependencies ([4a8b3f1](https://github.intel.com/ccsd/skeleton/commit/4a8b3f1))
+* chore: updated shelljs ([9a24e52](https://github.intel.com/ccsd/skeleton/commit/9a24e52))
+
+# 0.2.1 (2017-12-19)
 
 * fix(test): fixes #10 update test config before build during test ([3f25ba5](https://github.intel.com/ccsd/skeleton/commit/3f25ba5)), closes [#10](https://github.intel.com/ccsd/skeleton/issues/10)
 
-# v0.2.0 (2017-12-15)
+# 0.2.0 (2017-12-15)
 
 ### BREAKING CHANGE
 
@@ -21,11 +79,9 @@
 * feat(app): ps credentials can be supplied via credentials.xml file ([b62e45e](https://github.intel.com/ccsd/skeleton/commit/b62e45e))
 * feat(app): removed isEnvironmentDefined check and check if local instead ([e4ccc47](https://github.intel.com/ccsd/skeleton/commit/e4ccc47))
 * feat(app): symlink shared log directory to root of current (aka release revision) directory ([bbf2730](https://github.intel.com/ccsd/skeleton/commit/bbf2730))
-
 * fix(app): app online, offline, recycle should not execute in local ([b797f6a](https://github.intel.com/ccsd/skeleton/commit/b797f6a))
 * fix(app): app:rollback correctly uses -r argument to rollback to specific revision ([31eaf60](https://github.intel.com/ccsd/skeleton/commit/31eaf60))
 * fix(app): tasks will powershell now fail properly ([5ac1d20](https://github.intel.com/ccsd/skeleton/commit/5ac1d20))
-
 * chore(app): removed dependency on merge-stream ([54347bf](https://github.intel.com/ccsd/skeleton/commit/54347bf))
 
 ## deploy
@@ -50,7 +106,6 @@
 * feat(env): generate env:<env> gulp task for each environment defined in appSettings ([ce518b3](https://github.intel.com/ccsd/skeleton/commit/ce518b3))
 * feat(env): process.env.label is defined from command line (-l), ci env variable, or revision ([8d851b4](https://github.intel.com/ccsd/skeleton/commit/8d851b4))
 * feat(env): set the Test src directory ([8d87866](https://github.intel.com/ccsd/skeleton/commit/8d87866))
-
 * fix(env): fixed check if env defined on command line ([efe246d](https://github.intel.com/ccsd/skeleton/commit/efe246d))
 
 ## files
@@ -67,7 +122,6 @@
 * feat(smtp): inline css when sending html email ([c3f637e](https://github.intel.com/ccsd/skeleton/commit/c3f637e))
 * feat(smtp): SMTP is publicly available to send mail messages ([1d73184](https://github.intel.com/ccsd/skeleton/commit/1d73184))
 * feat(smtp): using pug as templating engine ([da6cd36](https://github.intel.com/ccsd/skeleton/commit/da6cd36))
-
 * fix(smtp): improved check if no roles to notify ([76150e7](https://github.intel.com/ccsd/skeleton/commit/76150e7))
 
 ## sql
@@ -111,4 +165,4 @@
 * added documentation in the README about the app:* tasks ([21376c3](https://github.intel.com/ccsd/skeleton/commit/21376c3))
 * added task to notify via email when a database is restored ([3f547e1](https://github.intel.com/ccsd/skeleton/commit/3f547e1))
 
-# v0.1.0 (2017-09-27)
+# 0.1.0 (2017-09-27)
