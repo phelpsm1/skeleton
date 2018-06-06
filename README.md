@@ -153,9 +153,6 @@ Defines all the different environments of the application.  Here is an example o
           }
         }
       },
-      "newrelic": {
-        "id": 9999999
-      },
       "notify": [
         "Developer"
       ]
@@ -283,8 +280,7 @@ A set of all the settings to update in the web.config file of a web project.  Th
       "config": {
         "appSettings": {
           "ApplicationTitle": "Example (dev)",
-          "Url": "http://example-dev.intel.com",
-          "NewRelic.AppName": "Example (dev)"
+          "Url": "http://example-dev.intel.com"
         },
         "log4net": {
           "appenders": [
@@ -320,7 +316,6 @@ These settings would be turned into a web.config file as such
   <appSettings>
     <add key="ApplicationTitle" value="Example (dev)" />
     <add key="Url" value="http://example-dev.intel.com" />
-    <add key="NewRelic.AppName" value="Example (dev)" />
   </appSettings>
   <log4net>
     <appender name="DatabaseLogAppender" type="Intel.Vfems.Support.Logging.DatabaseAppender">
@@ -364,22 +359,6 @@ An array of role names to notify for this environment.  See [contributors config
   ]
 }
 ```
-
-###### appSettings.environment.newrelic
-
-An object of New Relic settings.
-
-```json
-{
-  "newrelic": {
-    "id": 9898989898
-  }
-}
-```
-
-setting   | description      | value | required | note
-----------|------------------|-------|----------|----------------------------------------------------
-id        | application id   | int   |   YES    |
 
 ### Log4Net Configuration
 
@@ -754,12 +733,6 @@ See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettingsenvironmentnotify).
 
 __Usage:__  gulp deploy:notify:email
-
-##### deploy:notify:nr
-
-This tasks does an HTTP POST to the New Relic endpoint that records deployments, if settings are defined in [appSetting.environment.newrelic](#appsettingsenvironmentnewrelic).
-
-__Usage:__  gulp deploy:notify:nr
 
 ##### deploy:status
 

@@ -1,7 +1,7 @@
 {
   "name": "skeleton",
   "version": "0.2.1",
-  "description": "This is the skeleton to build, test, and deploy a project within FCSC",
+  "description": "This is the skeleton to build, test, and deploy a project within FCSC Development",
   "homepage": "https://github.intel.com/ccsd/skeleton",
   "author": {
     "name": "FCSC Development",
@@ -13,6 +13,12 @@
       "email": "jason.morris@intel.com",
       "url": "https://soco.intel.com/people/jmorris2",
       "role": "Tech Lead"
+    },
+    {
+      "name": "Jacob C Alm",
+      "email": "jacob.c.alm@intel.com",
+      "url": "https://soco.intel.com/people/jcalm",
+      "role": "Developer"
     },
     {
       "name": "Andrew J Dickerson",
@@ -57,8 +63,6 @@
     "plugin-error": "^1.0.1",
     "pluralize": "^7.0.0",
     "pug": "^2.0.3",
-    "request": "^2.87.0",
-    "request-promise": "^4.2.2",
     "run-sequence": "^2.2.1",
     "shelljs": "^0.8.2",
     "through2": "^2.0.3",
