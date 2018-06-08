@@ -27,12 +27,10 @@ $app_offline_file = "app_offline.htm"
 $appcmd = "C:\Windows\system32\inetsrv\appcmd"
 
 function Bring-Down() {
-    $cred = Get-Mfg-Credentials
-
     Write-Output ""
 
     foreach ($server in $servers) {
-        $session = New-PSSession -ComputerName $server -Credential $cred
+        $session = Get-Session($server)
 
         Execute-Server-Command $session "Stopping $name application pool in $env on $server..." "$appcmd stop apppool $apppool"
         Execute-Server-Command $session "Stopping $name website in $env on $server..."          "$appcmd stop site $site"
@@ -42,12 +40,10 @@ function Bring-Down() {
 }
 
 function Bring-Up() {
-    $cred = Get-Mfg-Credentials
-
     Write-Output ""
 
     foreach ($server in $servers) {
-        $session = New-PSSession -ComputerName $server -Credential $cred
+        $session = Get-Session($server)
 
         Execute-Server-Command $session "Starting $name application pool in $env on $server..." "$appcmd start apppool $apppool"
         Execute-Server-Command $session "Starting $name website in $env on $server..."          "$appcmd start site $site"
@@ -57,12 +53,10 @@ function Bring-Up() {
 }
 
 function Recycle() {
-    $cred = Get-Mfg-Credentials
-
     Write-Output ""
 
     foreach ($server in $servers) {
-        $session = New-PSSession -ComputerName $server -Credential $cred
+        $session = Get-Session($server)
 
         Execute-Server-Command $session "Recycling $name application pool in $env on $server..." "$appcmd recycle apppool $apppool"
 
@@ -71,12 +65,10 @@ function Recycle() {
 }
 
 function Get-Status() {
-    $cred = Get-Mfg-Credentials
-
     Write-Output ""
 
     foreach ($server in $servers) {
-        $session = New-PSSession -ComputerName $server -Credential $cred
+        $session = Get-Session($server)
 
         Execute-Server-Command $session "$name application pool status in $env on $server is..." "$appcmd list apppool $apppool"
         Execute-Server-Command $session "$name website status in $env on $server is..."          "$appcmd list site $site"
@@ -94,13 +86,11 @@ function Set-Current() {
     $path_release = "releases\$revision"
     $path_shared_log = "shared\log"
 
-    $cred = Get-Mfg-Credentials
-
     Write-Output ""
     Write-Output "Updating $name symlinks in $env..."
 
     foreach ($server in $servers) {
-        $session = New-PSSession -ComputerName $server -Credential $cred
+        $session = Get-Session($server)
 
         # When PowerShell 5.0, try https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Management/New-Item?view=powershell-5.1
         # Example: New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir
@@ -132,9 +122,8 @@ function Get-Mfg-Credentials() {
     if (Test-Path $file) {
         return Import-Clixml $file
     }
-
+    
     $idsid = [Environment]::UserName
-    $user = $idsid
 
     if($idsid.Contains('mfg_')) {
         $user = "amr\$idsid"
@@ -143,6 +132,15 @@ function Get-Mfg-Credentials() {
     }
 
     return Get-Credential -UserName $user -Message 'Enter password'
+}
+
+function Get-Session($server) {
+    if([Environment]::UserName.Contains('mfg_')) {
+        return New-PSSession -ComputerName $server
+    } else {
+        $cred = Get-Mfg-Credentials
+        return New-PSSession -ComputerName $server -Credential $cred
+    }
 }
 
 function Execute-Server-Command($session, $message, $cmd) {
