@@ -6,7 +6,6 @@ const files = require('./lib/files.js')
 const git = require('./lib/git.js')
 const ps = require('./lib/ps.js')
 const smtp = require('./lib/smtp.js')
-const svn = require('./lib/svn.js')
 
 require('./lib/gulp.app.js')
 require('./lib/gulp.build.js')
@@ -26,7 +25,6 @@ module.exports = {
   Ps: ps,
   Smtp: smtp,
   Source: {
-    svn: svn,
     git: git
   }
 }
