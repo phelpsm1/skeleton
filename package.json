@@ -21,10 +21,15 @@
       "role": "Developer"
     },
     {
+      "name": "Michael Phelps",
+      "email": "michael.phelps@intel.com",
+      "url": "https://soco.intel.com/people/phelpsmi",
+      "role": "Developer"
+    },
+    {
       "name": "Andrew J Dickerson",
       "email": "andrew.j.dickerson@intel.com",
-      "url": "https://soco.intel.com/people/ajdicker",
-      "role": "Developer"
+      "url": "https://soco.intel.com/people/ajdicker"
     },
     {
       "name": "Adam M Ball",
