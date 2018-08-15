@@ -1,8 +1,8 @@
 | #{name} v#{version} (#{revision}) was deployed to #{env} at #{at} by #{by} from #{from}.
 if commits.length > 0
-|
-| Changes #{commits.range.start}..#{commits.range.end} from last deploy to #{env}:
-|
+  |
+  | Changes #{commits.range.start}..#{commits.range.end} from last deploy to #{env}:
+  |
 each commit in commits.list
   | #{commit.hash} - #{commit.message} #{commit.author.name} (#{commit.date.relative})
   |

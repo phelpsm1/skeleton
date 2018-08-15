@@ -4,8 +4,8 @@ html(lang='en')
     p
       | <b>#{name} v#{version}</b> (#{revision}) was deployed to <b>#{env}</b> at <b>#{at}</b> by <b>#{by}</b> from #{from}.
     if commits.length > 0
-    p
-      | Changes #{commits.range.start}..#{commits.range.end} from last deploy to <b>#{env}</b>:
+      p
+        | Changes #{commits.range.start}..#{commits.range.end} from last deploy to <b>#{env}</b>:
     table(style='font-family: Menlo, Monaco, Consolas, "Courier New", monospace;margin-left: 15px;')
       each commit in commits.list
         tr(style='margin-bottom: 5px;')
