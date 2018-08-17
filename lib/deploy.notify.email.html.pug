@@ -1,10 +1,21 @@
 doctype html
 html(lang='en')
-  head
-    style(type="text/css").
-      body {
-        font-family: Helvetica, Arial, sans-serif;
-      }
-  body
+  body(style='font-family: Helvetica, Arial, sans-serif;')
     p
-      <b>#{name} v#{version}</b> (#{revision}) was deployed to <b>#{env}</b> at <b>#{at}</b> by <b>#{by}</b> from #{from}.
+      | <b>#{name} v#{version}</b> (#{revision}) was deployed to <b>#{env}</b> at <b>#{at}</b> by <b>#{by}</b> from #{from}.
+    if commits.list && commits.list.length > 0
+      p
+        | Changes #{commits.range.start}..#{commits.range.end} from last deploy to #{env}:
+      table(style='font-family: Menlo, Monaco, Consolas, "Courier New", monospace;margin-left: 15px;')
+        each commit in commits.list
+          tr(style='margin-bottom: 5px;')
+            td
+              span
+                a(href='https://github.intel.com/ccsd/' + name.toLowerCase() + '/commit/' + commit.hash, style='color: #c82829')= commit.hash
+            td(style='padding-left: 15px;')
+              span= commit.message
+              span &nbsp;
+              span(style='color: #f5871f')
+                a(href='mailto:' + commit.author.email, style='color: #f5871f')= commit.author.name
+                span &nbsp;
+                span= '(' + commit.date.relative + ')'

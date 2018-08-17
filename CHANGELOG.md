@@ -1,3 +1,39 @@
+# 0.4.0 (2018-08-17)
+
+## BREAKING CHANGE
+
+* no longer able to use on projects whose source is hosted in SVN
+
+## deploy
+
+* feat(deploy): deploy email contains a list of changes since last deploy to the environment ([499d205](https://github.intel.com/ccsd/skeleton/commit/499d205))
+
+* fix: added function to parse the CC build label into the shorthand form (#21) ([4ebc946](https://github.intel.com/ccsd/skeleton/commit/4ebc946)), closes [#21](https://github.intel.com/ccsd/skeleton/issues/21)
+* fix: change order of deploy:notify so including commits in email works ([df35214](https://github.intel.com/ccsd/skeleton/commit/df35214))
+* fix: deploy notify email shows changes header when no commits ([4b3fe21](https://github.intel.com/ccsd/skeleton/commit/4b3fe21))
+* fix: format of deploy notify email message when zero commits ([f2454ee](https://github.intel.com/ccsd/skeleton/commit/f2454ee))
+* fix: log error if commits cannot be obtained instead of throw it ([953446e](https://github.intel.com/ccsd/skeleton/commit/953446e))
+* fix(deploy): status can handle variable length environments and revisions better ([e29468c](https://github.intel.com/ccsd/skeleton/commit/e29468c))
+
+## ps
+
+* feat(ps): added a check before getting the session to see if credentials are even needed. (#20) ([97557eb](https://github.intel.com/ccsd/skeleton/commit/97557eb)), closes [#20](https://github.intel.com/ccsd/skeleton/issues/20)
+
+## git
+
+* feat(git): add ability to check branch by regex ([c2fac8e](https://github.intel.com/ccsd/skeleton/commit/c2fac8e))
+
+## svn
+
+* feat(svn): remove svn support ([b0d8e57](https://github.intel.com/ccsd/skeleton/commit/b0d8e57))
+
+## miscellaneous
+
+* docs: fixed typo ([704cf4b](https://github.intel.com/ccsd/skeleton/commit/704cf4b))
+* chore: bump version number ([04bc655](https://github.intel.com/ccsd/skeleton/commit/04bc655))
+* chore: update contributors ([989f32f](https://github.intel.com/ccsd/skeleton/commit/989f32f))
+* chore: update dependencies ([f66cb5c](https://github.intel.com/ccsd/skeleton/commit/f66cb5c))
+
 # 0.3.0 (2018-06-06)
 
 ## clean
