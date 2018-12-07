@@ -913,7 +913,7 @@ gulp.task('sql:migrate', () => {
     
     ``npm run changelog``
     
-5. commit package.json and CHANGELOG.md files
+5. commit CHANGELOG.md
 
     ``git commit -a -m 'chore: update changelog'``
 
