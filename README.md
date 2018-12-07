@@ -927,5 +927,4 @@ gulp.task('sql:migrate', () => {
 
 7. push
 
-    1. ``git push --all``
-    2. ``git push --tags``
+    1. ``git push --all --follow-tags``
