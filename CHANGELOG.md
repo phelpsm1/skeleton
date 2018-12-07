@@ -1,3 +1,15 @@
+## 0.4.1 (2018-12-07)
+
+* fix: force args to parse as strings (#24) closes #23 ([2f67ab0](https://github.intel.com/ccsd/skeleton/commit/2f67ab0)), closes [#23](https://github.intel.com/ccsd/skeleton/issues/23)
+
+* chore: bumped version number ([03341f0](https://github.intel.com/ccsd/skeleton/commit/03341f0))
+* chore: update dependencies (except gulp) and node/npm ([d11e115](https://github.intel.com/ccsd/skeleton/commit/d11e115))
+* chore: corrected linter warnings ([3e0b640](https://github.intel.com/ccsd/skeleton/commit/3e0b640))
+* chore: update dependencies (except gulp) ([a3d31aa](https://github.intel.com/ccsd/skeleton/commit/a3d31aa))
+* chore: update dependencies (except gulp) ([7a858cc](https://github.intel.com/ccsd/skeleton/commit/7a858cc))
+
+* doc: add contributor ([e3e7bf1](https://github.intel.com/ccsd/skeleton/commit/e3e7bf1))
+
 # 0.4.0 (2018-08-17)
 
 ## BREAKING CHANGE
