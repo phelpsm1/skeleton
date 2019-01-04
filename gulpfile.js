@@ -3,8 +3,10 @@
 // just used for testing
 
 const colors = require('ansi-colors')
+const GulpError = require('plugin-error')
 const gulp = require('gulp')
 const log = require('fancy-log')
+
 const skeleton = require('./index.js')
 
 const env = skeleton.Env
@@ -31,7 +33,23 @@ gulp.task('c2', (done) => {
   done()
 })
 
-gulp.task('example', gulp.series('a', 'b', gulp.parallel('c1', 'c2'), (done) => {
+function checkGuards (plugin) {
+  function checkRandom (done) {
+    let random = Math.random()
+
+    log.info(colors.green(random))
+
+    if (random > 0.5) {
+      throw new GulpError({ plugin: plugin, message: 'There was an error', showStack: true })
+    }
+
+    done()
+  }
+
+  return gulp.parallel(checkRandom, checkRandom, checkRandom)
+}
+
+gulp.task('example', gulp.series(checkGuards('example'), 'a', 'b', gulp.parallel('c1', 'c2'), (done) => {
   log.info(colors.green('example gulp task'))
   done()
 }))
