@@ -1,5 +1,6 @@
 'use strict'
 
+const checks = require('./lib/checks.js')
 const data = require('./lib/data.js')
 const env = require('./lib/env.js')
 const files = require('./lib/files.js')
@@ -19,6 +20,7 @@ require('./lib/gulp.sql.js')
 require('./lib/gulp.test.js')
 
 module.exports = {
+  Checks: checks,
   Env: env,
   Files: files,
   Data: data,
