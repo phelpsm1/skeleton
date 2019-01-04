@@ -96,8 +96,5 @@
     "type": "git",
     "url": "https://gitlab.devtools.intel.com/ccsd/skeleton.git"
   },
-  "license": "ISC",
-  "jshintConfig": {
-    "node": true
-  }
+  "license": "ISC"
 }
