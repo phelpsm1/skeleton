@@ -7,7 +7,7 @@ const GulpError = require('plugin-error')
 const gulp = require('gulp')
 const log = require('fancy-log')
 
-const skeleton = require('./index.js')
+const skeleton = require('./index')
 
 const env = skeleton.Env
 const files = skeleton.Files
