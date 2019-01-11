@@ -1,6 +1,6 @@
 {
   "name": "skeleton",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "This is the skeleton to build, test, and deploy a project within FCSC Development",
   "homepage": "https://gitlab.devtools.intel.com/ccsd/skeleton",
   "author": {
@@ -72,7 +72,7 @@
     "moment": "^2.23.0",
     "mssql": "^4.3.0",
     "node-powershell": "^3.3.1",
-    "nodemailer": "^5.0.0",
+    "nodemailer": "^5.1.1",
     "plugin-error": "^1.0.1",
     "pluralize": "^7.0.0",
     "pug": "^2.0.3",
@@ -82,10 +82,10 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "eslint": "^5.11.1",
+    "eslint": "^5.12.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0"
   },
@@ -96,8 +96,5 @@
     "type": "git",
     "url": "https://gitlab.devtools.intel.com/ccsd/skeleton.git"
   },
-  "license": "ISC",
-  "jshintConfig": {
-    "node": true
-  }
+  "license": "ISC"
 }
