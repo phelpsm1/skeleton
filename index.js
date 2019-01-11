@@ -1,24 +1,26 @@
 'use strict'
 
-const data = require('./lib/data.js')
-const env = require('./lib/env.js')
-const files = require('./lib/files.js')
-const git = require('./lib/git.js')
-const ps = require('./lib/ps.js')
-const smtp = require('./lib/smtp.js')
+const checks = require('./lib/checks')
+const data = require('./lib/data')
+const env = require('./lib/env')
+const files = require('./lib/files')
+const git = require('./lib/git')
+const ps = require('./lib/ps')
+const smtp = require('./lib/smtp')
 
-require('./lib/gulp.app.js')
-require('./lib/gulp.build.js')
-require('./lib/gulp.clean.js')
-require('./lib/gulp.config.js')
-require('./lib/gulp.deploy.js')
-require('./lib/gulp.env.js')
-require('./lib/gulp.local.js')
-require('./lib/gulp.restore.js')
-require('./lib/gulp.sql.js')
-require('./lib/gulp.test.js')
+require('./lib/gulp.app')
+require('./lib/gulp.build')
+require('./lib/gulp.clean')
+require('./lib/gulp.config')
+require('./lib/gulp.deploy')
+require('./lib/gulp.env')
+require('./lib/gulp.local')
+require('./lib/gulp.restore')
+require('./lib/gulp.sql')
+require('./lib/gulp.test')
 
 module.exports = {
+  Checks: checks,
   Env: env,
   Files: files,
   Data: data,
