@@ -409,6 +409,7 @@ This is helpful when an app of web configuration files need a list of email addr
               \<pillar>
                 \<app>
                   \deploy.log
+                  \restore.log
                   \<env>
                     \current <-- NTFS junction to releases\<latest>
                     \releases
@@ -711,6 +712,12 @@ See [appSettings.environment.web](#appsettingsenvironmentweb) for overriding the
 
 #### Deploy Tasks
 
+##### deploy:info
+
+This task prints a message indicating deployment environment.
+
+__Usage:__  gulp deploy:info
+
 ##### deploy:notify
 
 This task orchestrates the various channels of notification when deploying.
@@ -762,7 +769,7 @@ timestamp     | the date and time the app was deployed   | 2017-11-27T16:57:23.7
 environment   | the environment name                     | DEV
 version       | the version defined in package.json      | v0.2.0
 revision      | the svn revision or git short sha-a hash | 31175, a78e345
-deployed_from | the server the app was deployed from     | JMORRIS2-MOBL
+deployed_from | the machine the app was deployed from    | JMORRIS2-MOBL
 deployed_by   | the IDSID of who deployed the app        | sys_ccsd
 
 #### Local Tasks
@@ -813,11 +820,47 @@ argument    | description                         | required | notes
 
 #### Restore Tasks
 
+##### restore:info
+
+This task prints a message indicating restore environment.
+
+__Usage:__  gulp restore:info
+
+##### restore:notify
+
+This task orchestrates the various channels of notification when restoring.
+
+__Usage:__  gulp restore:notify
+
+##### restore:notify:log
+
+This task adds an entry into the restore.log file on each server the app is deployed to.
+
+__Usage:__  gulp restore:notify:log
+
+__Notes:__
+
+See [Web Server File Structure](#web-server) for location of the restore.log file
+See [Restore Log Format](#restore-log-format) for restore.log file format
+
 ##### restore:notify:email
 
 This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettingsenvironmentnotify) setting.
 
 __Usage:__  gulp restore:notify:email
+
+##### Restore Log Format
+
+Each entry into the restore.log is in the following format:
+
+\[timestamp\] \[environment\] restored_from restored_by
+
+argument      | description                              | example
+--------------|------------------------------------------|--------------------------
+timestamp     | the date and time the app was deployed   | 2017-11-27T16:57:23.797
+environment   | the environment name                     | DEV
+restored_from | the machine the app was restored from    | JMORRIS2-MOBL
+restored_by   | the IDSID of who restored the data       | sys_ccsd
 
 #### Environment Tasks
 
@@ -848,6 +891,32 @@ const env = require('skeleton').Env
 const files = require('skeleton').Files
 const mssql = require('skeleton').Mssql
 ```
+
+#### Checks
+
+```javascript
+const checks = require('skeleton').Checks
+```
+
+##### checks.forEnvironment(done)
+
+Checks if the environment has been set with the -e [option](#options.  If not, GulpError is thrown.
+
+###### done
+
+Type: Function
+
+A callback parameter to called to signal completion.
+
+##### checks.forPassword(done)
+
+Checks if the password for the SQL Server account ccsd has been set with the -p [option](#options.  If not, GulpError is thrown.
+
+###### done
+
+Type: Function
+
+A callback parameter to called to signal completion.
 
 #### Env
 
