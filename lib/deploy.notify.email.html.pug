@@ -11,7 +11,7 @@ html(lang='en')
           tr(style='margin-bottom: 5px;')
             td
               span
-                a(href='https://github.intel.com/ccsd/' + name.toLowerCase() + '/commit/' + commit.hash, style='color: #c82829')= commit.hash
+                a(href=commit.url, style='color: #c82829')= commit.hash
             td(style='padding-left: 15px;')
               span= commit.message
               span &nbsp;

@@ -2,9 +2,10 @@
 
 // just used for testing
 
+const { series, parallel } = require('gulp')
+
 const colors = require('ansi-colors')
 const GulpError = require('plugin-error')
-const gulp = require('gulp')
 const log = require('fancy-log')
 
 const skeleton = require('./index')
@@ -13,25 +14,25 @@ const env = skeleton.Env
 const files = skeleton.Files
 const mssql = skeleton.Data.mssql
 
-gulp.task('a', (done) => {
+const a = (done) => {
   log.info(colors.green('gulp task a'))
   done()
-})
+}
 
-gulp.task('b', (done) => {
+const b = (done) => {
   log.info(colors.green('gulp task b'))
   done()
-})
+}
 
-gulp.task('c1', (done) => {
+const c1 = (done) => {
   log.info(colors.green('gulp task c1'))
   done()
-})
+}
 
-gulp.task('c2', (done) => {
+const c2 = (done) => {
   log.info(colors.green('gulp task c2'))
   done()
-})
+}
 
 function checkGuards (plugin) {
   function checkRandom (done) {
@@ -46,10 +47,14 @@ function checkGuards (plugin) {
     done()
   }
 
-  return gulp.parallel(checkRandom, checkRandom, checkRandom)
+  return parallel(checkRandom, checkRandom, checkRandom)
 }
 
-gulp.task('example', gulp.series(checkGuards('example'), 'a', 'b', gulp.parallel('c1', 'c2'), (done) => {
+const example = series(checkGuards('example'), a, b, parallel(c1, c2), (done) => {
   log.info(colors.green('example gulp task'))
   done()
-}))
+})
+
+example.displayName = 'example'
+example.description = 'Example gulp task'
+exports.example = example
