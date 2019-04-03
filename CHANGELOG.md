@@ -1,3 +1,17 @@
+# 0.6.0 (2019-04-03)
+
+## deploy
+
+* fix: deploy:notify:email uses correct repo url fixes #26 ([4f9354a](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/4f9354a)), closes [#26](https://gitlab.devtools.intel.com/ccsd/skeleton/issues/26)
+
+## miscellaneous
+
+* chore: migrate to gulp 4 syntax ([d4d48ac](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/d4d48ac))
+* chore: migrate example to gulp 4 syntax ([df5bd72](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/df5bd72))
+* chore: update dependencies ([7149022](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/7149022))
+* chore: update dependencies ([5657ffb](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/5657ffb))
+* chore: bump version number ([7a62598](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/7a62598))
+
 # 0.5.0 (2019-01-10)
 
 ## BREAKING CHANGE
