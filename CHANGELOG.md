@@ -1,3 +1,13 @@
+# 0.6.1 (2019-04-10)
+
+## config & test
+
+* fix: save file to correct location ([f812580](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/f812580))
+
+## miscellaneous
+
+* chore: bump version ([1a1f53b](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/1a1f53b))
+
 # 0.6.0 (2019-04-03)
 
 ## deploy
