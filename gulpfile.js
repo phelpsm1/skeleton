@@ -50,6 +50,12 @@ function checkGuards (plugin) {
   return parallel(checkRandom, checkRandom, checkRandom)
 }
 
+const utAppOffline = series('env:story2', 'app:offline')
+
+utAppOffline.displayName = 'ut:appoffline'
+utAppOffline.description = 'UNIT TEST: app:offline'
+exports.utAppOffline = utAppOffline
+
 const example = series(checkGuards('example'), a, b, parallel(c1, c2), (done) => {
   log.info(colors.green('example gulp task'))
   done()
