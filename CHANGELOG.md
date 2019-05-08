@@ -1,3 +1,13 @@
+# 0.6.2 (2019-05-08)
+
+## deploy
+
+* fix: expose the deploy:notify:log task ([afd1643](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/afd1643))
+
+## miscellaneous
+
+* chore: bump version number and upgrade dependencies ([5e5f8a0](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/5e5f8a0))
+
 # 0.6.1 (2019-04-10)
 
 ## config & test
