@@ -1,3 +1,41 @@
+# 0.6.5 (2019-05-10)
+
+## restore
+
+* fix: do not perform restore:notify:log in local env ([70c76e0](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/70c76e0))
+
+## miscellaneous
+
+* chore: bump version number ([f622f1d](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/f622f1d))
+
+# 0.6.4 (2019-05-09)
+
+## sql
+
+* fix: return resolved promise ([887aca27](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/887aca27bb24865eeaae0a60ee18143c1efe28ce))
+
+## restore
+
+* fix: return resolved promise if no email to send ([40ebdabe](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/40ebdabe917b1328eb23b55bbfb900f5393599f2))
+
+## smtp
+
+* fix: return resolved promise if no one to email ([0a59c761](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/0a59c7618115b5f12ad519211c5770c1b931e177))
+
+## miscellaneous
+
+* chore: bump version number ([4559f596](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/4559f5964021faff72ffa81fdf49879d5a56df2e))
+
+# 0.6.3 (2019-05-08)
+
+## app
+
+* fix: check for local env in app:* tasks ([83556474](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/83556474905ebce14928c45940e413e07d7818a6))
+
+## miscellaneous
+
+* chore: bumped version to 0.6.3 ([596053b0](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/596053b04e76d8978131f8554ab1a4fa947d2e66)
+
 # 0.6.2 (2019-05-08)
 
 ## deploy
