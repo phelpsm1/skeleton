@@ -63,7 +63,7 @@
     "glob": "^7.1.5",
     "gulp": "^4.0.2",
     "gulp-dotnet-assembly-info": "^0.1.12",
-    "gulp-msbuild": "^0.5.5",
+    "gulp-msbuild": "^0.6.2",
     "gulp-nunit-runner": "^1.2.3",
     "juice": "^5.2.0",
     "log4js": "^5.3.0",
