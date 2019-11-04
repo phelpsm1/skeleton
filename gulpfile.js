@@ -36,7 +36,7 @@ const c2 = (done) => {
 
 function checkGuards (plugin) {
   function checkRandom (done) {
-    let random = Math.random()
+    const random = Math.random()
 
     log.info(colors.green(random))
 
