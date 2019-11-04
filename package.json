@@ -1,6 +1,6 @@
 {
   "name": "skeleton",
-  "version": "0.6.5",
+  "version": "0.7.0",
   "description": "This is the skeleton to build, test, and deploy a project within FCSC Development",
   "homepage": "https://gitlab.devtools.intel.com/ccsd/skeleton",
   "author": {

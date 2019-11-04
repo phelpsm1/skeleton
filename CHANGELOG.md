@@ -1,3 +1,18 @@
+# 0.7.0 (2019-11-04)
+
+Upgrade for MS Build Tools 2019
+
+## build
+
+* feat: use most current .NET tools to build ([1212438](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/1212438))
+
+## miscellaneous
+
+* chore: remove public access to getCcBuildLabel ([a09db4d](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/a09db4d))
+* chore: update dependencies ([887c5f0](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/887c5f0))
+* chore: update eslint dependencies, fix eslint errors ([edc5cfe](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/edc5cfe))
+* chore: update gulp-msbuild ([8745cd8](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/8745cd8))
+
 # 0.6.5 (2019-05-10)
 
 ## restore
