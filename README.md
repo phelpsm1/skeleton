@@ -13,7 +13,7 @@ argument    | description
 -e name     | set the environment to use
 -p password | password for the SQL Server account ccsd
 -d name     | name of the database to work with
--r revision | source revision of the build, e.g. svn revision, git commit short sha, etc
+-r revision | revision, e.g. git commit short sha
 -l label    | label that can be used to identify the build, e.g. CI artifact label
 --force     | allows you to restore database in production
 
