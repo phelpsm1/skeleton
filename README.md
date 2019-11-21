@@ -23,15 +23,16 @@ argument    | description
 
 Several environment variables, accessed through the process.env object, are set and available for use.
 
-variable             | description                                   | values
----------------------|-----------------------------------------------|----------------
-process.env.target   | the environment to use                        | dev, int, prod
-process.env.password | the password for the SQL Server account ccsd  |
-process.env.database | the name of the database to work with         |
-process.env.revision | the source revision of the build              | 31254, ce518b3
-process.env.source   | the source of the build                       | ci, local
-process.env.label    | the label of the build                        | 31254, 32564.2
-process.env.force    | allows you to restore database in production  | true, false
+variable                             | description                                   | values
+-------------------------------------|-----------------------------------------------|-------------------------
+process.env.target                   | the environment to use                        | dev, int, prod
+process.env.password                 | the password for the SQL Server account ccsd  |
+process.env.database                 | the name of the database to work with         |
+process.env.revision                 | the source revision of the build              | 31254, ce518b3
+process.env.source                   | the source of the build                       | ci, local
+process.env.label                    | the label of the build                        | 31254, 32564.2
+process.env.force                    | allows you to restore database in production  | true, false
+process.env.sqlservercertificatename | certificate name for SQL Server backups       | CcsdCapacityCert2020Apr
 
 ### Configuration
 
@@ -636,6 +637,9 @@ This task is not meant to be run independently. See [test](#test) task.
 ##### sql:backup
 
 This task backups up all database(s) in the specified environment except those marked with backup false.
+
+Uses the format `Ccsd\<[pillar](#pillar)\>\<suffix\>' for the server certificate name.  The suffix value is from an
+environment variable.
 
 __Usage:__  gulp sql:backup -e env -p password \[-d name\]
 
