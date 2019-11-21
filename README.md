@@ -28,7 +28,7 @@ variable                             | description                              
 process.env.target                   | the environment to use                        | dev, int, prod
 process.env.password                 | the password for the SQL Server account ccsd  |
 process.env.database                 | the name of the database to work with         |
-process.env.revision                 | the source revision of the build              | 31254, ce518b3
+process.env.revision                 | the source revision of the build              | ce518b3, ad67fe8.1
 process.env.source                   | the source of the build                       | ci, local
 process.env.label                    | the label of the build                        | 31254, 32564.2
 process.env.force                    | allows you to restore database in production  | true, false
@@ -414,7 +414,7 @@ This is helpful when an app of web configuration files need a list of email addr
                   \<env>
                     \current <-- NTFS junction to releases\<latest>
                     \releases
-                      \<svn revision | git short sha1 hash>
+                      \<git short sha1 hash>
                         \log <-- NTFS junction to shared\log
                     \shared
                       \log
@@ -772,7 +772,7 @@ argument      | description                              | example
 timestamp     | the date and time the app was deployed   | 2017-11-27T16:57:23.797
 environment   | the environment name                     | DEV
 version       | the version defined in package.json      | v0.2.0
-revision      | the svn revision or git short sha-a hash | 31175, a78e345
+revision      | the git short sha-a hash                 | 31175, a78e345
 deployed_from | the machine the app was deployed from    | JMORRIS2-MOBL
 deployed_by   | the IDSID of who deployed the app        | sys_ccsd
 
