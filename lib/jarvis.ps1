@@ -18,7 +18,9 @@ param(
     [Parameter(Mandatory = $false)]
     [String] $drive,
     [Parameter(Mandatory = $true)]
-    [String] $file
+    [String] $file,
+    [Parameter(Mandatory = $false)]
+    [string] $root = 'WebSites'
 )
 
 $app_offline_file = "app_offline.htm"
@@ -78,7 +80,7 @@ function Get-Status() {
 }
 
 function Set-Current() {
-    $local_path_base = "${drive}:\WebSites\$pillar\$name\$env"
+    $local_path_base = "${drive}:\$root\$pillar\$name\$env"
 
     $path_current = "current"
     $path_current_log = "$path_current\log"
