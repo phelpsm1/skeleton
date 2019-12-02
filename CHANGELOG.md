@@ -1,3 +1,42 @@
+# 0.8.0 (2019-12-02)
+
+Changes for moving CI/CD behind CDC firewall
+
+## deploy
+
+* fix: default revision if no entry in deploy.log ([14328e4](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/14328e4))
+* fix: remove ability to see commits in notification message ([b37b496](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/b37b496))
+
+## app
+
+* add optional parameter to jarvis.ps1 which specifies the root folder for Set-Current command ([262300c](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/262300c))
+
+* fix(app): no longer need to switch to mfg_ accounts ([4afd0a4](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/4afd0a4))
+
+## sql
+
+* feat(sql): add encryption to the backup ([dd2dbfa](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/dd2dbfa))
+
+## env
+
+* feat: deploy from ci server by using directory name as revision ([b04ed18](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/b04ed18))
+
+* fix(env): revision from -r arg or dir name or cc build label ([b8178f5](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/b8178f5))
+* fix: do not set a revision if directory is not correct format ([683b9ec](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/683b9ec))
+* fix: message when revision is set ([15576a4](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/15576a4))
+* fix: revision to not include .1, .2, etc ([3e2ac9d](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/3e2ac9d))
+* fix: revision to not include .1, .2, etc ([44b0539](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/44b0539))
+
+## ps
+
+* fix: remove warning about credential.xml file missing ([6bb9f64](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/6bb9f64))
+
+## miscellaneous
+
+* chore: update capitalize ([ccb3427](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/ccb3427))
+* chore: update dependencies ([58ef6dc](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/58ef6dc))
+* chore: update eslint ([a3e95b7](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/a3e95b7))
+
 # 0.7.0 (2019-11-04)
 
 Upgrade for MS Build Tools 2019

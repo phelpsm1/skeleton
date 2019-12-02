@@ -18,7 +18,9 @@ param(
     [Parameter(Mandatory = $false)]
     [String] $drive,
     [Parameter(Mandatory = $true)]
-    [String] $file
+    [String] $file,
+    [Parameter(Mandatory = $false)]
+    [string] $root = 'WebSites'
 )
 
 $app_offline_file = "app_offline.htm"
@@ -78,7 +80,7 @@ function Get-Status() {
 }
 
 function Set-Current() {
-    $local_path_base = "${drive}:\WebSites\$pillar\$name\$env"
+    $local_path_base = "${drive}:\$root\$pillar\$name\$env"
 
     $path_current = "current"
     $path_current_log = "$path_current\log"
@@ -118,29 +120,8 @@ function Set-Current() {
     }
 }
 
-function Get-Mfg-Credentials() {
-    if (Test-Path $file) {
-        return Import-Clixml $file
-    }
-    
-    $idsid = [Environment]::UserName
-
-    if($idsid.Contains('mfg_')) {
-        $user = "amr\$idsid"
-    } else {
-        $user = "amr\mfg_$idsid"
-    }
-
-    return Get-Credential -UserName $user -Message 'Enter password'
-}
-
 function Get-Session($server) {
-    if([Environment]::UserName.Contains('mfg_')) {
-        return New-PSSession -ComputerName $server
-    } else {
-        $cred = Get-Mfg-Credentials
-        return New-PSSession -ComputerName $server -Credential $cred
-    }
+    return New-PSSession -ComputerName $server
 }
 
 function Execute-Server-Command($session, $message, $cmd) {
