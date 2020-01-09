@@ -52,8 +52,8 @@
     "lib"
   ],
   "engines": {
-    "node": "~8.14.0",
-    "npm": "~6.4.0"
+    "node": "~10.17.0",
+    "npm": "~6.11.0"
   },
   "dependencies": {
     "ansi-colors": "^4.1.1",
@@ -66,20 +66,20 @@
     "gulp-dotnet-assembly-info": "^0.1.12",
     "gulp-msbuild": "^0.6.2",
     "gulp-nunit-runner": "^1.2.3",
-    "juice": "^5.2.0",
-    "log4js": "^5.3.0",
+    "juice": "^6.0.0",
+    "log4js": "^6.1.0",
     "minimist": "^1.2.0",
     "moment": "^2.24.0",
     "mssql": "^5.1.0",
     "node-powershell": "^3.3.1",
-    "nodemailer": "^6.3.1",
+    "nodemailer": "^6.4.2",
     "plugin-error": "^1.0.1",
     "pluralize": "^8.0.0",
     "pug": "^2.0.4",
     "shelljs": "^0.8.3",
     "through2": "^3.0.1",
     "username": "^5.1.0",
-    "xml2js": "^0.4.22"
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
