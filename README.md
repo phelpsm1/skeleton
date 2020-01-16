@@ -868,15 +868,23 @@ restored_by   | the IDSID of who restored the data       | sys_ccsd
 
 #### Environment Tasks
 
-##### env:<name>
+##### env:\<name\>
 
 This task sets the process.env.target environment variable to <name>.
 
-__Usage:__ gulp env:<name>
+__Usage:__ gulp env:\<name\>
 
 __Note:__
 
 The exact name of the task is determined by the name of each environment listed in the [Configuration](#configuration)
+
+#### Process Tasks
+
+##### process:info
+
+This tasks outputs all environment variable names and values in the process.env object.
+
+__Usage:__ gulp process:info
 
 ### Providing credentials
 
