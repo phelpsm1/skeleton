@@ -100,7 +100,23 @@ The name of the pillar within CCSD, e.g. capacity, capital, cost.
 
     "pillar": "capital"
 
-This is a custom attribute added the the package.json file.
+This is a custom attribute added to the package.json file.
+
+#### iapid
+
+The ID of the application in the [Intel Application Profiler](https://iap.intel.com).  This is used by the [deploy:notify:squawk](#deploynotifysquawk) task.  
+
+    "iapid": 1234
+
+This is a custom attribute added to the package.json file.
+
+#### twcid
+
+The ID of the Team in the [Team Work Connector](https://twc.app.intel.com).  This is used by the [deploy:notify:squawk](#deploynotifysquawk) task.  
+
+    "twcid": 1234
+
+This is a custom attribute added to the package.json file.
 
 #### appSettings
 
@@ -744,6 +760,16 @@ See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettingsenvironmentnotify).
 
 __Usage:__  gulp deploy:notify:email
+
+##### deploy:notify:squawk
+
+This task sends a squawk to [Squawkbox](https://squawkbox.app.intel.com)
+
+__Usage:__  gulp deploy:notify:squawk
+
+__Notes:__
+
+See [iapid](#iapid) and [twcid](#twcid) settings.
 
 ##### deploy:status
 
