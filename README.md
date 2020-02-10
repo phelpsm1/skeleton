@@ -242,12 +242,12 @@ server      | database server name            | text          |   YES    |
 instance    | database instance               | text          |   NO     |
 port        | database port                   | int           |   NO     |
 database    | name of the database            | text          |   YES    |
-secure      | secure flag                     | true,false    |   NO     | default is false
+secure      | secure flag                     | true,false    |   NO     | default is true
 user        | database user                   | text          |   NO     | default is SSPI connection
 password    | database user password          | text          |   NO     |
 backupShare | file share location for backups | text          |   NO     | if database is to be backed up, this is required
-backup      | backup flag                     | true, false   |   NO     | default is true
-restore     | restore flag                    | true, false   |   NO     | default is true
+backup      | backup flag                     | true, false   |   NO     | default is false
+restore     | restore flag                    | true, false   |   NO     | default is false
 
 ###### appSettings.environment.web
 
@@ -652,7 +652,7 @@ This task is not meant to be run independently. See [test](#test) task.
 
 ##### sql:backup
 
-This task backups up all database(s) in the specified environment except those marked with backup false.
+This task backups up all database(s) in the specified environment marked with backup true.
 
 Uses the format `Ccsd\<[pillar](#pillar)\>\<suffix\>' for the server certificate name.  The suffix value is from an
 environment variable.
@@ -673,7 +673,7 @@ See [appSettings.environment.dbs](#appsettingsenvironmentdbs)
 
 ##### sql:restore
 
-This task restores all database(s) in the specified environment except those marekd with restore false.
+This task restores all database(s) in the specified environment marked with restore true.
 
 __Usage:__  gulp sql:restore -e env -p password \[-d name --force\]
 
