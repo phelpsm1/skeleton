@@ -100,7 +100,23 @@ The name of the pillar within CCSD, e.g. capacity, capital, cost.
 
     "pillar": "capital"
 
-This is a custom attribute added the the package.json file.
+This is a custom attribute added to the package.json file.
+
+#### iapid
+
+The ID of the application in the [Intel Application Profiler](https://iap.intel.com).  This is used by the [deploy:notify:squawk](#deploynotifysquawk) task.  
+
+    "iapid": 1234
+
+This is a custom attribute added to the package.json file.
+
+#### twcid
+
+The ID of the Team in the [Team Work Connector](https://twc.app.intel.com).  This is used by the [deploy:notify:squawk](#deploynotifysquawk) task.  
+
+    "twcid": 1234
+
+This is a custom attribute added to the package.json file.
 
 #### appSettings
 
@@ -226,12 +242,12 @@ server      | database server name            | text          |   YES    |
 instance    | database instance               | text          |   NO     |
 port        | database port                   | int           |   NO     |
 database    | name of the database            | text          |   YES    |
-secure      | secure flag                     | true,false    |   NO     | default is false
+secure      | secure flag                     | true,false    |   NO     | default is true
 user        | database user                   | text          |   NO     | default is SSPI connection
 password    | database user password          | text          |   NO     |
 backupShare | file share location for backups | text          |   NO     | if database is to be backed up, this is required
-backup      | backup flag                     | true, false   |   NO     | default is true
-restore     | restore flag                    | true, false   |   NO     | default is true
+backup      | backup flag                     | true, false   |   NO     | default is false
+restore     | restore flag                    | true, false   |   NO     | default is false
 
 ###### appSettings.environment.web
 
@@ -636,7 +652,7 @@ This task is not meant to be run independently. See [test](#test) task.
 
 ##### sql:backup
 
-This task backups up all database(s) in the specified environment except those marked with backup false.
+This task backups up all database(s) in the specified environment marked with backup true.
 
 Uses the format `Ccsd\<[pillar](#pillar)\>\<suffix\>' for the server certificate name.  The suffix value is from an
 environment variable.
@@ -657,7 +673,7 @@ See [appSettings.environment.dbs](#appsettingsenvironmentdbs)
 
 ##### sql:restore
 
-This task restores all database(s) in the specified environment except those marekd with restore false.
+This task restores all database(s) in the specified environment marked with restore true.
 
 __Usage:__  gulp sql:restore -e env -p password \[-d name --force\]
 
@@ -744,6 +760,16 @@ See [Deploy Log Format](#deploy-log-format) for deploy.log file format
 This task sends an email to all [contributors](#contributors) in the role(s) defined in [appSetting.environment.notify](#appsettingsenvironmentnotify).
 
 __Usage:__  gulp deploy:notify:email
+
+##### deploy:notify:squawk
+
+This task sends a squawk to [Squawkbox](https://squawkbox.app.intel.com)
+
+__Usage:__  gulp deploy:notify:squawk
+
+__Notes:__
+
+See [iapid](#iapid) and [twcid](#twcid) settings.
 
 ##### deploy:status
 
@@ -868,15 +894,23 @@ restored_by   | the IDSID of who restored the data       | sys_ccsd
 
 #### Environment Tasks
 
-##### env:<name>
+##### env:\<name\>
 
 This task sets the process.env.target environment variable to <name>.
 
-__Usage:__ gulp env:<name>
+__Usage:__ gulp env:\<name\>
 
 __Note:__
 
 The exact name of the task is determined by the name of each environment listed in the [Configuration](#configuration)
+
+#### Process Tasks
+
+##### process:info
+
+This tasks outputs all environment variable names and values in the process.env object.
+
+__Usage:__ gulp process:info
 
 ### Providing credentials
 

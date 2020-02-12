@@ -1,3 +1,35 @@
+# 0.9.0 (2020-02-12)
+
+Adding ability to squawk upon deploy and changed the defaults on securing, backing up, and restoring databases.
+
+## BREAKING CHANGE
+
+* appSettings.environment.dbs backup, restore, secure defaults changed.  See [appSettings.environment.dbs](https://gitlab.devtools.intel.com/ccsd/skeleton/blob/develop/README.md#appsettingsenvironmentdbs) in the README for more information
+
+## deploy
+
+* feat: add task deploy:notify:squawk ([39c5538](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/39c5538))
+
+## sql
+
+* feat(sql)!: change backup, restore, secure default values ([ed145ac](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/ed145ac))
+
+## process
+
+* feat: add process:info task ([e7c5815](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/e7c5815))
+
+## env
+
+* fix(env): revision from -r arg, cc build label, dir name, git ([8c9e409](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/8c9e409))
+
+## miscellaneous
+
+* chore: update eslint ([b41dc8e](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/b41dc8e))
+* chore: update syntax ([64c8cb2](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/64c8cb2))
+* chore: update mssql ([561fa4d](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/561fa4d))
+* chore: updated dependencies ([23418d5](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/23418d5))
+* chore: upgrade eslint ([4e61efe](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/4e61efe))
+
 # 0.8.0 (2019-12-02)
 
 Changes for moving CI/CD behind CDC firewall
