@@ -11,24 +11,28 @@
     {
       "name": "Jason S Morris",
       "email": "jason.morris@intel.com",
+      "idsid": "jmorris2",
       "url": "https://soco.intel.com/people/jmorris2",
       "role": "Tech Lead"
     },
     {
       "name": "Jacob C Alm",
       "email": "jacob.c.alm@intel.com",
+      "idsid": "jcalm",
       "url": "https://soco.intel.com/people/jcalm",
       "role": "Developer"
     },
     {
       "name": "Michael Phelps",
       "email": "michael.phelps@intel.com",
+      "idsid": "phelpsmi",
       "url": "https://soco.intel.com/people/phelpsmi",
       "role": "Developer"
     },
     {
       "name": "Emily Fesnak",
       "email": "emily.fesnak@intel.com",
+      "idsid": "efesnak",
       "url": "https://soco.intel.com/people/efesnak",
       "role": "Developer"
     },
