@@ -1,6 +1,6 @@
 {
   "name": "skeleton",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "This is the skeleton to build, test, and deploy a project within FCSC Development",
   "homepage": "https://gitlab.devtools.intel.com/ccsd/skeleton",
   "author": {
@@ -11,24 +11,28 @@
     {
       "name": "Jason S Morris",
       "email": "jason.morris@intel.com",
+      "idsid": "jmorris2",
       "url": "https://soco.intel.com/people/jmorris2",
       "role": "Tech Lead"
     },
     {
       "name": "Jacob C Alm",
       "email": "jacob.c.alm@intel.com",
+      "idsid": "jcalm",
       "url": "https://soco.intel.com/people/jcalm",
       "role": "Developer"
     },
     {
       "name": "Michael Phelps",
       "email": "michael.phelps@intel.com",
+      "idsid": "phelpsmi",
       "url": "https://soco.intel.com/people/phelpsmi",
       "role": "Developer"
     },
     {
       "name": "Emily Fesnak",
       "email": "emily.fesnak@intel.com",
+      "idsid": "efesnak",
       "url": "https://soco.intel.com/people/efesnak",
       "role": "Developer"
     },
@@ -57,22 +61,22 @@
   },
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "capitalize": "^2.0.1",
+    "capitalize": "^2.0.3",
     "fancy-log": "^1.3.3",
     "find-process": "^1.4.3",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "glob": "^7.1.6",
     "gulp": "^4.0.2",
     "gulp-dotnet-assembly-info": "^0.1.12",
     "gulp-msbuild": "^0.6.2",
     "gulp-nunit-runner": "^1.2.3",
     "juice": "^6.0.0",
-    "log4js": "^6.1.0",
-    "minimist": "^1.2.0",
+    "log4js": "^6.2.0",
+    "minimist": "^1.2.5",
     "moment": "^2.24.0",
-    "mssql": "^6.0.1",
+    "mssql": "^6.2.0",
     "node-powershell": "^3.3.1",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^6.4.6",
     "plugin-error": "^1.0.1",
     "pluralize": "^8.0.0",
     "pug": "^2.0.4",
@@ -84,9 +88,9 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-node": "^11.0.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1"
   },
