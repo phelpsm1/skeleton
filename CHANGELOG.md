@@ -1,3 +1,18 @@
+# 0.10.0 (2020-04-17)
+
+## deploy
+
+* feat(deploy): use email address (from package.json contributors) as committer to squawk ([34253a4](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/34253a4))
+
+## sql
+
+* fix(sql): fail task when sql backup/restore fails ([5272d6e](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/5272d6e))
+
+## miscellaneous
+
+* chore: add idsid to active contributors ([b123876](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/b123876))
+* chore: update dependencies ([5858198](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/5858198))
+
 # 0.9.0 (2020-02-12)
 
 Adding ability to squawk upon deploy and changed the defaults on securing, backing up, and restoring databases.
