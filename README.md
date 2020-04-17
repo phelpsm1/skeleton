@@ -67,30 +67,39 @@ For more information, see the [people fields section](https://docs.npmjs.com/fil
 
 #### contributors
 
-An array of team members that can include developers, systems analysts, and integrators.
+An array of team members that can include developers, systems analysts, product owners, and/or integrators.  The role value can be any string.
 
     "contributors": [
       {
         "name": "Jason S Morris",
         "email": "jason.morris@intel.com",
+        "idsid": "jmorris2",
         "url": "https://soco.intel.com/people/jmorris2",
         "role": "Developer"
       },
       {
         "name": "Gary Reny",
         "email": "gary.reny@intel.com",
+        "idsid": "greny",
         "url": "https://soco.intel.com/people/greny",
         "role": "Systems Analyst"
       },
       {
         "name": "Brett Willis",
         "email": "brett.willis@intel.com",
+        "idsid": "bwillis",
         "url": "https://soco.intel.com/people/bwillis",
         "role": "Integrator"
       }
     ]
 
-The url attribute is linked to the [Inside Blue](https://soco.intel.com) profile and the role attribute can be anything, e.g. Developer, Systems Analyst, Integrator, Tester, etc.
+setting     | description                                           | value         | required | note
+------------|-------------------------------------------------------|---------------|----------|--------------------------------------------------------------
+name        | name                                                  | string        |   YES    |
+email       | Intel email address                                   | email         |   NO     | used by the [deploy:notify:squawk](#deploynotifysquawk) task
+idsid       | Intel IDSID                                           | string        |   NO     | used by the [deploy:notify:squawk](#deploynotifysquawk) task
+url         | the [Inside Blue](https://soco.intel.com) profile URL | url           |   NO     |
+role        | the role the contributor plays on the team            | string        |   NO     | can be value, e.g. Developer, Systems Analyst, Integrator, Tester, etc. and used by [deploy:notify:email](#deploynotifyemail) and [restore:notify:email](#restorenotifyemail) tasks
 
 For more information, see the [people fields section](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in the package.json documentation.
 
@@ -769,7 +778,7 @@ __Usage:__  gulp deploy:notify:squawk
 
 __Notes:__
 
-See [iapid](#iapid) and [twcid](#twcid) settings.
+See [iapid](#iapid) and [twcid](#twcid) settings.  Use values from the [contributors](#contributors) list.
 
 ##### deploy:status
 
