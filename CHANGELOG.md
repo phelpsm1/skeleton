@@ -1,3 +1,13 @@
+# 0.10.1 (2020-04-23)
+
+## build
+
+* feat(build): add msbuild output ([dd35b19](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/dd35b19))
+
+## miscellaneous
+
+* chore: upgrade log4js ([e7d8213](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/e7d8213))
+
 # 0.10.0 (2020-04-17)
 
 ## deploy
