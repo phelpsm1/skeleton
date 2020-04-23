@@ -1,6 +1,6 @@
 {
   "name": "skeleton",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "This is the skeleton to build, test, and deploy a project within FCSC Development",
   "homepage": "https://gitlab.devtools.intel.com/ccsd/skeleton",
   "author": {
@@ -71,7 +71,7 @@
     "gulp-msbuild": "^0.6.2",
     "gulp-nunit-runner": "^1.2.3",
     "juice": "^6.0.0",
-    "log4js": "^6.2.0",
+    "log4js": "^6.2.1",
     "minimist": "^1.2.5",
     "moment": "^2.24.0",
     "mssql": "^6.2.0",
