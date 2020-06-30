@@ -8,3 +8,4 @@
 /debug.log
 /credentials.xml
 *.bak
+.skeletonrc
