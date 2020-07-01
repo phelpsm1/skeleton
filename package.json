@@ -73,7 +73,7 @@
     "gulp-nunit-runner": "^1.2.3",
     "juice": "^6.0.0",
     "log4js": "^6.3.0",
-    "moment": "^2.26.0",
+    "moment": "^2.27.0",
     "mssql": "^6.2.0",
     "node-powershell": "^3.3.1",
     "nodemailer": "^6.4.10",
