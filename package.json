@@ -83,7 +83,7 @@
     "rc": "^1.2.8",
     "request-promise-native": "^1.0.8",
     "shelljs": "^0.8.4",
-    "through2": "^3.0.1",
+    "through2": "^4.0.2",
     "username": "^5.1.0",
     "xml2js": "^0.4.23"
   },
