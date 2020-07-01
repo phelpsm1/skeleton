@@ -56,8 +56,8 @@
     "lib"
   ],
   "engines": {
-    "node": "~10.17.0",
-    "npm": "~6.11.0"
+    "node": "^10.17.0",
+    "npm": "^6.11.0"
   },
   "dependencies": {
     "ansi-colors": "^4.1.1",
