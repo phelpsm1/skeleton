@@ -17,6 +17,33 @@ argument    | description
 -l label    | label that can be used to identify the build, e.g. CI artifact label
 --force     | allows you to restore database in production
 
+### Configuration File
+
+Skeleton uses [rc](https://github.com/dominictarr/rc) to find configuration settings.  Skeleton will look in all the obvious places.
+
+* command line arguments, e.g. --foo baz, also nested: --foo.bar=baz
+* environment variables prefixed with "skeleton_"
+  * or use "__" to indicate nested properties, e.g. skeleton_foo__bar__baz => foo.bar.baz
+* if you passed an option --config file then from that file
+* a local .skeletonrc or the first found looking in ./, ../, ../../, ../../../, etc.
+* $HOME/.skeletonrc
+* $HOME/.skelton/config
+* $HOME/.config/skeleton
+* $HOME/.config/skeleton/config
+* /etc/skeletonrc
+* /etc/skeleton/config
+
+All configuration sources that were found will be flattened into one object, so that sources earlier in this list override later ones. See [rc README](https://github.com/dominictarr/rc#standards) for latest info.
+
+A sample .skeletonrc file
+
+    {
+      "gitlab": {
+        "token": "<gitlab api token>"
+      },
+      "p": "<password>"
+    }
+
 ## Documentation
 
 ### Environment Variables
