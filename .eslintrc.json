@@ -3,11 +3,17 @@
     "es6": true,
     "node": true
   },
-  "extends": "standard",
+  "extends": [
+    "standard",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:node/recommended",
+    "plugin:promise/recommended"
+  ],
   "plugins": [
-    "eslint-plugin-import",
-    "eslint-plugin-node",
-    "eslint-plugin-promise",
-    "eslint-plugin-standard"
+    "import",
+    "node",
+    "promise",
+    "standard"
   ]
 }

@@ -1,3 +1,26 @@
+# 0.11.0 (2020-07-06)
+
+## deploy
+
+* feat: add commit messages to deployment notifications ([1013895](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/1013895))
+
+## miscellaneous
+
+* refactor: simplify message when not a git repo ([14c97c7](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/14c97c7))
+* docs: explain the use of rc and a .skeletonrc file ([309e1e9](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/309e1e9))
+* chore: allow bugfix and minor updates for node and npm engines ([51f7581](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/51f7581))
+* chore: configure eslint to use eslint-plugin-import ([2f4f36f](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/2f4f36f))
+* chore: configure eslint to use eslint-plugin-node ([0ee4e42](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/0ee4e42))
+* chore: configure eslint to use eslint-plugin-promise ([cf456a2](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/cf456a2))
+* chore: replace request with got ([4eb7b26](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/4eb7b26))
+* chore: upgrade dependencies ([97df9ec](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/97df9ec))
+* chore: upgrade eslint ([9196f24](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/9196f24))
+* chore: upgrade eslint and related packages ([72ca132](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/72ca132))
+* chore: upgrade log4js ([e7d8213](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/e7d8213))
+* chore: upgrade moment ([ef3b95a](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/ef3b95a))
+* chore: upgrade pug ([4bed77e](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/4bed77e))
+* chore: upgrade through2 ([fe1d3a6](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/fe1d3a6))
+
 # 0.10.1 (2020-04-23)
 
 ## build
