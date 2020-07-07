@@ -43,9 +43,9 @@ function checkGuards (plugin) {
 
     log.info(colors.green(`${random}`))
 
-    if (random > 0.5) {
-      throw new GulpError({ plugin: plugin, message: 'There was an error', showStack: true })
-    }
+    // if (random > 0.5) {
+    //   throw new GulpError({ plugin: plugin, message: 'There was an error', showStack: true })
+    // }
 
     done()
   }
