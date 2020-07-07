@@ -1,3 +1,9 @@
+# 0.11.1 (2020-07-07)
+
+## deploy
+
+* fix: call git.revision.get correctly and strip whitesapce from response ([ef48f16](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/ef48f16))
+
 # 0.11.0 (2020-07-06)
 
 ## deploy
