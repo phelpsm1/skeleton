@@ -43,9 +43,9 @@ function checkGuards (plugin) {
 
     log.info(colors.green(`${random}`))
 
-    // if (random > 0.5) {
-    //   throw new GulpError({ plugin: plugin, message: 'There was an error', showStack: true })
-    // }
+    if (random > 0.9) {
+      throw new GulpError({ plugin: plugin, message: 'There was an error', showStack: true })
+    }
 
     done()
   }
@@ -64,7 +64,8 @@ const example = series(checkGuards('example'), a, b, parallel(c1, c2), (done) =>
 
   const conf = env.getArgs()
 
-  const start = 'b90ee53a53f1d4479f4db2cf49eabc35b99e2c0b'
+  const startGt100 = 'f0eb6ccb0e9da182ad8ce89b5685bfdb6dadd9fd'
+  const startLt100 = 'b90ee53a53f1d4479f4db2cf49eabc35b99e2c0b'
   const end = 'fdfba5428e9f2fab315b7b6ddd75f5904357b721'
 
   const print = (c) => {
@@ -73,17 +74,13 @@ const example = series(checkGuards('example'), a, b, parallel(c1, c2), (done) =>
 
   print(conf)
 
-  git.commits.fetch(start, end, { pid: env.pkg.gitlabprojectid, token: conf.gitlab.token })
+  git.commits.fetch(startLt100, end, { pid: env.pkg.gitlabprojectid, token: conf.gitlab.token })
     .then(print)
     .catch((err) => log.error(err))
 
-  // gitlab.commits.fetch(start, end, { pid: env.pkg.gitlabprojectid, token: conf.gitlab.token })
-  //   .then(print)
-  //   .catch((err) => log.error(err))
-
-  // gitlocal.commits.fetch(start, end)
-  //   .then(print)
-  //   .catch((err) => log.error(err))
+  git.commits.fetch(startGt100, end, { pid: env.pkg.gitlabprojectid, token: conf.gitlab.token })
+    .then(print)
+    .catch((err) => log.error(err))
 
   done()
 })
