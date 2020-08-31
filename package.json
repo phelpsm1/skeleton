@@ -74,7 +74,7 @@
     "juice": "^7.0.0",
     "log4js": "^6.3.0",
     "moment": "^2.27.0",
-    "mssql": "^6.2.0",
+    "mssql": "^6.2.1",
     "node-powershell": "^3.3.1",
     "nodemailer": "^6.4.10",
     "plugin-error": "^1.0.1",
