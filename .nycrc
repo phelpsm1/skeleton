@@ -1,0 +1,4 @@
+{
+  "reporter": "html",
+  "exclude": [ "**/*.spec.js", ".mocharc.js" ]
+}

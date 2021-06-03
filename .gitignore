@@ -9,3 +9,5 @@
 /credentials.xml
 *.bak
 .skeletonrc
+/.nyc_output/
+/coverage/

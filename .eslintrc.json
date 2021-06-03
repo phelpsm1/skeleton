@@ -1,17 +1,24 @@
 {
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "mocha":true
   },
   "extends": [
     "standard",
+    "plugin:chai-expect/recommended",
+    "plugin:chai-friendly/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:mocha/recommended",
     "plugin:node/recommended",
     "plugin:promise/recommended"
   ],
   "plugins": [
+    "chai-expect",
+    "chai-friendly",
     "import",
+    "mocha",
     "node",
     "promise",
     "standard"
