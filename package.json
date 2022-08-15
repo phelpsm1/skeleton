@@ -71,7 +71,7 @@
     "got": "^11.8.3",
     "gulp": "^4.0.2",
     "gulp-dotnet-assembly-info": "^0.1.12",
-    "gulp-msbuild": "^0.8.0",
+    "gulp-msbuild": "^0.10.0",
     "gulp-nunit-runner": "^1.2.3",
     "juice": "^8.0.0",
     "log4js": "^6.3.0",
