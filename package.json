@@ -73,7 +73,7 @@
     "gulp-dotnet-assembly-info": "^0.1.12",
     "gulp-msbuild": "^0.10.0",
     "gulp-nunit-runner": "^1.2.3",
-    "juice": "^8.0.0",
+    "juice": "^8.1.0",
     "log4js": "^6.3.0",
     "moment": "^2.29.1",
     "mssql": "^7.3.0",
