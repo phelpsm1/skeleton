@@ -11,7 +11,7 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:mocha/recommended",
-    "plugin:node/recommended",
+    "plugin:n/recommended",
     "plugin:promise/recommended"
   ],
   "plugins": [
@@ -19,7 +19,7 @@
     "chai-friendly",
     "import",
     "mocha",
-    "node",
+    "n",
     "promise",
     "standard"
   ]
