@@ -69,13 +69,14 @@ The __footer__ format is TBD but would be used for communicating breaking change
    ``git commit -a -m 'chore: update changelog'``
 
 6. finish the release branch
-    1. ``git checkout master``
-    2. ``git merge --no-ff release-v0.2.0``
-    3. ``git tag -a v0.2.0 -m 'release v0.2.0'``
-    4. ``git checkout develop``
-    5. ``git merge --no-ff release-v0.2.0``
-    6. ``git branch -d release-v0.2.0``
+   1. ``git checkout master``
+   2. ``git merge --no-ff release-v0.2.0``
+   3. ``git tag -a v0.2.0 -m 'release v0.2.0'``
+   4. ``git checkout develop``
+   5. ``git merge --no-ff release-v0.2.0``
+   6. ``git branch -d release-v0.2.0``
+   7. If pushed to remote, ``git push -d origin release-v0.2.0`` 
 
 7. push
 
-    1. ``git push --all --follow-tags``
+   1. ``git push --all --follow-tags``
