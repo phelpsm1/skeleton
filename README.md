@@ -1043,31 +1043,3 @@ gulp.task('sql:migrate', () => {
 ```
 
 ##### Mssql.run
-
-## Release Workflow
-
-1. make a release branch ``git checkout -b release-v0.2.0 develop``
-2. bump version in package.json
-3. commit package.json
-
-    ``git commit -a -m 'chore: bumped version number'``
-
-4. generate changelog with [conventionalChangelog](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)
-    
-    ``npm run changelog``
-    
-5. commit CHANGELOG.md
-
-    ``git commit -a -m 'chore: update changelog'``
-
-6. finish the release branch
-    1. ``git checkout master``
-    2. ``git merge --no-ff release-v0.2.0``
-    3. ``git tag -a v0.2.0 -m 'release v0.2.0'``
-    4. ``git checkout develop``
-    5. ``git merge --no-ff release-v0.2.0``
-    6. ``git branch -d release-v0.2.0``
-
-7. push
-
-    1. ``git push --all --follow-tags``

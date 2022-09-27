@@ -1,3 +1,34 @@
+# 0.12.0 (2022-09-26)
+
+## sql
+
+* fix(sql): add option to trust self-signed certs ([a472317](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/a472317))
+
+## mongo
+
+* feat: add ability to construct mongo connection strings ([9371496](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/9371496))
+* feat: expose mongo database via data object ([0c21167](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/0c21167))
+
+## config
+
+* feat(config): add ability to config web api throttle limits ([d2cb713](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/d2cb713))
+
+* fix: handle edge cases when adding throttlePolicy ([6aa4427](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/6aa4427))
+
+## miscellaneous
+
+* fix: add better error message when pillar is not defined ([7631b02](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/7631b02))
+
+* feat: show more than 20 commit messages in deploy notification ([3ba2a1b](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/3ba2a1b))
+
+* test: add test for building connection strings ([445fde5](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/445fde5))
+
+* chore: add ability to perform unit tests ([15032d5](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/15032d5))
+* chore: use node 12.20.x and npm 6.14.x ([c089d90](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/c089d90))
+* chore(nvm): using nvm ([42ea4ab](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/42ea4ab))
+* chore(dep): replace eslint-plugin-node with eslint-plugin-n ([e258987](https://gitlab.devtools.intel.com/ccsd/skeleton/commit/e258987))
+* chore(dep): upgrade libs
+
 # 0.11.1 (2020-07-07)
 
 ## deploy
