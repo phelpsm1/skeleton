@@ -1,8 +1,8 @@
 {
-  "name": "@jsmorris2/skeleton",
+  "name": "@phelpsm1/skeleton",
   "version": "0.13.0",
   "description": "This is the skeleton to build, test, and deploy a project within FCSC Development",
-  "homepage": "https://github.com/jsmorris2/skeleton",
+  "homepage": "https://github.com/phelpsm1/skeleton",
   "author": {
     "name": "FCSC Development",
     "email": "fcsc.development@intel.com"
