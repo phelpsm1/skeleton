@@ -5,8 +5,6 @@ const data = require('./lib/data')
 const env = require('./lib/env')
 const files = require('./lib/files')
 const git = require('./lib/git')
-const gitlab = require('./lib/gitlab')
-const gitlocal = require('./lib/gitlocal')
 const ps = require('./lib/ps')
 const smtp = require('./lib/smtp')
 
@@ -29,8 +27,6 @@ module.exports = {
   Ps: ps,
   Smtp: smtp,
   Source: {
-    git: git,
-    gitlocal: gitlocal,
-    gitlab: gitlab
+    git: git
   }
 }
