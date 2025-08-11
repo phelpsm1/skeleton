@@ -11,3 +11,4 @@
 .skeletonrc
 /.nyc_output/
 /coverage/
+*.tgz
